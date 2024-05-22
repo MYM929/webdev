@@ -1,10 +1,22 @@
-const PI = 3.14159;
-let radius;
-let circumference;
+const countLabel = document.getElementById("countLabel");
 
-document.getElementById("mySubmit").onclick = function(){
-    radius = document.getElementById("myText").value;
-    radius = Number(radius);
-    circumference = 2*PI*radius;
-    document.getElementById("myH3").textContent = circumference + "cm";
+const decreaseButton = document.getElementById("decreaseButton");
+const resetButton = document.getElementById("resetButton");
+const increaseButton = document.getElementById("increaseButton");
+
+let count = 0;
+
+increaseButton.onclick = function () {
+  count++;
+  countLabel.textContent = count;
+};
+
+decreaseButton.onclick = function () {
+  count--;
+  countLabel.textContent = count;
+};
+
+resetButton.onclick = function () {
+  count = 0;
+  countLabel.textContent = count;
 };
