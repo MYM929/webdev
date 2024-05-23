@@ -1,22 +1,18 @@
-const email = "Bro1@gmail.com";
+let username = window.prompt("Enter your username");
 
-let username = email.slice(0, email.indexOf("@"));
-let extension = email.slice(email.indexOf("@") + 1);
+username =
+  username.trim().charAt(0).toUpperCase() +
+  username.trim().slice(1).toLowerCase();
 
 console.log(username);
-console.log(extension);
+/*D
+username = username.trim();
+let letter = username.charAt(0);
+letter = letter.toUpperCase();
 
-/*
-const fullName = "Bro Code";
+extraChars = extraChars.toLowerCase();
 
-let firstName = fullName.slice(0, fullName.indexOf(" "));
-let lastName = fullName.slice(fullName.indexOf(" ") + 1); //+1 to remove that space
+username = letter + extraChars;
 
-console.log(firstName);
-console.log(lastName);
-*/
-
-/*
-slice(0, 3); //2nd digit: exclusive //result: Bro
-slice(-2); //result: de
+console.log(username);
 */
