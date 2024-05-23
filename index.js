@@ -1,51 +1,33 @@
-// let day = 1;
+let phoneNumber = "123-456-7890";
 
-// switch (day) {
-//   case 1:
-//     console.log("It is Monday");
-//     break;
-//   case 2:
-//     console.log("It is Tueday");
-//     break;
-//   case 3:
-//     console.log("It is Wednesday");
-//     break;
-//   case 4:
-//     console.log("It is Thursday");
-//     break;
-//   case 5:
-//     console.log("It is Friday");
-//     break;
-//   case 6:
-//     console.log("It is Saturday");
-//     break;
-//   case 7:
-//     console.log("It is Sunday");
-//     break;
-//   default:
-//     console.log(`${day} is not a day`);
-//     break;
-// }
+phoneNumber = phoneNumber.replaceAll("-", "");
 
-let testScore = 33;
-let letterGrade;
+console.log(phoneNumber);
 
-switch (true) {
-  case testScore >= 90:
-    letterGrade = "A";
-    break;
-  case testScore >= 80:
-    letterGrade = "B";
-    break;
-  case testScore >= 70:
-    letterGrade = "C";
-    break;
-  case testScore >= 60:
-    letterGrade = "D";
-    break;
-  default:
-    letterGrade = "F";
-    break;
+/*
+let userName = "BroCode";
+
+let result = userName.startsWith(" "); //retsurns a boolean
+
+if (result) {
+  console.log("Your username can't begin with ` `");
+} else {
+  console.log(userName);
 }
+*/
 
-console.log(letterGrade);
+/*
+chatAt(0)
+indexOf("o")
+lastIndexOf("o")
+length
+trim() //trim the white space
+toUpperCase()
+toLowerCase()
+repeat(3) //repeat 3 times
+startsWith(" ")
+endsWith(" ");
+includes(" ");
+padStart(15, "0");
+padEnd(15, "0");
+*/
