@@ -1,33 +1,22 @@
-let phoneNumber = "123-456-7890";
+const email = "Bro1@gmail.com";
 
-phoneNumber = phoneNumber.replaceAll("-", "");
+let username = email.slice(0, email.indexOf("@"));
+let extension = email.slice(email.indexOf("@") + 1);
 
-console.log(phoneNumber);
+console.log(username);
+console.log(extension);
 
 /*
-let userName = "BroCode";
+const fullName = "Bro Code";
 
-let result = userName.startsWith(" "); //retsurns a boolean
+let firstName = fullName.slice(0, fullName.indexOf(" "));
+let lastName = fullName.slice(fullName.indexOf(" ") + 1); //+1 to remove that space
 
-if (result) {
-  console.log("Your username can't begin with ` `");
-} else {
-  console.log(userName);
-}
+console.log(firstName);
+console.log(lastName);
 */
 
 /*
-chatAt(0)
-indexOf("o")
-lastIndexOf("o")
-length
-trim() //trim the white space
-toUpperCase()
-toLowerCase()
-repeat(3) //repeat 3 times
-startsWith(" ")
-endsWith(" ");
-includes(" ");
-padStart(15, "0");
-padEnd(15, "0");
+slice(0, 3); //2nd digit: exclusive //result: Bro
+slice(-2); //result: de
 */
