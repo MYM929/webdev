@@ -1,24 +1,23 @@
 let fruits = ["apple", "orange", "banana"];
+let vegetables = ["carrots", "celery", "potatoes"];
+let foods = [...fruits, ...vegetables, "eggs", "milk"];
 
-for(let fruit of fruits)
-{
-  console.log(fruit);
-}
+console.log(foods);
+
 
 /*
-for(let i=0; i<fruits.length; i++)
-{
-  console.log(fruits[i]);
-}
+let username = "Bro Code";
+let letters = [...username].join("-");
+
+console.log(letters);
 */
 
-// fruits.push("coconut");
-// fruits.pop("coconut");
-// fruits.unshift("mango");
-// fruits.shift("mango");
-// let numOfFruits = fruits.length;
-// let index = fruits.indexOf("apple");
 
-// console.log(index);
+/*
+let numbers = [1,2,3,4,5];
+let max = Math.max(...numbers);
+let min = Math.min(...numbers);
 
-// fruit.sort().reverse();
+console.log(max);
+console.log(min);
+*/
