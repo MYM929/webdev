@@ -1,15 +1,15 @@
-const PI = 3.14;
+let loggedIn = false;
+let username;
+let password;
 
-if (PI === "3.14") {
-  console.log("This is PI");
-} else {
-  console.log("This is NOT PI");
-}
+while (!loggedIn) {
+  username = window.prompt(`Enter your username`);
+  password = window.prompt(`Enter your password`);
 
-/*
-if (Pi !== "3.14") {
-  console.log("This is NOT PI");
-} else {
-  console.log("This is PI");
+  if (username === "myUsername" && password === "myPassword") {
+    loggedIn = true;
+    console.log("You are logged in!");
+  } else {
+    console.log("Invalid credentials! Please try again");
+  }
 }
-*/
