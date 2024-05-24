@@ -1,7 +1,15 @@
-const temp = 250;
+const PI = 3.14;
 
-if (temp <= 0 || temp <= 30) {
-  console.log("The weather is GOOD");
+if (PI === "3.14") {
+  console.log("This is PI");
 } else {
-  console.log("The weather is BAD");
+  console.log("This is NOT PI");
 }
+
+/*
+if (Pi !== "3.14") {
+  console.log("This is NOT PI");
+} else {
+  console.log("This is PI");
+}
+*/
