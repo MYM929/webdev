@@ -1,26 +1,24 @@
-const textBox = document.getElementById("textBox");
-const toF = document.getElementById("toF");
-const toC = document.getElementById("toC");
-const result = document.getElementById("result");
+let fruits = ["apple", "orange", "banana"];
 
-let temp;
-
-function convert()
+for(let fruit of fruits)
 {
-  if(toF.checked)
-  {
-    temp = Number(textBox.value);
-    temp = temp*9/5 + 32;
-    result.textContent = temp.toFixed(1) + " F";
-  }
-  else if(toC.checked)
-  {
-    temp = Number(textBox.value);
-    temp = (temp-32)*(5/9);
-    result.textContent = temp.toFixed(1) + " C";
-  }
-  else
-  {
-    result.textContent = "Select a unit";
-  }
+  console.log(fruit);
 }
+
+/*
+for(let i=0; i<fruits.length; i++)
+{
+  console.log(fruits[i]);
+}
+*/
+
+// fruits.push("coconut");
+// fruits.pop("coconut");
+// fruits.unshift("mango");
+// fruits.shift("mango");
+// let numOfFruits = fruits.length;
+// let index = fruits.indexOf("apple");
+
+// console.log(index);
+
+// fruit.sort().reverse();
