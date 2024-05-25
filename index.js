@@ -1,24 +1,18 @@
-function combineStrings(...strings)
-{
-  return strings.join(" ");
-}
+function rollDice(){
+  const numOfDice = document.getElementById("numOfDice").value;
+  const diceResult = document.getElementById("diceResult");
+  const diceImages = document.getElementById("diceImages");
 
-const fullName = combineStrings("Mr.", "aa", "bb");
-console.log(fullName);
+  const values = [];
+  const images = [];
 
-
-
-/*
-function sum(...numbers)
-{
-  let result = 0;
-  for(let number of numbers)
+  for(let i=0; i<numOfDice; i++)
   {
-    result += number;
+    const value = Math.floor(Math.random()*6) + 1;
+    values.push(value);
+    images.push(`<img src="Images/dice${value}.png" alt="Dice ${value}">`);
   }
-  return result;
-}
 
-const total = sum(1,2,3,4,5);
-console.log(total);
-*/
+  diceResult.textContent = `dice: ${values.join(', ')}`
+  diceImages.innerHTML = images.join('');
+}
