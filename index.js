@@ -1,23 +1,24 @@
-let fruits = ["apple", "orange", "banana"];
-let vegetables = ["carrots", "celery", "potatoes"];
-let foods = [...fruits, ...vegetables, "eggs", "milk"];
+function combineStrings(...strings)
+{
+  return strings.join(" ");
+}
 
-console.log(foods);
+const fullName = combineStrings("Mr.", "aa", "bb");
+console.log(fullName);
 
-
-/*
-let username = "Bro Code";
-let letters = [...username].join("-");
-
-console.log(letters);
-*/
 
 
 /*
-let numbers = [1,2,3,4,5];
-let max = Math.max(...numbers);
-let min = Math.min(...numbers);
+function sum(...numbers)
+{
+  let result = 0;
+  for(let number of numbers)
+  {
+    result += number;
+  }
+  return result;
+}
 
-console.log(max);
-console.log(min);
+const total = sum(1,2,3,4,5);
+console.log(total);
 */
