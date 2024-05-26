@@ -1,50 +1,34 @@
-class User{
-  static userCount = 0;
+class Animal{
+  alive = true;
 
-  constructor(username){
-    this.username = username;
-    User.userCount++;
+  eat(){
+    console.log(`This ${this.name} is eating`);
   }
-
-  static getUserCount(){
-    console.log(`There are ${User.userCount} users online`);
-  }
-
-  sayHello(){
-    console.log(`Hello, my username is ${this.username}`);
+  sleep(){
+    console.log(`This ${this.name} is sleeping`);
   }
 }
 
-const user1 = new User("aaa");
-const user2 = new User("bbb");
+class Rabbit extends Animal{
+  name = "rabbit";
 
-user1.sayHello();
-User.getUserCount();
-
-console.log(user1.username);
-console.log(user2.username);
-
-console.log(User.userCount);
-
-
-/* 
-class MathUtil{
-  static PI = 3.14159;
-
-  static getDiameter(radius){
-    return radius*2;
-  }
-  static getCircumference(radius){
-    return 2*this.PI*radius;
-  }
-  static getArea(radius){
-    return this.PI*radius*radius;
+  run(){
+    console.log(`This is ${this.name} is running`);
   }
 }
+class Fish extends Animal{
+  name = "fish";
+}
+class Hawk extends Animal{
+  name = "hawk";
+}
 
+const rabbit = new Rabbit();
+const fish = new Fish();
+const hawk = new Hawk();
 
-console.log(MathUtil.PI)
-console.log(MathUtil.getDiameter(10));
-console.log(MathUtil.getCircumference(10));
-console.log(MathUtil.getArea(10)); 
-*/
+rabbit.alive = false;
+console.log(rabbit.alive);
+
+rabbit.eat();
+rabbit.run();
