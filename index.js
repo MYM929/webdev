@@ -1,35 +1,53 @@
-const dates = ["2024-1-20", "2024-2-20", "2026-3-20"];
+const words = ["apple", "orange", "banana", "kiwi",
+               "pomegrante", "coconut"];
 
-function formatDates(element)
+function getShortWords(element)
 {
-  const parts = element.split("-");
-  return `${parts[1]}/${parts[2]}/${parts[0]}`;
+  return element.length <= 6;
+}
+function getLongWords(element)
+{
+  return element.length > 6;
 }
 
-const formattedDates = dates.map(formatDates);
-console.log(formattedDates);
+const shortWords = words.filter(getShortWords);
+console.log(shortWords);
+const longWords = words.filter(getLongWords);
+console.log(longWords);
 
 
 /* 
-const students = ["aaa", "bbb", "ccc"];
+const ages = [16,17,18,18,19,20,60];
 
-function upperCase(element)
+function isAdult(element)
 {
-  return element.toUpperCase();
+  return element >= 18;
+}
+function isChild(element)
+{
+  return element < 18;
 }
 
-const studentsUpper = students.map(upperCase);
-console.log(studentsUpper); 
+const adults = ages.filter(isAdult);
+console.log(adults);
+const children = ages.filter(isChild);
+console.log(children);
 */
 
-/*
-const numbers = [1,2,3,4,5];
+/* 
+let numbers = [1,2,3,4,5,6,7];
 
-function square(element)
+function isEven(element)
 {
-  return Math.pow(element, 2);
+  return element % 2 === 0; 
+}
+function isOdd(element)
+{
+  return element % 2 !== 0; 
 }
 
-const squares = numbers.map(square);
-console.log(squares);
+let evenNums = numbers.filter(isEven);
+console.log(evenNums);
+let oddNums = numbers.filter(isOdd);
+console.log(oddNums); 
 */
