@@ -1,30 +1,21 @@
-const numbers = [1,2,3,4,5,6];
+const person1 = {
+  firstName: "aaa",
+  lastName: "bbb",
+  age: 30,
+  isEmployed: true,
 
-const squares = numbers.map((element) => Math.pow(element, 2));
-const evenNums = numbers.filter((element) => element%2 === 0);
-const total = numbers.reduce((accumulator, element) => accumulator + element);
+  sayHello: function(){console.log("Hello 1")},
+}
 
-console.log(squares);
-console.log(evenNums);
-console.log(total);
+const person2 = {
+  firstName: "ccc",
+  lastName: "ddd",
+  age: 42,
+  isEmployed: false,
+
+  sayHello: () => console.log("Hello 2"),
+}
 
 
-
-
-
-/*  
-setTimeout(() => console.log("Hello"), 3000); 
-*/
-
-/* 
-const hello = (name,age) => {console.log(`Hello ${name}`)
-                             console.log(`You are ${age} years old`)};
-
-hello("Bro", 25); 
-*/
-
-/* 
-const hello = () => console.log("Hello");
-
-setTimeout(hello, 3000);
-*/
+console.log(person1.firstName);
+person1.sayHello();
