@@ -1,39 +1,37 @@
-function sum(callback, x, y)
+let fruits = ["apple", "orange", "banana", "coconut"];
+
+function display(element)
 {
-  let result = x+y;
-  callback(result);
+  console.log(element);
 }
-function displayConsole(result)
+function upperCase(element, index, array)
 {
-  console.log(result);
+  array[index] = element.toUpperCase();
 }
-function displayPage(result)
+function lowerCase(element, index, array)
 {
-  document.getElementById("myH1").textContent = result;
+  array[index] = element.toLowerCase();
+}
+function capitalize(element, index, array)
+{
+  array[index] = element[0].toUpperCase() + element.slice(1);
 }
 
-sum(displayPage, 1, 2);
-
+fruits.forEach(capitalize);
+fruits.forEach(display);
 
 /*
-function hello(callback)
+let numbers = [1,2,3,4,5];
+
+function display(element)
 {
-  //setTimeout(function(){console.log("Hello!");}, 3000);
-  console.log("Hello!");
-  callback();
+  console.log(element);
 }
-function goodbye()
+function double(element, index, array)
 {
-  console.log("Goodbye!");
-}
-function wait()
-{
-  console.log("Wait!");
-}
-function leave()
-{
-  console.log("Leave!");
+  array[index] = element*2;
 }
 
-hello(goodbye);
+numbers.forEach(double);
+numbers.forEach(display);
 */
