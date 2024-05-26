@@ -1,37 +1,35 @@
-let fruits = ["apple", "orange", "banana", "coconut"];
+const dates = ["2024-1-20", "2024-2-20", "2026-3-20"];
 
-function display(element)
+function formatDates(element)
 {
-  console.log(element);
-}
-function upperCase(element, index, array)
-{
-  array[index] = element.toUpperCase();
-}
-function lowerCase(element, index, array)
-{
-  array[index] = element.toLowerCase();
-}
-function capitalize(element, index, array)
-{
-  array[index] = element[0].toUpperCase() + element.slice(1);
+  const parts = element.split("-");
+  return `${parts[1]}/${parts[2]}/${parts[0]}`;
 }
 
-fruits.forEach(capitalize);
-fruits.forEach(display);
+const formattedDates = dates.map(formatDates);
+console.log(formattedDates);
+
+
+/* 
+const students = ["aaa", "bbb", "ccc"];
+
+function upperCase(element)
+{
+  return element.toUpperCase();
+}
+
+const studentsUpper = students.map(upperCase);
+console.log(studentsUpper); 
+*/
 
 /*
-let numbers = [1,2,3,4,5];
+const numbers = [1,2,3,4,5];
 
-function display(element)
+function square(element)
 {
-  console.log(element);
-}
-function double(element, index, array)
-{
-  array[index] = element*2;
+  return Math.pow(element, 2);
 }
 
-numbers.forEach(double);
-numbers.forEach(display);
+const squares = numbers.map(square);
+console.log(squares);
 */
