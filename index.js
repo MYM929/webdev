@@ -1,14 +1,15 @@
-console.log(this); //return the windows object
-
-//this keyword does not work with arrow functions
-
-/* 
-const person1 = {
-  name: "aaa",
-  favFood: "bbb",
-
-  sayHello: function(){console.log(`Hi I am ${this.name}`)}
+function Car(make, model, year, color)
+{
+  this.make = make,
+  this.model = model,
+  this.year = year,
+  this.color = color,
+  this.drive = function(){console.log(`You drive the ${this.model}`)}
 }
 
-person1.sayHello(); 
-*/
+const car1 = new Car("Ford", "Mustang", 2024, "red");
+const car2 = new Car("Ford2", "Mustang", 2024, "red");
+
+console.log(car1.make);
+console.log(car2.make);
+car1.drive();
