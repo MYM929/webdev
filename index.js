@@ -1,26 +1,50 @@
-class Product{
-  constructor(name, price){
-    this.name = name;
-    this.price = price;
+class User{
+  static userCount = 0;
+
+  constructor(username){
+    this.username = username;
+    User.userCount++;
   }
 
-  displayProduct(){
-    console.log(`Product: ${this.name}`);
-    console.log(`Price: $${this.price.toFixed(2)}`);
+  static getUserCount(){
+    console.log(`There are ${User.userCount} users online`);
   }
 
-  calculateTotal(salesTax){
-    return this.price + (this.price*salesTax)
+  sayHello(){
+    console.log(`Hello, my username is ${this.username}`);
   }
 }
 
-const salesTax = 0.05;
+const user1 = new User("aaa");
+const user2 = new User("bbb");
 
-const product1 = new Product("Shirt", 19.99);
-const product2 = new Product("Pants", 22.50);
-const product3 = new Product("Underwear", 100.00);
+user1.sayHello();
+User.getUserCount();
 
-product1.displayProduct();
+console.log(user1.username);
+console.log(user2.username);
 
-const total = product1.calculateTotal(salesTax);
-console.log(`Total price (with tax): $${total.toFixed(2)}`);
+console.log(User.userCount);
+
+
+/* 
+class MathUtil{
+  static PI = 3.14159;
+
+  static getDiameter(radius){
+    return radius*2;
+  }
+  static getCircumference(radius){
+    return 2*this.PI*radius;
+  }
+  static getArea(radius){
+    return this.PI*radius*radius;
+  }
+}
+
+
+console.log(MathUtil.PI)
+console.log(MathUtil.getDiameter(10));
+console.log(MathUtil.getCircumference(10));
+console.log(MathUtil.getArea(10)); 
+*/
