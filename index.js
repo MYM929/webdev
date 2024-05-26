@@ -1,21 +1,14 @@
+console.log(this); //return the windows object
+
+//this keyword does not work with arrow functions
+
+/* 
 const person1 = {
-  firstName: "aaa",
-  lastName: "bbb",
-  age: 30,
-  isEmployed: true,
+  name: "aaa",
+  favFood: "bbb",
 
-  sayHello: function(){console.log("Hello 1")},
+  sayHello: function(){console.log(`Hi I am ${this.name}`)}
 }
 
-const person2 = {
-  firstName: "ccc",
-  lastName: "ddd",
-  age: 42,
-  isEmployed: false,
-
-  sayHello: () => console.log("Hello 2"),
-}
-
-
-console.log(person1.firstName);
-person1.sayHello();
+person1.sayHello(); 
+*/
