@@ -1,49 +1,24 @@
-class Address{
-  constructor(street, city, country){
-    this.street = street;
-    this.city = city;
-    this.country = country;
-  }
-}
+const fruits = [{name: "apple",     color: "red",    calories: 95}, 
+                {name: "orange",    color: "orange", calories: 45}, 
+                {name: "banana",    color: "yellow", calories: 105}, 
+                {name: "coconut",   color: "white",  calories: 159}, 
+                {name: "pineapple", color: "yellow", calories: 37}];
 
-class Person{
-  constructor(name, age, ...address){
-    this.name = name;
-    this.age = age;
-    this.address = new Address(...address);
-  }
-}
+// console.log(fruits[0].name);
 
-const person1 = new Person("Spspsp", 30, 
-                           "123 Conch St.", "cdc", "Int. Waters");
-const person2 = new Person("bgndn", 30, 
-                           "128 Conch St.", "cdc", "Int. Waters");
+// fruits.push({name: "grape", color: "purple", calories: 62});
+// console.log(fruits);
+// fruits.pop();
+// console.log(fruits);
+// fruits.splice(1,2);
+// console.log(fruits);
 
-console.log(person1.address.street);
+// fruits.forEach(fruit => console.log(fruit.name));
+// const fruitNames = fruits.map(fruit => fruit.name);
+// console.log(fruitNames);
+// const yellewFruits = fruits.filter(fruit => fruit.color==="yellow");
+// console.log(yellewFruits);
 
-
-
-
-
-/* 
-const person = {
-  fullName: "Sposs",
-  age: 30,
-  isStudent: true,
-  hobbies: ["Karate", "jellyfishing", "cooking"],
-
-  address: {
-    street: "124 Conch St.",
-    city: "Bikini Bottom",
-    country: "Int. Water"
-  }
-}
-
-console.log(person.fullName);
-console.log(person.hobbies);
-console.log(person.address.street);
-
-for(const property in person.address){
-  console.log(person.address[property]);
-} 
-*/
+const maxFruit = fruits.reduce((max, fruit) => 
+                                fruit.calories>max.calories ? fruit : max);
+console.log(maxFruit);
