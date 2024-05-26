@@ -1,24 +1,23 @@
-const fruits = [{name: "apple",     color: "red",    calories: 95}, 
-                {name: "orange",    color: "orange", calories: 45}, 
-                {name: "banana",    color: "yellow", calories: 105}, 
-                {name: "coconut",   color: "white",  calories: 159}, 
-                {name: "pineapple", color: "yellow", calories: 37}];
+const people = [{name: "aaa", age: 30, gpa: 3.0},
+                {name: "bbb", age: 37, gpa: 1.5},
+                {name: "ccc", age: 51, gpa: 2.5},
+                {name: "ddd", age: 27, gpa: 4.0},];
 
-// console.log(fruits[0].name);
+people.sort((a,b) => a.age - b.age);
+console.log(people);
 
-// fruits.push({name: "grape", color: "purple", calories: 62});
-// console.log(fruits);
-// fruits.pop();
-// console.log(fruits);
-// fruits.splice(1,2);
-// console.log(fruits);
+people.sort((a,b) => a.name.localeCompare(b.name));
+console.log(people);
 
-// fruits.forEach(fruit => console.log(fruit.name));
-// const fruitNames = fruits.map(fruit => fruit.name);
-// console.log(fruitNames);
-// const yellewFruits = fruits.filter(fruit => fruit.color==="yellow");
-// console.log(yellewFruits);
 
-const maxFruit = fruits.reduce((max, fruit) => 
-                                fruit.calories>max.calories ? fruit : max);
-console.log(maxFruit);
+/* 
+let fruits = ["apple", "orange", "banana", "coconut", "pineapple"];
+let numbers = [1,10,2,9,3,8,4,7,5,6];
+
+fruits.sort();
+numbers.sort((a, b) => a-b);
+numbers.sort((a, b) => b-a); //reverse
+
+console.log(fruits);
+console.log(numbers);
+*/
