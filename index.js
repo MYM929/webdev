@@ -1,86 +1,49 @@
-const person1 = {
-  firstName: "aaa",
-  lastName: "bbb",
+class Address{
+  constructor(street, city, country){
+    this.street = street;
+    this.city = city;
+    this.country = country;
+  }
+}
+
+class Person{
+  constructor(name, age, ...address){
+    this.name = name;
+    this.age = age;
+    this.address = new Address(...address);
+  }
+}
+
+const person1 = new Person("Spspsp", 30, 
+                           "123 Conch St.", "cdc", "Int. Waters");
+const person2 = new Person("bgndn", 30, 
+                           "128 Conch St.", "cdc", "Int. Waters");
+
+console.log(person1.address.street);
+
+
+
+
+
+/* 
+const person = {
+  fullName: "Sposs",
   age: 30,
-  job: "Fry Cook",
-}
-const person2 = {
-  firstName: "ccc",
-  lastName: "ddd",
-  age: 34,
-}
+  isStudent: true,
+  hobbies: ["Karate", "jellyfishing", "cooking"],
 
-function displayPerson({firstName, lastName, age, job="Unemployed"}){
-  console.log(firstName);
-  console.log(lastName);
-  console.log(age);
-  console.log(job);
+  address: {
+    street: "124 Conch St.",
+    city: "Bikini Bottom",
+    country: "Int. Water"
+  }
 }
 
-displayPerson(person2);
+console.log(person.fullName);
+console.log(person.hobbies);
+console.log(person.address.street);
 
-
-
-
-
-/* 
-const person1 = {
-  firstName: "aaa",
-  lastName: "bbb",
-  age: 30,
-  job: "Fry Cook",
-}
-const person2 = {
-  firstName: "ccc",
-  lastName: "ddd",
-  age: 34,
-}
-
-// const {firstName, lastName, age, job} = person1;
-
-// console.log(firstName);
-// console.log(lastName);
-// console.log(age);
-// console.log(job);
-
-const {firstName, lastName, age, job="Unemployed"} = person2;
-
-console.log(firstName);
-console.log(lastName);
-console.log(age);
-console.log(job); 
-*/
-
-
-
-/* 
-const colors = ["red", "green", "blue", "black", "white"];
-
-const [firstColor, secondColor, thirdColor, ...extraColors] = colors;
-
-console.log(firstColor);
-console.log(secondColor);
-console.log(thirdColor);
-console.log(extraColors); 
-*/
-
-
-
-/* 
-const colors = ["red", "green", "blue", "black", "white"];
-
-[colors[0], colors[4]] = [colors[4], colors[0]];
-
-console.log(colors); 
-*/
-
-
-/* 
-let a = 1;
-let b = 2;
-
-[a, b] = [b, a];
-
-console.log(a);
-console.log(b); 
+for(const property in person.address){
+  console.log(person.address[property]);
+} 
 */
