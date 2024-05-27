@@ -1,33 +1,16 @@
-try{
-    const dividend = Number(window.prompt("Enter a dividend: "));
-    const divisor = Number(window.prompt("Enter a divisor: "));
+const display = document.getElementById("display");
 
-    if(divisor==0){
-        throw new Error("You can't divide by zero!");
+function appendToDisplay(input){
+    display.value += input;
+}
+function clearDisplay(){
+    display.value = "";
+}
+function calculate(){
+    try{
+        display.value = eval(display.value);
     }
-    if(isNaN(dividend) || isNaN(divisor)){
-        throw new Error("Values must be a number");
+    catch(error){
+        display.value = "Error";
     }
-
-    const result = dividend/divisor;
-    console.log(result);
 }
-catch(error){
-    console.error(error);
-}
-
-console.log("You have reached the end!");   
-
-/* 
-try{
-    console.log(x);
-}
-catch(error){
-    console.error(error);
-}
-finally{
-    console.log("This always executes");
-}
-
-console.log("You have reached the end!");   
-*/
