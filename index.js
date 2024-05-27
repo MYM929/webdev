@@ -1,9 +1,13 @@
-import {PI, getCircumference, getArea} from './mathUtil.js'
+function func1(callback){
+    setTimeout(() => {
+        console.log("Task 1"); callback()
+    }, 3000);
+}
 
-console.log(PI);
+function func2(){
+    console.log("Task 2");
+    console.log("Task 3");
+    console.log("Task 4");
+}
 
-const circumference = getCircumference(10);
-const area = getArea(10);
-
-console.log(`${circumference.toFixed(2)} cm`);
-console.log(`${area.toFixed(2)} cm^2`);
+func1(func2);
