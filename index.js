@@ -1,85 +1,38 @@
+const newListItem = document.createElement("li");
+newListItem.textContent = "coconut";
+newListItem.id = "coconut";
+newListItem.style.fontWeight = "bold";
+newListItem.style.backgroundColor = "lightgreen";
 
-const element = document.getElementById("fruits");
-const children = element.children;
-console.log(children);
+// document.body.append(newListItem);
+document.getElementById("fruits").prepend(newListItem);
 
-// children[1].style.backgroundColor = "yellow";
+// const orange = document.getElementById("orange");
+// document.getElementById("fruits").insertBefore(newListItem, orange);
 
-Array.from(children).forEach(child => {
-    child.style.backgroundColor = "yellow";
-})
+// const listItems = document.querySelectorAll("#fruits li");
+// document.getElementById("fruits").insertBefore(newListItem, listItems[2]);
 
-
-
-/* 
-const element = document.getElementById("apple");
-const parent = element.parentElement;
-parent.style.backgroundColor = "yellow"; 
-*/
-
-
+document.getElementById("fruits").removeChild(newListItem);
 
 
 /* 
-// const element = document.getElementById("orange");
-// const prevSibling = element.previousElementSibling;
-// prevSibling.style.backgroundColor = "yellow";
+const newH1 = document.createElement("h1");
+newH1.textContent = "I like pizza";
+newH1.id = "myH1";
+newH1.style.color = "tomato";
+newH1.style.textAlign = "center";
+// document.body.append(newH1);
+// document.body.prepend(newH1);
+document.getElementById("box1").prepend(newH1);
 
-const element = document.getElementById("desserts");
-const prevSibling = element.previousElementSibling;
-prevSibling.style.backgroundColor = "yellow";  
-*/
+// const box2 = document.getElementById("box1");
+// document.body.insertBefore(newH1, box1);
 
+// const boxes = document.querySelectorAll(".box");
+// document.body.insertBefore(newH1, boxes[1]);
 
+// document.body.removeChild(newH1);
 
-/* 
-// const element = document.getElementById("apple");
-// const nextSibling = element.nextElementSibling;
-// nextSibling.style.backgroundColor = "yellow";
-
-const element = document.getElementById("fruits");
-const nextSibling = element.nextElementSibling;
-nextSibling.style.backgroundColor = "yellow"; 
-*/
-
-
-
-/* 
-// const element = document.getElementById("fruits");
-// const lastChild = element.lastElementChild;
-// lastChild.style.backgroundColor = "yellow";
-
-const ulElements = document.querySelectorAll("ul");
-
-ulElements.forEach(ulElement => {
-    const lastChild = ulElement.lastElementChild;
-    lastChild.style.backgroundColor = "yellow";
-})  
-*/
-
-
-
-
-/* 
-// const element = document.getElementById("fruits");
-// const firstChild = element.firstElementChild;
-// firstChild.style.backgroundColor = "yellow";
-
-const ulElements = document.querySelectorAll("ul");
-
-ulElements.forEach(ulElement => {
-    const firstChild = ulElement.firstElementChild;
-    firstChild.style.backgroundColor = "yellow";
-}) 
-*/
-
-
-
-/*
-.firstElementChild
-.lastElementChild
-.nextElementSibling
-.previousElementSibling
-.parentElement
-.children  
+document.getElementById("box1").removeChild(newH1); 
 */
