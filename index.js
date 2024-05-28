@@ -1,19 +1,93 @@
+// const fruits = document.querySelectorAll(".fruits");
+
+// fruits[0].style.backgroundColor = "yellow";
+// fruits[1].style.backgroundColor = "yellow";
+
+const foods = document.querySelectorAll("li");
+
+// foods[0].style.backgroundColor = "yellow";
+// foods[1].style.backgroundColor = "yellow";
+
+// console.log(foods);
+
+foods.forEach(food => {
+    food.style.backgroundColor = "yellow";
+});
+
+
+
 /* 
-DOM = Document Object Model
-    object{} that represents the page you see in the web browser
-    and provides you with an API to interact with it.
-    web browser constructs the DOM when it loads an HTML document,
-    and structures all the elements in a tree-like representation.
-    JS can access the DOM to dynamically
-    change the content, structure, and style of a web page.
+const element1 = document.querySelector(".fruits");
+element1.style.backgroundColor = "yellow";
+
+const element2 = document.querySelector("h4");
+element2.style.backgroundColor = "yellow";
+
+const element3 = document.querySelector("ul");
+element3.style.backgroundColor = "yellow";
+
+const element4 = document.querySelector("ol");
+console.log(element4); //return null  
 */
 
-document.getElementById(""); //document is the DOM object, it has a function of getDocumentById()
-console.log(document); //display the HTML document
-console.dir(document); //display its properties
-document.title = "Hello";
-document.body.style.backgroundColor = "hsl(0, 0%, 15%)";
 
-const username = "Bro Code";
-const welcomeMsg = document.getElementById("welcome-msg");
-welcomeMsg.textContent += username==="" ? ` Guest` : " " + username;
+/* 
+const h4Elements = document.getElementsByTagName("h4");
+const liElements = document.getElementsByTagName("li");
+
+console.log(h4Elements);
+
+// h4Elements[0].style.backgroundColor = "yellow";
+
+// for(let h4Element of h4Elements){
+//     h4Element.style.backgroundColor = "yellow";
+// }
+
+// for(let liElement of liElements){
+//     liElement.style.backgroundColor = "lightgreen";
+// }
+
+Array.from(h4Elements).forEach(h4Element => {
+    h4Element.style.backgroundColor = "yellow";
+});
+
+Array.from(liElements).forEach(liElement => {
+    liElement.style.backgroundColor = "lightgreen";
+}); 
+*/
+
+
+/* 
+const fruits = document.getElementsByClassName("fruits");
+console.log(fruits);
+
+// fruits[0].style.backgroundColor = "yellow";
+// fruits[1].style.backgroundColor = "blue";
+
+// for(let fruit of fruits){
+//     fruit.style.backgroundColor = "yellow";
+// }
+
+Array.from(fruits).forEach(fruit => {
+    fruit.style.backgroundColor = "yellow";
+}); 
+*/
+
+
+
+
+/* 
+const myHeading = document.getElementById("my-heading");
+myHeading.style.backgroundColor = "yellow";
+myHeading.style.textAlign = "center";
+
+console.log(myHeading); 
+*/
+
+/*
+1. document.getElementById()       //element or null
+2. document.getElementsClassName() //HTML collection
+3. document.getElementsByTagName   //HTML collection
+4. document.querySelector()        //element or null
+5. document.querySelectorAll()     //nodelist
+*/   
