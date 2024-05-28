@@ -1,38 +1,30 @@
-const newListItem = document.createElement("li");
-newListItem.textContent = "coconut";
-newListItem.id = "coconut";
-newListItem.style.fontWeight = "bold";
-newListItem.style.backgroundColor = "lightgreen";
+const myBox = document.getElementById("myBox");
+const myButton = document.getElementById("myButton");
 
-// document.body.append(newListItem);
-document.getElementById("fruits").prepend(newListItem);
+// myBox.addEventListener("click", changeColor);
 
-// const orange = document.getElementById("orange");
-// document.getElementById("fruits").insertBefore(newListItem, orange);
+// function changeColor(event){
+//     event.target.style.backgroundColor = "tomato";
+//     event.target.textContent = "OUCH!😒";
+// }
 
-// const listItems = document.querySelectorAll("#fruits li");
-// document.getElementById("fruits").insertBefore(newListItem, listItems[2]);
+// myBox.addEventListener("click", function(event){
+//     event.target.style.backgroundColor = "tomato";
+//     event.target.textContent = "OUCH!😒";
+// });
 
-document.getElementById("fruits").removeChild(newListItem);
+myButton.addEventListener("click", event =>{
+    myBox.style.backgroundColor = "tomato";
+    myBox.textContent = "OUCH!😒";
+});
 
+myButton.addEventListener("mouseover", event =>{
+    myBox.style.backgroundColor = "yellow";
+    myBox.textContent = "Don't do it 😘";
+});
 
-/* 
-const newH1 = document.createElement("h1");
-newH1.textContent = "I like pizza";
-newH1.id = "myH1";
-newH1.style.color = "tomato";
-newH1.style.textAlign = "center";
-// document.body.append(newH1);
-// document.body.prepend(newH1);
-document.getElementById("box1").prepend(newH1);
+myButton.addEventListener("mouseout", event =>{
+    myBox.style.backgroundColor = "lightgreen";
+    myBox.textContent = "Click Me😊";
+});
 
-// const box2 = document.getElementById("box1");
-// document.body.insertBefore(newH1, box1);
-
-// const boxes = document.querySelectorAll(".box");
-// document.body.insertBefore(newH1, boxes[1]);
-
-// document.body.removeChild(newH1);
-
-document.getElementById("box1").removeChild(newH1); 
-*/
