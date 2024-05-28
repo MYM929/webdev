@@ -1,13 +1,13 @@
-#myBox{
-    background-color: lightgreen;
-    width: 300px;
-    height: 300px;
-    font-size: 4.1rem;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    text-align: center;
+body{
+    margin: 0;
 }
-#myButton{
-    font-size: 3rem;
+#myBox{
+    background-color: lightblue;
+    width: 200px;
+    height: 200px;
+    font-size: 7.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }

@@ -1,30 +1,46 @@
 const myBox = document.getElementById("myBox");
-const myButton = document.getElementById("myButton");
+const moveAmount = 10;
+let x = 0;
+let y = 0;
 
-// myBox.addEventListener("click", changeColor);
+document.addEventListener("keydown", event => {
+    event.preventDefault();
+    if(event.key.startsWith("Arrow")){
+        switch(event.key){
+            case "ArrowUp":    y -= moveAmount; break;
+            case "ArrowDown":  y += moveAmount; break;
+            case "ArrowLeft":  x -= moveAmount; break;
+            case "ArrowRight": x += moveAmount; break;
+        }
+        myBox.style.top  = `${y}px`;
+        myBox.style.left = `${x}px`;
+    }
+});
+document.addEventListener("keyup", event => {
+    myBox.textContent = "😘";
+    myBox.style.backgroundColor = "lightblue";
+}); 
 
-// function changeColor(event){
-//     event.target.style.backgroundColor = "tomato";
-//     event.target.textContent = "OUCH!😒";
-// }
 
-// myBox.addEventListener("click", function(event){
-//     event.target.style.backgroundColor = "tomato";
-//     event.target.textContent = "OUCH!😒";
-// });
-
-myButton.addEventListener("click", event =>{
+/* 
+document.addEventListener("keydown", event => {
+    myBox.textContent = "✔️";
     myBox.style.backgroundColor = "tomato";
-    myBox.textContent = "OUCH!😒";
 });
+document.addEventListener("keyup", event => {
+    myBox.textContent = "😘";
+    myBox.style.backgroundColor = "lightblue";
+}); 
+*/
 
-myButton.addEventListener("mouseover", event =>{
-    myBox.style.backgroundColor = "yellow";
-    myBox.textContent = "Don't do it 😘";
+
+
+
+/* 
+document.addEventListener("keydown", event => {
+    console.log(`Key down = ${event.key}`);
 });
-
-myButton.addEventListener("mouseout", event =>{
-    myBox.style.backgroundColor = "lightgreen";
-    myBox.textContent = "Click Me😊";
-});
-
+document.addEventListener("keyup", event => {
+    console.log(`Key up = ${event.key}`);
+}); 
+*/
