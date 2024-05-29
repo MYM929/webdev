@@ -1,58 +1,79 @@
 let buttons = document.querySelectorAll(".myButtons");
 
 buttons.forEach(button => {
-    button.addEventListener("click", event => {
-        event.target.remove();
-        console.log(buttons);
-        buttons = document.querySelectorAll(".myButtons");
-        console.log(buttons);
-    });
+    button.classList.add("enabled");
 });
-
-
-/* 
-const newButton = document.createElement("button");
-newButton.textContent = "Button 5";
-newButton.classList = "myButtons";
-document.body.appendChild(newButton);
-
-console.log(buttons);
-
-buttons = document.querySelectorAll(".myButtons");
-console.log(buttons); 
-*/
-
-
-/* 
 buttons.forEach(button => {
     button.addEventListener("mouseover", event => {
-        event.target.style.backgroundColor = "hsl(205, 100%, 40%)";
+        event.target.classList.toggle("hover");
     });
 });
 buttons.forEach(button => {
     button.addEventListener("mouseout", event => {
-        event.target.style.backgroundColor = "hsl(205, 100%, 60%)";
+        event.target.classList.toggle("hover");
     });
-}); 
-*/
-
-
-
-/* 
+});
 buttons.forEach(button => {
     button.addEventListener("click", event => {
-        event.target.style.backgroundColor = "tomato";
+        if(event.target.classList.contains("disabled")){
+            event.target.textContent += "😘";
+        }
+        event.target.classList.replace("enabled", "disabled");
     });
+});
+
+
+
+/* 
+const myH1 = document.getElementById("myH1");
+const myButton = document.getElementById("myButton");
+
+myH1.classList.add("enabled");
+myButton.classList.add("enabled");
+
+myH1.addEventListener("click", event => {
+    if(event.target.classList.contains("disabled")){
+        event.target.textContent += "😘";
+    }
+    else{
+        event.target.classList.replace("enabled", "disabled");
+    }
 }); 
+myButton.addEventListener("click", event => {
+    if(event.target.classList.contains("disabled")){
+        event.target.textContent += "😘";
+    }
+    else{
+        event.target.classList.replace("enabled", "disabled");
+    }
+});  
 */
 
 
-
-// console.log(buttons);
+/* 
+myButton.classList.add("enabled");
+myButton.addEventListener("click", event => {
+    event.target.classList.replace("enabled", "disabled");
+}); 
+*/
 
 /* 
-buttons.forEach(button => {
-    button.style.backgroundColor = "green";
-    button.textContent += "😘";
-}) 
+myButton.addEventListener("mouseover", event => {
+    myButton.classList.toggle("hover");
+});
+myButton.addEventListener("mouseout", event => {
+    myButton.classList.toggle("hover");
+}); 
+*/
+
+/* 
+myButton.classList.add("enabled");
+myButton.classList.remove("enabled");
+
+myButton.addEventListener("mouseover", event => {
+    myButton.classList.add("hover");
+});
+myButton.addEventListener("mouseout", event => {
+    myButton.classList.remove("hover");
+});
 */
