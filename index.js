@@ -8,5 +8,18 @@ JSON = (JS Object Notation) data-interchange format
 */
 
 const names = ["Spongebob", "Patrick", "Squidward", "Sandy"];
-const jsonString = JSON.stringify(names);
+const person = {
+       "name": "Spongebob", 
+       "age": 30,
+       "isEmployed": true,
+       "hobbies": ["Jellyfishing", "Karate", "Cooking"]
+};
+
+const jsonString1 = JSON.stringify(names);
+const jsonString2 = JSON.stringify(person);
+
 console.log(names);
+console.log(jsonString1);
+
+console.log(person);
+console.log(jsonString2);
