@@ -1,34 +1,36 @@
-const slides = document.querySelectorAll(".slides img");
-let slideIndex = 0;
-let intervalId = null;
-
-// initializeSlider();
-document.addEventListener("DOMContentLoaded", initializeSlider);
-
-function initializeSlider(){
-    if(slides.length > 0){
-        slides[slideIndex].classList.add("displaySlide");
-        intervalId = setInterval(nextSlide, 5000);
-    }
+function task1(callback){
+    setTimeout(() => {
+        console.log("task1");
+        callback();
+    }, 2000);
 }
-function showSlide(index){
-    if(index >= slides.length){
-        slideIndex = 0;
-    }
-    else if(index < 0){
-        slideIndex = slides.length-1;
-    }
-    slides.forEach(slide => {
-        slide.classList.remove("displaySlide");
+function task2(callback){
+    setTimeout(() => {
+        console.log("task2");
+        callback();
+    }, 1000);
+}
+function task3(callback){
+    setTimeout(() => {
+        console.log("task3");
+        callback();
+    }, 3000);
+}
+function task4(callback){
+    setTimeout(() => {
+        console.log("task4");
+        callback();
+    }, 1500);
+}
+
+
+task1(() => {
+    task2(() =>{
+        task3(() => {
+            task4(() => {
+                console.log("Complete");
+            });
+        });
     });
-    slides[slideIndex].classList.add("displaySlide");
-}
-function prevSlide(){
-    clearInterval(intervalId);
-    slideIndex--;
-    showSlide(slideIndex);
-}
-function nextSlide(){
-    slideIndex++;
-    showSlide(slideIndex);
-}
+}); 
+
