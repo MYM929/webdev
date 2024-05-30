@@ -1,36 +1,52 @@
-function task1(callback){
-    setTimeout(() => {
-        console.log("task1");
-        callback();
-    }, 2000);
+function walkDog(){
+    return new Promise((resolve, reject) => {
+        setTimeout(() =>{
+            const dogWalked = true;
+            if(dogWalked){
+                resolve("You walk the dog");
+            }
+            else{
+                reject("You didn't walk the dog");
+            }
+        }, 1500);
+    });
 }
-function task2(callback){
-    setTimeout(() => {
-        console.log("task2");
-        callback();
-    }, 1000);
+function cleanKitchen(){
+    return new Promise((resolve, reject) => {
+        setTimeout(() =>{
+            const kitchenCleaned = true;
+            if(kitchenCleaned){
+                resolve("You clean the kitchen");
+            }
+            else{
+                reject("You didn't clean the kitchen");
+            }
+        }, 2500);
+    });
 }
-function task3(callback){
-    setTimeout(() => {
-        console.log("task3");
-        callback();
-    }, 3000);
-}
-function task4(callback){
-    setTimeout(() => {
-        console.log("task4");
-        callback();
-    }, 1500);
+function takeOutTrash(){
+    return new Promise((resolve, reject) => {
+        setTimeout(() =>{
+            const trashTakenOut = false;
+            if(trashTakenOut){
+                resolve("You take out the trash");
+            }
+            else{
+                reject("You didn't take out the trash");
+            }
+        }, 500);
+    });
 }
 
+walkDog().then(value => {console.log(value); return cleanKitchen()})
+         .then(value => {console.log(value); return takeOutTrash()})
+         .then(value => {console.log(value); console.log("Finished");})
+         .catch(error => console.error(error));
 
-task1(() => {
-    task2(() =>{
-        task3(() => {
-            task4(() => {
-                console.log("Complete");
-            });
-        });
+/* 
+walkDog(() => {
+    cleanKitchen(() => {
+        takeOutTrash(() => console.log("Finished"));
     });
 }); 
-
+*/
