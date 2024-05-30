@@ -38,10 +38,29 @@ function takeOutTrash(){
     });
 }
 
+async function doChores(){
+    try{
+        const walkDogResult = await walkDog();
+        console.log(walkDogResult);
+        const cleanKitchenResult = await cleanKitchen();
+        console.log(cleanKitchenResult);
+        const takeOutTrashResult = await takeOutTrash();
+        console.log(takeOutTrashResult);
+        console.log("Finished");
+    }
+    catch(error){
+        console.error("You didn't walk the dog");
+    }
+}
+
+doChores();
+
+/*
 walkDog().then(value => {console.log(value); return cleanKitchen()})
          .then(value => {console.log(value); return takeOutTrash()})
          .then(value => {console.log(value); console.log("Finished");})
          .catch(error => console.error(error));
+*/
 
 /* 
 walkDog(() => {
