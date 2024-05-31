@@ -1,88 +1,75 @@
 /*
-JSON = (JS Object Notation) data-interchange format
-       Used for exchanging data between a server and a web app
-       JSON files {key:value} OR [value1, value2, value3]
-
-       JSON.stringify() = converts a JS object to a JSON string
-       JSON.parse() = converts a JSON string to a JS Object
-*/
-
-fetch("names.json")
-    .then(response => response.json())
-    .then(value => console.log(value))
-    .catch(error => console.log(error))
-fetch("person.json")
-    .then(response => response.json())
-    .then(value => console.log(value))
-    .catch(error => console.log(error))
-fetch("people.json")
-    .then(response => response.json())
-    .then(value => console.log(value))
-    .catch(error => console.log(error))
-fetch("people.json")
-    .then(response => response.json())
-    .then(values => values.forEach(value => console.log(value.name)))
-    .catch(error => console.log(error))
-
-
-/* 
-const jsonNames  = `["Spongebob", "Patrick", "Squidward", "Sandy"]`;
-const jsonPerson = `{"name": "Spongebob", "age": 30, "isEmployed": true, "hobbies": ["Jellyfishing", "Karate", "Cooking"]}`;
-const jsonPeople = `[{"name": "Spongebob", "age": 20, "isEmployed": true}, 
-                    {"name": "Patrick", "age": 34, "isEmployed": false}, 
-                    {"name": "Squidward", "age": 50, "isEmployed": true},
-                    {"name": "Sandy", "age": 27, "isEmployed": false}]`;
-
-const parseData1 = JSON.parse(jsonNames);
-const parseData2 = JSON.parse(jsonPerson);
-const parseData3 = JSON.parse(jsonPeople);
-
-console.log(parseData1);
-console.log(parseData2);
-console.log(parseData3); 
+fetch = Function used for making HTTP requests to fetch resources.
+        (JSON style data, images, files)
+        Simplifies asynchronous data fetching in JS and 
+        used for interacting with APIs to retrieve and send
+        data asynchronously over the web.
+        fetch(url, {options})
 */
 
 
-/* 
-const names = ["Spongebob", "Patrick", "Squidward", "Sandy"];
-const person = {
-       "name": "Spongebob", 
-       "age": 30,
-       "isEmployed": true,
-       "hobbies": ["Jellyfishing", "Karate", "Cooking"]
-};
-const people = [{
-    "name": "Spongebob", 
-    "age": 20,
-    "isEmployed": true
-}, 
-{
-    "name": "Patrick", 
-    "age": 34,
-    "isEmployed": false
-}, 
-{
-    "name": "Squidward", 
-    "age": 50,
-    "isEmployed": true
-},
-{
-    "name": "Sandy", 
-    "age": 27,
-    "isEmployed": false
+
+async function fetchData(){
+    try{
+        const pokemonName = document.getElementById("pokemonName").value.toLowerCase();
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
+        if(!response.ok){
+            throw new Error("Could not fetch resource");
+        }
+        const data = await response.json();
+        const pokemonSprite = data.sprites.front_default;
+        const imgElement = document.getElementById("pokemonSprite");
+        imgElement.src = pokemonSprite;
+        imgElement.style.display = "block";
+        // console.log(data);
+    }
+    catch(error){
+        console.error(error);
+    }
 }
-];
 
-const jsonString1 = JSON.stringify(names);  //array of strings
-const jsonString2 = JSON.stringify(person); //one object
-const jsonString3 = JSON.stringify(people); //array of objects
 
-console.log(names);
-console.log(jsonString1);
+/* 
+fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
+    .then(response => {
+        if(!response.ok){
+            throw new Error("Could not fetch resource");      
+        }
+        return response.json();
+    }) 
+    .then(data => console.log(data.name))
+    .catch(error => console.log(error));   
+*/
 
-console.log(person);
-console.log(jsonString2);
+/* 
+fetch("https://pokeapi.co/api/v2/pokemon/pikachu/spongebob")
+    .then(response => {
+        if(!response.ok){
+            throw new Error("Could not fetch resource");      
+        }
+        return response.json();
+    }) 
+    .then(data => console.log(data.name))
+    .catch(error => console.log(error));   
+*/ 
 
-console.log(people);
-console.log(jsonString3); 
+
+/* 
+fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
+    .then(response => response.json())
+    .then(data => console.log(data.name))
+    .catch(error => console.log(error));   
+*/
+
+/* 
+fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.log(error));  
+*/
+
+/* 
+fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
+    .then(response => console.log(response))
+    .catch(error => console.log(error)); 
 */
