@@ -49,17 +49,40 @@ function disPlayWeatherInfo(data){
   tempDisplay.textContent = `${(temp-273.15).toFixed(1)}°C`;
   // tempDisplay.textContent = `${((temp-273.15)*9/5+32).toFixed(1)}°F`;
   humidityDisplay.textContent = `Humidity: ${humidity}%`;
+  descDisplay.textContent = description;
+  weatherEmoji.textContent = getWeatherEmoji(id);
 
   cityDisplay.classList.add("cityDisplay");
   tempDisplay.classList.add("tempDisplay");
   humidityDisplay.classList.add("humidityDisplay");
+  descDisplay.classList.add("descDisplay");
+  weatherEmoji.classList.add("weatherEmoji");
 
   card.appendChild(cityDisplay);
   card.appendChild(tempDisplay);
   card.appendChild(humidityDisplay);
+  card.appendChild(descDisplay);
+  card.appendChild(weatherEmoji);
 }
 function getWeatherEmoji(weatherid){
-
+    switch(true){
+        case (weatherid>=200 && weatherid<300):
+            return "⛈️";
+        case (weatherid>=300 && weatherid<400):
+            return "🌧️";
+        case (weatherid>=500 && weatherid<600):
+            return "☔";
+        case (weatherid>=600 && weatherid<700):
+            return "❄️";
+        case (weatherid>=700 && weatherid<800):
+            return "🌫️";
+        case (weatherid===800):
+            return "☀️";
+        case (weatherid>=801 && weatherid<810):
+            return "☁️";
+        default: 
+            return "❓";
+    }
 }
 function displayError(message){
   const errorDisplay = document.createElement("p");
