@@ -40,6 +40,33 @@ git merge feature-branch
 git stash list
 git stash drop 0
 
+---------------------------------------------------------------------
+/*Push a local branch to a remote*/
+
+git push origin feature-branch
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
