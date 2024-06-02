@@ -9,3 +9,17 @@ upstream, see 'push.autoSetupRemote' in 'git help config'.
 */
 
 git push --set-upstream origin react-branch
+
+---------------------------------------------------------------------
+/*Discard Unstaged Changes*/
+
+git checkout -- <file>
+git checkout -- .
+
+---------------------------------------------------------------------
+/*
+Apply a specific commit from one branch onto another branch
+*/
+
+git checkout -b feature-branch
+git cherry-pick a1b2c3d4e5f6g7h8i9j0
