@@ -34,6 +34,12 @@ git push origin --delete feature-branch
 /*Merge branch*/
 git merge feature-branch
 
+---------------------------------------------------------------------
+/*Delete a git stash*/
+
+git stash list
+git stash drop 0
+
 
 
 
