@@ -49,12 +49,10 @@ git push origin feature-branch
 /*Get a specific commit from a branch*/
 (not very good way)
 
-git checkout <commit>
---detach head state
-git switch -c new-branch
-git checkout want-branch
-git merge new-branch
-git branch -d new-branch
+git cherry-pick <commit>
+--will create a staged change
+--merge any conflicts
+git commit -m ""
 
 
 
