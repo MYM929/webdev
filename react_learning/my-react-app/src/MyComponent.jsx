@@ -1,49 +1,67 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
 function MyComponent(){
-    const [cars,     setCars]     = useState([]);
-    const [carYear,  setCarYear]  = useState(new Date().getFullYear());
-    const [carMake,  setCarMake]  = useState("");
-    const [carModel, setCarModel] = useState("");
+    const [width, setWidth]   = useState(window.innerWidth);
+    const [height, setHeight] = useState(window.innerHeight);
 
-    function handleAddCar(){
-        const newCar = {year: carYear, make: carMake, model: carModel};
-        setCars(prevCars => [...prevCars, newCar]);
-        setCarYear(new Date().getFullYear());
-        setCarMake("");
-        setCarModel("");
+    function handleResize(){
+        setWidth(window.innerWidth);
+        setHeight(window.innerHeight)
     }
-    function handleRemoveCar(index){
-        setCars(prevCars => prevCars.filter((_, i) => i!==index));
+
+    useEffect(() => {
+        window.addEventListener("resize", handleResize);
+        console.log("Event listener added");
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+            console.log("Event listener removed");
+        }
+    }, []);
+
+    useEffect(() => {
+        document.title = `Size: ${width} x ${height}`;
+    }, [width, height]);
+
+
+
+
+    return(<div>
+        <p>Window Width: {width}px</p>
+        <p>Window Height: {height}px</p>
+    </div>);
+}
+
+
+/*
+function MyComponent(){
+    const [count, setCount] = useState(0);
+    const [color, setColor] = useState("green");
+
+    useEffect(() => {
+        document.title = `Count: ${count} ${color}`;
+    }, [count, color]);
+    // useEffect(() => {
+    //     document.title = `Count: ${count}`;
+    // });
+
+    function addCount(){
+        setCount(prevCount => prevCount+1);
     }
-    function handleYearChange(event){
-        setCarYear(event.target.value);
+    function subtractCount(){
+        setCount(prevCount => prevCount-1);
     }
-    function handleMakeChange(event){
-        setCarMake(event.target.value);
-    }
-    function handleModelChange(event){
-        setCarModel(event.target.value);
+    function changeColor(){
+        setColor(prevColor => prevColor==="green" ? "red": "green");
     }
 
     return(<div>
-        <h2>List of Car Objects</h2>
-
-        <ul>
-            {cars.map((car, index) => (
-                <li key={index} onClick={() => handleRemoveCar(index)}>
-                    {car.year} {car.make} {car.model}
-                </li>
-            ))}
-        </ul>
-
-        <input type="number" value={carYear}  onChange={handleYearChange}/> <br />
-        <input type="text"   value={carMake}  onChange={handleMakeChange}
-                             placeholder="Enter car make"/> <br />
-        <input type="text"   value={carModel} onChange={handleModelChange}
-                             placeholder="Enter car model"/><br />
-        <button onClick={handleAddCar}>Add Car</button>
+        <p style={{color: color}}>Count: {count}</p>
+        <button onClick={addCount}>Add</button>
+        <button onClick={subtractCount}>Subtract</button><br />
+        <button onClick={changeColor}>Change Color</button>
     </div>);
 }
+*/
 
 export default MyComponent
