@@ -27,6 +27,7 @@ function MyComponent(){
         <input type="text"   value={car.make}  onChange={handleMakeChange}/> <br />
         <input type="text"   value={car.model} onChange={handleModelChange}/><br />
     </div>);
+    
 }
 
 export default MyComponent
