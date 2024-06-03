@@ -7,6 +7,7 @@ function App() {
     <>
       {/* <MyComponent/> */}
       <DigitalClock/>
+      <DigitalClock/>
     </>
     
   );
