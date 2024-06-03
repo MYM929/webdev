@@ -1,11 +1,10 @@
-import Counter from "./MyComponent.jsx";
+import ToDoList from "./ToDoList.jsx";
 
 function App() {
 
   return(
     <>
-      {/* <MyComponent/> */}
-      <Counter/>
+      <ToDoList/>
     </>
     
   );
