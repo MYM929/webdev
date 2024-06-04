@@ -1,0 +1,29 @@
+/*Enter mongosh shell from cmd*/
+mongosh
+
+-----------------------------------
+/*Exit mongosh shell*/
+exit
+
+-----------------------------------
+/*Show all databases*/
+show dbs 
+
+-----------------------------------
+/*To use a database*/
+use admin
+
+-----------------------------------
+/*To a database that doesn't exist*/
+use school
+//create a new empty database
+
+-----------------------------------
+/*To add a collection*/
+db.createCollection("students")
+
+-----------------------------------
+/*To drop a database*/
+db.dropDatabase()
+
+
