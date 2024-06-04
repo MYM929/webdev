@@ -45,6 +45,15 @@ git stash drop 0
 
 git push origin feature-branch
 
+---------------------------------------------------------------------
+/*Get a specific commit from a branch*/
+(not very good way)
+
+git cherry-pick <commit>
+--will create a staged change
+--merge any conflicts
+git commit -m ""
+
 
 
 
