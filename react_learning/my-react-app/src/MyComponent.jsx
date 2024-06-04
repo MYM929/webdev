@@ -1,25 +1,54 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from "react";
 
 function MyComponent(){
-    const [name, setName] = useState("Guest");
-    const [age, setAge] = useState(0);
-    const [isEmployed, setIsEmployed] = useState(false);
-    const updateName = () => {
-        setName("Bro");
+    // let [number, setNumber] = useState(0);
+    const inputRef1 = useRef(null);
+    const inputRef2 = useRef(null);
+    const inputRef3 = useRef(null);
+    // console.log(ref);
+
+    useEffect(() => {
+        console.log("Component Rendered");
+        // console.log(inputRef);
+    });
+
+    function handleClick1(){
+        inputRef1.current.focus();
+        inputRef1.current.style.backgroundColor = "yellow";
+        inputRef2.current.style.backgroundColor = "";
+        inputRef3.current.style.backgroundColor = "";
+        // setNumber(ref => n+1);
+        // ref.current++;
+        // console.log(ref.current);
     }
-    const incrementAge = () => {
-        setAge(age+1);
+    function handleClick2(){
+        inputRef2.current.focus();
+        inputRef1.current.style.backgroundColor = "";
+        inputRef2.current.style.backgroundColor = "yellow";
+        inputRef3.current.style.backgroundColor = "";
     }
-    const toggleEmployedStatus = () => {
-        setIsEmployed(!isEmployed);
+    function handleClick3(){
+        inputRef3.current.focus();
+        inputRef1.current.style.backgroundColor = "";
+        inputRef2.current.style.backgroundColor = "";
+        inputRef3.current.style.backgroundColor = "yellow";
     }
+  
     return(<div>
-        <p>Name: {name}</p>
-        <button onClick={updateName}>Set Name</button>
-        <p>Age: {age}</p>
-        <button onClick={incrementAge}>Increment Age</button>
-        <p>Is employed: {isEmployed ? "Yes": "No"}</p>
-        <button onClick={toggleEmployedStatus}>Toggle status</button>
+        <button onClick={handleClick1}>
+            Click Me 1!
+        </button>
+        <input ref={inputRef1} />
+
+        <button onClick={handleClick2}>
+            Click Me 2!
+        </button>
+        <input ref={inputRef2} />
+
+        <button onClick={handleClick3}>
+            Click Me 3!
+        </button>
+        <input ref={inputRef3} />
     </div>);
 }
 
