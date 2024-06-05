@@ -1,0 +1,49 @@
+#1
+
+/*Enter mongosh shell from cmd*/
+mongosh
+
+-----------------------------------
+/*Exit mongosh shell*/
+exit
+
+-----------------------------------
+#2
+
+/*Show all databases*/
+show dbs 
+
+-----------------------------------
+/*To use a database*/
+use admin
+
+-----------------------------------
+/*To a database that doesn't exist*/
+use school
+//create a new empty database
+
+-----------------------------------
+/*To add a collection*/
+db.createCollection("students")
+
+-----------------------------------
+/*To drop a database*/
+db.dropDatabase()
+
+-----------------------------------
+#3
+
+/*Insert to a collection*/
+db.students.insertOne({name:"aaa", age:30, gpa:3.2})
+
+-----------------------------------
+/*Insert to a collection*/
+db.students.insertOne({name:"aaa", age:30, gpa:3.2})
+
+-----------------------------------
+/*Return all documents in a collection*/
+db.students.find()
+
+-----------------------------------
+/*Insert more than one documents to a collection*/
+db.students.insertMany([{name:"bbb", age:38, gpa:1.5}, {name:"ccc", age:27, gpa:4.0}, {name:"ddd", age:18, gpa:2.5}])
