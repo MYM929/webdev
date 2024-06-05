@@ -3,6 +3,23 @@
 
     .wrapper{
         max-width: 1366px;
-        margin: auto;
+        margin: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+
+        span{
+            font-weight: bold;
+        }
+
+        .social{
+            display: flex;
+            gap: 20px;
+
+            img{
+                width: 18px;
+            }
+        }
     }
 }
