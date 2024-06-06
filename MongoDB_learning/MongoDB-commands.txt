@@ -116,3 +116,23 @@ db.students.updateOne({_id: ObjectId("6661233c19faca3317cdcdf6")}, {$set:{fullTi
 
 /*Unset a field*/
 db.students.updateOne({_id: ObjectId("6661233c19faca3317cdcdf6")}, {$unset:{fullTime:""}})
+
+/*Update many documents at once*/
+db.students.updateMany({},{$set:{fullTime:false}})
+
+/*Unset specific documents*/
+db.students.updateOne({name:"aaa"}, {$unset:{fullTime:""}})
+
+/*Check if a field exists or not*/
+db.students.updateMany({fullTime:{$exists:false}}, {$set:{fullTime:true}})
+//anyone who doesn't have the fullTime field, set it to true
+
+/*compass: update a field*/
+Edit Document -> 
+
+/*compass: remove a field*/
+trash can icon
+
+/*compass: add a field*/
+plus icon -> change the data type
+
