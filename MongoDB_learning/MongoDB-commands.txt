@@ -104,3 +104,15 @@ Below Documents -> {name:"aaa"}
 
 /*find() projection param in compass*/
 Options ->Project
+
+-----------------------------------
+#7
+
+/*Update documents*/
+updateOne({filter}, {update})
+
+db.students.updateOne({name:"aaa"}, {$set:{fullTime:true}})
+db.students.updateOne({_id: ObjectId("6661233c19faca3317cdcdf6")}, {$set:{fullTime:false}})
+
+/*Unset a field*/
+db.students.updateOne({_id: ObjectId("6661233c19faca3317cdcdf6")}, {$unset:{fullTime:""}})
