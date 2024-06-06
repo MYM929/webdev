@@ -63,3 +63,26 @@ db.students.insertOne({name:"Larry",
                                  city: "Bikino Bottom",
                                  zip: 12345}})
 
+-----------------------------------
+#5
+
+/*Return all documents in a collection*/
+db.students.find()
+
+/*Sort all documents in a collection*/
+db.students.find().sort({name:1})
+//1:alphabet; -1: reverse alphabet
+
+/*Limit the number of documents return to us*/
+db.students.find().limit(1)
+
+/*Combine sort() and limit()*/
+db.students.find().sort({gpa:-1}).limit(1)
+
+/*Sort in compass*/
+Options -> Sort -> {name:1} -> Find
+
+/*Limit in compass*/
+Options -> Limit -> 1
+
+
