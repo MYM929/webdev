@@ -85,4 +85,22 @@ Options -> Sort -> {name:1} -> Find
 /*Limit in compass*/
 Options -> Limit -> 1
 
+-----------------------------------
+#6
 
+/*Arguments of find()*/
+find({query}, {projection})
+
+db.students.find({name:"aaa"})
+db.students.find({gpa:4.0})
+db.students.find({name:"aaa", gpa:4.0})
+
+db.students.find({}, {name:true})
+db.students.find({}, {_id:false, name:true})
+db.students.find({}, {_id:false, name:true, gpa:true})
+
+/*find() in compass*/
+Below Documents -> {name:"aaa"}
+
+/*find() projection param in compass*/
+Options ->Project
