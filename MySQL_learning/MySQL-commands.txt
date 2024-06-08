@@ -131,3 +131,19 @@ select * from employees;
 delete from employees
 where employee_id = 6;
 select * from employees;
+
+----------------------------------------
+#6 autocommit, commit, rollback
+
+/*autocommit*/
+set autocommit = off;
+//our transactions will not auto save
+//we need to save manually save each transaction
+//default value: on
+
+/*commit*/
+commit;
+//save point 
+delete from employees;
+rollback;
+//restore back to commit
