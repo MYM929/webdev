@@ -175,3 +175,18 @@ db.students.find({name:{$nin:["aaa", "bbb"]}})
 
 /*compass*/
 Filter textbox -> {gpa:{$gte:3, $lte:4}}
+
+-----------------------------------
+#10
+
+/*and operator*/
+db.students.find({$and: [{fullTime:true}, {age:{lte:22}}]})
+
+/*or operator*/
+db.students.find({$or: [{fullTime:true}, {age:{lte:22}}]})
+
+/*nor operator*/
+db.students.find({$nor: [{fullTime:true}, {age:{lte:22}}]})
+
+/*not operator*/
+db.students.find({age:{$not:{$gte:30}}})
