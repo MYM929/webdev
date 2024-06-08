@@ -104,3 +104,30 @@ where employee_id = 1;
 //where employee_id != 1;
 //where hire_date is null;
 //where hire_date is not null;
+
+----------------------------------------
+#6 update & delete
+
+/*Update the data of a table*/
+SET SQL_SAFE_UPDATES = 0;
+UPDATE employees
+SET hourly_pay = 10.50,
+    hire_date = "2023-01-07"
+WHERE employee_id = 6;
+select * from employees;
+
+/*Set a field to null*/
+UPDATE employees
+SET hire_date = null
+WHERE employee_id = 6;
+select * from employees;
+
+/*Update all the values in a column*/
+UPDATE employees
+SET hire_date = null
+select * from employees;
+
+/*Delete a row from table*/
+delete from employees
+where employee_id = 6;
+select * from employees;
