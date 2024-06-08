@@ -133,7 +133,7 @@ where employee_id = 6;
 select * from employees;
 
 ----------------------------------------
-#6 autocommit, commit, rollback
+#7 autocommit, commit, rollback
 
 /*autocommit*/
 set autocommit = off;
@@ -149,7 +149,7 @@ rollback;
 //restore back to commit
 
 ----------------------------------------
-#7 current_date() & current_time()
+#8 current_date() & current_time()
 
 /*date and time practice*/
 
@@ -173,3 +173,29 @@ values(current_date()-1, null, null);
 select * from test;
 
 drop table test;
+
+----------------------------------------
+#9 unique
+
+ensure all the values in a column is different
+
+/*unique keyword practice*/
+create table products (
+    product_id int,
+    product_name varchar(25) unique,
+    price decimal(4, 2)
+);
+OR 
+alter table products
+add constraint
+unique(product_name);
+
+select * from products;
+
+insert into products
+values (100, "hamburger", 3.99),
+       (101, "fries", 1.89),
+       (102, "soda", 1.00),
+       (103, "ice cream", 1.49);
+       // (104, "fries", 1.75);
+select * from products;
