@@ -216,3 +216,17 @@ db.students.dropIndex("name_1")
 
 /*Create an index in compass*/
 indexes tab -> Create Index -> name 1
+
+-----------------------------------
+#12
+
+/*show collections in a db*/
+show collections
+
+/*Add a collection to a db with extra params*/
+db.createCollection("teacher", {capped:true, size:10000000, max:100}, {autoIndexId:false})
+//means this collection should have a max size
+//unit: bytes; documents
+
+/*Drop a collection*/
+db.courses.drop()
