@@ -199,3 +199,24 @@ values (100, "hamburger", 3.99),
        (103, "ice cream", 1.49);
        // (104, "fries", 1.75);
 select * from products;
+
+----------------------------------------
+#10 not null
+
+/*not null keyword practice*/
+create table products (
+    product_id int,
+    product_name varchar(25) unique,
+    price decimal(4, 2) not null
+);
+OR 
+alter table products
+modify price decimal(4, 2) not null;
+
+select * from products;
+
+insert into products
+values (104, "cookie", null);
+
+select * from products;
+
