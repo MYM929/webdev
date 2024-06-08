@@ -136,3 +136,12 @@ trash can icon
 /*compass: add a field*/
 plus icon -> change the data type
 
+-----------------------------------
+#8
+
+/*Delete a document*/
+db.students.deleteOne({name:"aaa"})
+
+/*Delete many documents*/
+db.students.deleteMany({fullTime:false})
+db.students.deleteMany({registerDate:{$exists:false}})
