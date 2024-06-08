@@ -145,3 +145,33 @@ db.students.deleteOne({name:"aaa"})
 /*Delete many documents*/
 db.students.deleteMany({fullTime:false})
 db.students.deleteMany({registerDate:{$exists:false}})
+
+-----------------------------------
+#9
+
+/*Find all but not name:"aaa"*/
+db.students.find({name:{$ne:"aaa"}})
+
+/*Less than operator*/
+db.students.find({age:{$lt:20}})
+
+/*Less than or equal to operator*/
+db.students.find({age:{$lte:27}})
+
+/*Greater than operator*/
+db.students.find({age:{$gt:20}})
+
+/*Greater than or equal to operator*/
+db.students.find({age:{$gte:27}})
+
+/*Two comparison operators*/
+db.students.find({gpa:{$gte:3, $lte:4}})
+
+/*in operator*/
+db.students.find({name:{$in:["aaa", "bbb"]}})
+
+/*not in operator*/
+db.students.find({name:{$nin:["aaa", "bbb"]}})
+
+/*compass*/
+Filter textbox -> {gpa:{$gte:3, $lte:4}}
