@@ -147,3 +147,29 @@ commit;
 delete from employees;
 rollback;
 //restore back to commit
+
+----------------------------------------
+#7 current_date() & current_time()
+
+/*date and time practice*/
+
+create table test (
+    my_date date, 
+    my_time time,
+    my_datetime datetime
+);
+select * from test;
+
+insert into test
+values(current_date(), current_time(), now());
+select * from test;
+
+insert into test
+values(current_date()+1, null, null);
+select * from test;
+
+insert into test
+values(current_date()-1, null, null);
+select * from test;
+
+drop table test;
