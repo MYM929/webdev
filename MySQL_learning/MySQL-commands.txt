@@ -1,3 +1,16 @@
 #1
 
+/*Create a db*/
+create database myDB;
 
+/*Use a db*/
+use myDB;
+
+/*Drop a db*/
+drop database myDB;
+
+/*Set db to read only*/
+alter database myDB read only = 1;
+//can not drop this db right now
+
+----------------------------------------
