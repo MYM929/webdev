@@ -1,0 +1,59 @@
+[{
+  "_id": {
+    "$oid": "665fd9b944e84c1086cdce06"
+  },
+  "name": "Larry",
+  "age": 32,
+  "gpa": 2.8,
+  "fullTime": false,
+  "registerDate": {
+    "$date": "2024-06-05T03:21:29.021Z"
+  },
+  "gradutionDate": null,
+  "courses": [
+    "biology",
+    "Chemistry",
+    "Calculus"
+  ],
+  "address": {
+    "street": "123 Fake St.",
+    "city": "Bikino Bottom",
+    "zip": 12345
+  }
+},
+{
+  "_id": {
+    "$oid": "6661233c19faca3317cdcdf6"
+  },
+  "name": "aaa",
+  "age": 30,
+  "gpa": 3.2,
+  "fullTime": false
+},
+{
+  "_id": {
+    "$oid": "6661234119faca3317cdcdf7"
+  },
+  "name": "bbb",
+  "age": 38,
+  "gpa": 1.5,
+  "fullTime": true
+},
+{
+  "_id": {
+    "$oid": "6661234119faca3317cdcdf8"
+  },
+  "name": "ccc",
+  "age": 27,
+  "gpa": 4,
+  "fullTime": false
+},
+{
+  "_id": {
+    "$oid": "6661234119faca3317cdcdf9"
+  },
+  "name": "ddd",
+  "age": 18,
+  "gpa": 2.5,
+  "fullTime": false
+}]

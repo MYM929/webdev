@@ -1,0 +1,232 @@
+#1
+
+/*Enter mongosh shell from cmd*/
+mongosh
+
+-----------------------------------
+/*Exit mongosh shell*/
+exit
+
+-----------------------------------
+#2
+
+/*Show all databases*/
+show dbs 
+
+-----------------------------------
+/*To use a database*/
+use admin
+
+-----------------------------------
+/*To a database that doesn't exist*/
+use school
+//create a new empty database
+
+-----------------------------------
+/*To add a collection*/
+db.createCollection("students")
+
+-----------------------------------
+/*To drop a database*/
+db.dropDatabase()
+
+-----------------------------------
+#3
+
+/*Insert to a collection*/
+db.students.insertOne({name:"aaa", age:30, gpa:3.2})
+
+-----------------------------------
+/*Insert to a collection*/
+db.students.insertOne({name:"aaa", age:30, gpa:3.2})
+
+-----------------------------------
+/*Return all documents in a collection*/
+db.students.find()
+
+-----------------------------------
+/*Insert more than one documents to a collection*/
+db.students.insertMany([{name:"bbb", age:38, gpa:1.5}, {name:"ccc", age:27, gpa:4.0}, {name:"ddd", age:18, gpa:2.5}])
+
+-----------------------------------
+#4
+
+/*Database data types*/
+db.students.insertOne({name:"Larry",
+                       age: 32, 
+                       gpa: 2.8, 
+                       fullTime: false, 
+                       registerDate: new Date(),
+                       gradutionDate: null,
+                       courses: ["Biology", "Chemistry", "Calculus"],
+                       address: {street: "123 Fake St.",
+                                 city: "Bikino Bottom",
+                                 zip: 12345}})
+
+-----------------------------------
+#5
+
+/*Return all documents in a collection*/
+db.students.find()
+
+/*Sort all documents in a collection*/
+db.students.find().sort({name:1})
+//1:alphabet; -1: reverse alphabet
+
+/*Limit the number of documents return to us*/
+db.students.find().limit(1)
+
+/*Combine sort() and limit()*/
+db.students.find().sort({gpa:-1}).limit(1)
+
+/*Sort in compass*/
+Options -> Sort -> {name:1} -> Find
+
+/*Limit in compass*/
+Options -> Limit -> 1
+
+-----------------------------------
+#6
+
+/*Arguments of find()*/
+find({query}, {projection})
+
+db.students.find({name:"aaa"})
+db.students.find({gpa:4.0})
+db.students.find({name:"aaa", gpa:4.0})
+
+db.students.find({}, {name:true})
+db.students.find({}, {_id:false, name:true})
+db.students.find({}, {_id:false, name:true, gpa:true})
+
+/*find() in compass*/
+Below Documents -> {name:"aaa"}
+
+/*find() projection param in compass*/
+Options ->Project
+
+-----------------------------------
+#7
+
+/*Update documents*/
+updateOne({filter}, {update})
+
+db.students.updateOne({name:"aaa"}, {$set:{fullTime:true}})
+db.students.updateOne({_id: ObjectId("6661233c19faca3317cdcdf6")}, {$set:{fullTime:false}})
+
+/*Unset a field*/
+db.students.updateOne({_id: ObjectId("6661233c19faca3317cdcdf6")}, {$unset:{fullTime:""}})
+
+/*Update many documents at once*/
+db.students.updateMany({},{$set:{fullTime:false}})
+
+/*Unset specific documents*/
+db.students.updateOne({name:"aaa"}, {$unset:{fullTime:""}})
+
+/*Check if a field exists or not*/
+db.students.updateMany({fullTime:{$exists:false}}, {$set:{fullTime:true}})
+//anyone who doesn't have the fullTime field, set it to true
+
+/*compass: update a field*/
+Edit Document -> 
+
+/*compass: remove a field*/
+trash can icon
+
+/*compass: add a field*/
+plus icon -> change the data type
+
+-----------------------------------
+#8
+
+/*Delete a document*/
+db.students.deleteOne({name:"aaa"})
+
+/*Delete many documents*/
+db.students.deleteMany({fullTime:false})
+db.students.deleteMany({registerDate:{$exists:false}})
+
+-----------------------------------
+#9
+
+/*Find all but not name:"aaa"*/
+db.students.find({name:{$ne:"aaa"}})
+
+/*Less than operator*/
+db.students.find({age:{$lt:20}})
+
+/*Less than or equal to operator*/
+db.students.find({age:{$lte:27}})
+
+/*Greater than operator*/
+db.students.find({age:{$gt:20}})
+
+/*Greater than or equal to operator*/
+db.students.find({age:{$gte:27}})
+
+/*Two comparison operators*/
+db.students.find({gpa:{$gte:3, $lte:4}})
+
+/*in operator*/
+db.students.find({name:{$in:["aaa", "bbb"]}})
+
+/*not in operator*/
+db.students.find({name:{$nin:["aaa", "bbb"]}})
+
+/*compass*/
+Filter textbox -> {gpa:{$gte:3, $lte:4}}
+
+-----------------------------------
+#10
+
+/*and operator*/
+db.students.find({$and: [{fullTime:true}, {age:{lte:22}}]})
+
+/*or operator*/
+db.students.find({$or: [{fullTime:true}, {age:{lte:22}}]})
+
+/*nor operator*/
+db.students.find({$nor: [{fullTime:true}, {age:{lte:22}}]})
+
+/*not operator*/
+db.students.find({age:{$not:{$gte:30}}})
+
+-----------------------------------
+#11
+
+Storing data in a B-tree
+Not many updates on data -> recommend to use index
+
+/*explain()*/
+db.students.find({name:"aaa"}).explain("executionStats")
+//This is a linear search to our document
+//docsExamined: 5
+
+/*Apply an index*/
+db.students.createIndex({name: 1})
+//output value: name_1
+db.students.find({name:"aaa"}).explain("executionStats");
+//docsExamined: 1
+
+/*Get all the indexes*/
+db.students.getIndexes()
+
+/*Drop the indexes*/
+db.students.dropIndex("name_1")
+
+/*Create an index in compass*/
+indexes tab -> Create Index -> name 1
+
+-----------------------------------
+#12
+
+/*show collections in a db*/
+show collections
+
+/*Add a collection to a db with extra params*/
+db.createCollection("teacher", {capped:true, size:10000000, max:100}, {autoIndexId:false})
+//means this collection should have a max size
+//unit: bytes; documents
+
+/*Drop a collection*/
+db.courses.drop()
