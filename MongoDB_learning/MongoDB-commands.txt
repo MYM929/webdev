@@ -190,3 +190,29 @@ db.students.find({$nor: [{fullTime:true}, {age:{lte:22}}]})
 
 /*not operator*/
 db.students.find({age:{$not:{$gte:30}}})
+
+-----------------------------------
+#11
+
+Storing data in a B-tree
+Not many updates on data -> recommend to use index
+
+/*explain()*/
+db.students.find({name:"aaa"}).explain("executionStats")
+//This is a linear search to our document
+//docsExamined: 5
+
+/*Apply an index*/
+db.students.createIndex({name: 1})
+//output value: name_1
+db.students.find({name:"aaa"}).explain("executionStats");
+//docsExamined: 1
+
+/*Get all the indexes*/
+db.students.getIndexes()
+
+/*Drop the indexes*/
+db.students.dropIndex("name_1")
+
+/*Create an index in compass*/
+indexes tab -> Create Index -> name 1
