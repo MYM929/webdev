@@ -819,3 +819,71 @@ select sum(hourly_pay) as "hourly pay", employee_id
 from employees
 group by employee_id with rollup;
 
+----------------------------------------
+#29 on delete
+
+on delete set null = delete foreign key, replace fk with null
+on delete cascade = delete foreign key, delete row
+
+/*On delete example*/
+delete from customers
+where customer_id = 4;
+select * from customers;
+//cannot delete or update bc of foreign key
+
+set foreign_key_checks = 0;
+delete from customers
+where customer_id = 4;
+select * from customers;
+
+set foreign_key_checks = 1;
+
+select * from transactions;
+
+insert into customers
+values(4, "Poppy", "Puff", 2, "PPuff@gmail.com");
+select * from customers;
+
+/*On delete set null*/
+create table transactions(
+    transaction_id int primary key,
+    amount decimal(5, 2), 
+    customer_id int,
+    order_date date,
+    foreign key(customer_id) references customers(customer_id)
+    on delete set null
+);  
+
+alter table transactions 
+drop foreign key fk_customer_id; 
+
+alter table transactions
+add constraint fk_customer_id
+foreign key(customer_id) references customers(customer_id)
+on delete set null;
+
+delete from customers
+where customer_id = 4;
+select * from transactions;
+
+/*On delete set cascade*/
+insert into customers
+values(4, "Poppy", "puff", 2, "PPuff@gmail.com");
+select * from customers;
+
+alter table transactions
+drop foreign key fk_customer_id;
+
+alter table transactions
+add constraint fk_transactions_id
+foreign key(customer_id) references customers(customer_id)
+on delete cascade;
+
+update transactions
+set customer_id = 4
+where transaction_id = 1005;
+select * from transactions;
+
+delete from customers
+where customer_id = 4;
+select * from transactions;
