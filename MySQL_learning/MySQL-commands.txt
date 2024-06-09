@@ -713,3 +713,27 @@ show indexes from customers;
 select * from customers
 where last_name = "Puff" and first_name = "Poppy";
 
+----------------------------------------
+#26 subqueries
+
+/*Subquery example*/
+select first_name, last_name, hourly_pay, 
+       (select avg(hourly_pay) from employees) as avg_pay
+from employees;
+
+/*Another example*/
+select first_name, last_name, hourly_pay
+from employees
+where hourly_pay > (select avg(hourly_pay) from employees);
+
+/*Another example*/
+select * from transactions;
+
+select first_name, last_name
+from customers
+where customer_id in 
+(select distinct customer_id
+from transactions
+where customer_id is not null);
+
+
