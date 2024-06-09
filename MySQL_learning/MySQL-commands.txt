@@ -443,5 +443,39 @@ on transactions.customer_id = customers.customer_id;
 //display everything on the right table
 //this one have the "Poppy" "Puff"
 
+----------------------------------------
+#17 functions
+
+/*count()*/
+select count(amount)
+from transactions;
+//count num of rows
+OR 
+select count(amount) as count
+from transactions;
+//make the display header
+OR
+select count(amount) as "today's transactions"
+from transactions;
+
+/*max()*/
+select max(amount) as maximum
+from transactions;
+
+/*min()*/
+select min(amount) as minimum
+from transactions;
+
+/*avg()*/
+select avg(amount) as average
+from transactions;
+
+/*sum()*/
+select sum(amount) as sum
+from transactions;
+
+/*Concatenate first_name and last_name*/
+select concat(first_name, " ", last_name) as full_name 
+from employees;
 
 
