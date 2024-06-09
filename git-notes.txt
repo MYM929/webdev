@@ -60,6 +60,20 @@ git checkout --orphan new-branch
 git rm -rf .
 git commit --allow-empty -m "Initial commit on an empty branch"
 
+---------------------------------------------------------------------
+/*Merge local branch to main and update remote*/
+git fetch origin
+git checkout main
+git merge feature
+//Resolve any merge conflicts, after that
+git add <file-with-conflict>
+//If conflicts were resolved manually, commit the merge:
+git commit
+git push origin main
+
+
+
+
 
 
 
