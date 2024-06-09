@@ -535,3 +535,15 @@ where first_name like "s%";
 //where job like "_ook";
 //where hire_date like "____-__-02";
 //where job like "_a%";
+
+----------------------------------------
+#20 order by
+
+/*Order by example*/
+select * from employees
+order by last_name;
+//order by last_name desc;
+//order by hire_date;
+
+select * from transactions
+order by amount, customer_id;
