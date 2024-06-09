@@ -399,3 +399,49 @@ select * from transactions;
 delete from customers
 where customer_id = 3;
 //can not delete bc a foreign key exists
+
+----------------------------------------
+#16 joins
+
+join rows from two or tables based on 
+a related column between them such as foreign key
+
+/*join attribute practice*/
+//continue from the prev example
+insert into transactions(amount, customer_id)
+values (1.00, null);
+select * from transactions;
+
+insert into customers(first_name, last_name)
+values ("Poppy", "Puff");
+select * from customers;
+
+/*Inner join*/
+select * 
+from transactions inner join customers
+on transactions.customer_id = customers.customer_id;
+//customer_id = null: will not join
+//customer_id = 4: will not join bc transactions
+//                 does not have customer_id = 4
+
+/*Inner join specific columns*/
+select transaction_id, amount, first_name, last_name
+from transactions inner join customers
+on transactions.customer_id = customers.customer_id;
+
+/*Left join*/
+select *
+from transactions left join customers
+on transactions.customer_id = customers.customer_id;
+//display everything on the left table
+//this one have the customer_id = 4
+
+/*Right join*/
+select *
+from transactions right join customers
+on transactions.customer_id = customers.customer_id;
+//display everything on the right table
+//this one have the "Poppy" "Puff"
+
+
+
