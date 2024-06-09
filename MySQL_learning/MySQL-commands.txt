@@ -322,4 +322,30 @@ select * from transactions;
 select amount from transactions
 where transaction_id = 1002;
 
+----------------------------------------
+#14 auto_increment
+
+/*auto_increment attribute practice*/
+create table transactions(
+    transaction_id int primary key auto_increment,
+    amount decimal(5, 2)
+);   
+select * from transactions;
+
+insert into transactions(amount)
+values (4.99);
+select * from transactions;
+
+alter table transactions
+auto_increment = 1000;
+
+delete from transactions;
+select * from transactions;
+
+insert into transactions(amount)
+values (4.99);
+select * from transactions;
+
+
+
 
