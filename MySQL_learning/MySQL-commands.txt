@@ -558,3 +558,19 @@ order by last_name limit 1;
 //offset 10
 //can be used for pagination
 
+----------------------------------------
+#22 unions
+
+Combines the results of two or more 
+select statements
+
+/*Union example*/
+select * from income
+union
+select * from expenses;
+
+select first_name, last_name from employees
+union
+//union all //include duplicates
+select first_name, last_name from customers;
+
