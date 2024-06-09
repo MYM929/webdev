@@ -574,3 +574,70 @@ union
 //union all //include duplicates
 select first_name, last_name from customers;
 
+----------------------------------------
+#23 self joins
+
+/*self join example*/
+alter table customers
+add referral_id int;
+
+update customers
+set referral_id = 1
+where customer_id = 2;
+
+update customers
+set referral_id = 2
+where customer_id = 3;
+
+update customers
+set referral_id = 2
+where customer_id = 4;
+
+select a.customer_id, 
+       a.first_name, a.last_name,
+       concat(b.first_name, " ", b.last_name) as "referred_by"
+from customers as a 
+inner join customers as b
+on a.referral_id = b.customer_id;
+//original: a; copy: b
+
+/*Left join*/
+select a.customer_id, 
+       a.first_name, a.last_name,
+       concat(b.first_name, " ", b.last_name) as "referred_by"
+from customers as a 
+left join customers as b
+on a.referral_id = b.customer_id;
+//join all the customers on the left
+
+/*Another example*/
+alter table employees
+add superviser_id int;
+
+update employees
+set superviser_id = 5
+where employee_id = 2;
+
+update employees
+set superviser_id = 5
+where employee_id = 3;
+
+update employees
+set superviser_id = 5
+where employee_id = 6;
+
+update employees
+set superviser_id = 1
+where employee_id = 5;
+
+update employees
+set superviser_id = 5
+where employee_id = 4;
+
+
+select a.first_name, a.last_name,
+       concat(b.first_name, " ", b.last_name) as "reports to"
+from employees as a
+inner join employees as b 
+//left join employees as b 
+on a.superviser_id = b.employee_id; 
