@@ -1,0 +1,1033 @@
+#2 databases 
+
+/*Create a db*/
+create database myDB;
+
+/*Use a db*/
+use myDB;
+
+/*Drop a db*/
+drop database myDB;
+
+/*Set db to read only*/
+alter database myDB read only = 1;
+//can not drop this db right now
+
+----------------------------------------
+#3 tables
+
+/*Create table columns*/
+create table employees (
+	employee_id int,
+    first_name varchar(50),
+    last_name varchar(50),
+    hourly_pay decimal(5, 2),
+    hire_date date
+);
+
+/*Select a table*/
+select * from employees;
+//* means all 
+
+/*Rename a table*/
+rename table employees to workers;
+
+/*Drop a table*/
+drop table employees;
+
+/*Alter a table*/
+alter table employees
+add phone_number varchar(15);
+
+/*Rename a column*/
+alter table employees 
+rename column phone_number to email;
+
+/*Change the data type of a column*/
+alter table employees
+modify column email varchar(100);
+
+/*Change the position of a column*/
+alter table employees
+modify email varchar(100) 
+after last_name;
+OR
+alter table employees
+modify email varchar(100) 
+first; //after;
+
+/*Drop a column*/
+alter table employees
+drop column email;
+
+----------------------------------------
+#4 insert rows
+
+/*Insert a row to table*/
+insert into employees
+values (1, "Eugene", "Krabs", 25.50, "2023-01-02");
+select * from employees;
+
+/*Insert multiple rows to table*/
+insert into employees
+values (2, "Squidward", "Tentacles", 15.00, "2023-01-03"),
+       (3, "Spongebob", "Squarepants", 12.50, "2023-01-04"),
+       (4, "Patrick", "Stars", 12.50, "2023-01-05"),
+       (5, "Sandy", "Cheeks", 17.25, "2023-01-06");
+select * from employees;
+
+/*Insert a row with selected columns to table*/
+insert into employees(employee_id, first_name, last_name)
+values (6, "Sheldon", "Plankton");
+select * from employees;
+
+----------------------------------------
+#5 select
+
+/*Query all the data from table*/
+select * from employees;
+
+/*Query selected columns from table*/
+select first_name, last_name
+from employees;
+OR
+select last_name, first_name
+from employees;
+
+/*Search an employee(s) using where*/
+select *
+from employees
+where employee_id = 1;
+//where first_name = "Spongebob";
+//where hourly_pay >= 15;
+//where hire_date <= "2023-01-03";
+//where employee_id != 1;
+//where hire_date is null;
+//where hire_date is not null;
+
+----------------------------------------
+#6 update & delete
+
+/*Update the data of a table*/
+SET SQL_SAFE_UPDATES = 0;
+UPDATE employees
+SET hourly_pay = 10.50,
+    hire_date = "2023-01-07"
+WHERE employee_id = 6;
+select * from employees;
+
+/*Set a field to null*/
+UPDATE employees
+SET hire_date = null
+WHERE employee_id = 6;
+select * from employees;
+
+/*Update all the values in a column*/
+UPDATE employees
+SET hire_date = null
+select * from employees;
+
+/*Delete a row from table*/
+delete from employees
+where employee_id = 6;
+select * from employees;
+
+----------------------------------------
+#7 autocommit, commit, rollback
+
+/*autocommit*/
+set autocommit = off;
+//our transactions will not auto save
+//we need to save manually save each transaction
+//default value: on
+
+/*commit*/
+commit;
+//save point 
+delete from employees;
+rollback;
+//restore back to commit
+
+----------------------------------------
+#8 current_date() & current_time()
+
+/*date and time practice*/
+
+create table test (
+    my_date date, 
+    my_time time,
+    my_datetime datetime
+);
+select * from test;
+
+insert into test
+values(current_date(), current_time(), now());
+select * from test;
+
+insert into test
+values(current_date()+1, null, null);
+select * from test;
+
+insert into test
+values(current_date()-1, null, null);
+select * from test;
+
+drop table test;
+
+----------------------------------------
+#9 unique
+
+ensure all the values in a column is different
+
+/*unique constraint practice*/
+create table products (
+    product_id int,
+    product_name varchar(25) unique,
+    price decimal(4, 2)
+);
+OR 
+alter table products
+add constraint
+unique(product_name);
+
+select * from products;
+
+insert into products
+values (100, "hamburger", 3.99),
+       (101, "fries", 1.89),
+       (102, "soda", 1.00),
+       (103, "ice cream", 1.49);
+       // (104, "fries", 1.75);
+select * from products;
+
+----------------------------------------
+#10 not null
+
+/*not null constraint practice*/
+create table products (
+    product_id int,
+    product_name varchar(25) unique,
+    price decimal(4, 2) not null
+);
+OR 
+alter table products
+modify price decimal(4, 2) not null;
+
+select * from products;
+
+insert into products
+values (104, "cookie", null);
+
+select * from products;
+
+----------------------------------------
+#11 check
+
+limit what values can be placed into a column
+
+/*check constraint practice*/
+create table employees (
+	employee_id int,
+    first_name varchar(50),
+    last_name varchar(50),
+    hourly_pay decimal(5, 2),
+    hire_date date,
+    constraint chk_hourly_pay check (hourly_pay >= 10.00)
+);
+OR
+alter table employees
+add constraint chk_hourly_pay check(hourly_pay >= 10.00);
+select * from employees;
+
+insert into employees
+values (6, "Sheldon", "Plankton", 5.00, "2023-01-07");
+//error
+
+/*delete a check*/
+alter table employees
+drop check chk_hourly_pay;
+
+----------------------------------------
+#12 default
+
+It can enter default values if we don't specify it
+
+/*default constraint practice*/
+select * from products;
+insert into products 
+values (104, "straw", 0.00),
+       (105, "napkin", 0.00),
+       (106, "fork", 0.00),
+       (107, "spoon", 0.00);
+select * from products;
+
+delete from products
+where product_id >= 104;
+select * from products;
+
+create table products (
+    product_id int,
+    product_name varchar(25),
+    price decimal(4, 2) default 0
+);
+OR 
+alter table products
+alter price set default 0;
+
+select * from products;
+insert into products (product_id, product_name)
+values (104, "straw"),
+       (105, "napkin"),
+       (106, "fork"),
+       (107, "spoon");
+select * from products;
+
+/*default constraint practice 2*/
+create table transactions (
+    transaction_id int,
+    amount decimal(5, 2),
+    transaction_date datetime default now()
+);
+select * from transactions;
+
+insert into transactions (transaction_id, amount)
+values (1,  4.99),
+       (2,  2.89),
+       (3,  8.37);
+select * from transactions;
+
+----------------------------------------
+#13 primary keys
+
+Ensure the values in a column is unique and not null
+One primary key per table
+
+/*primary key constraint practice*/
+create table transactions(
+    transaction_id int primary key,
+    amount decimal(5, 2)
+);
+select * from transactions;
+OR
+alter table transactions
+add constraint primary key(transaction_id);
+
+insert into transactions
+values (1000, 4.99),
+       (1001, 2.89);
+       //(1001, 3.38)
+       //(null, 3.38)
+select * from transactions;
+
+select amount from transactions
+where transaction_id = 1002;
+
+----------------------------------------
+#14 auto_increment
+
+/*auto_increment attribute practice*/
+create table transactions(
+    transaction_id int primary key auto_increment,
+    amount decimal(5, 2)
+);   
+select * from transactions;
+
+insert into transactions(amount)
+values (4.99);
+select * from transactions;
+
+alter table transactions
+auto_increment = 1000;
+
+delete from transactions;
+select * from transactions;
+
+insert into transactions(amount)
+values (4.99);
+select * from transactions;
+
+----------------------------------------
+#15 foreign keys
+
+/*foreign keys attribute practice*/
+create table customers(
+    customer_id int primary key auto_increment,
+    first_name varchar(50),
+    last_name varchar(50)
+);
+select * from customers;
+
+insert into customers(first_name, last_name)
+values ("Fred", "Fish"),
+       ("Larry", "Lobster"),
+       ("Bubble", "Bass");
+select * from customers;
+
+drop table transactions;
+
+create table transactions(
+    transaction_id int primary key auto_increment,
+    amount decimal(5, 2), 
+    customer_id int,
+    foreign key(customer_id) references customers(customer_id)
+);   
+select * from transactions;
+
+/*Drop a foreign key*/
+alter table transactions
+drop foreign key transactions_ibfk_1;
+//SCHEMAS -> transactions -> foreign keys
+
+/*Give foreign key a name*/
+alter table transactions
+add constraint fk_customer_id
+foreign key(customer_id) references customers(customer_id);
+
+/*Continue the practice*/
+delete from transactions;
+select * from transactions;
+
+alter table transactions
+auto_increment = 1000;
+insert into transactions(amount, customer_id)
+values (4.99, 3),
+       (2.89, 2),
+       (3.38, 3),
+       (4.99, 1);
+select * from transactions;
+
+delete from customers
+where customer_id = 3;
+//can not delete bc a foreign key exists
+
+----------------------------------------
+#16 joins
+
+join rows from two or tables based on 
+a related column between them such as foreign key
+
+/*join attribute practice*/
+//continue from the prev example
+insert into transactions(amount, customer_id)
+values (1.00, null);
+select * from transactions;
+
+insert into customers(first_name, last_name)
+values ("Poppy", "Puff");
+select * from customers;
+
+/*Inner join*/
+select * 
+from transactions inner join customers
+on transactions.customer_id = customers.customer_id;
+//customer_id = null: will not join
+//customer_id = 4: will not join bc transactions
+//                 does not have customer_id = 4
+
+/*Inner join specific columns*/
+select transaction_id, amount, first_name, last_name
+from transactions inner join customers
+on transactions.customer_id = customers.customer_id;
+
+/*Left join*/
+select *
+from transactions left join customers
+on transactions.customer_id = customers.customer_id;
+//display everything on the left table
+//this one have the customer_id = 4
+
+/*Right join*/
+select *
+from transactions right join customers
+on transactions.customer_id = customers.customer_id;
+//display everything on the right table
+//this one have the "Poppy" "Puff"
+
+----------------------------------------
+#17 functions
+
+/*count()*/
+select count(amount)
+from transactions;
+//count num of rows
+OR 
+select count(amount) as count
+from transactions;
+//make the display header
+OR
+select count(amount) as "today's transactions"
+from transactions;
+
+/*max()*/
+select max(amount) as maximum
+from transactions;
+
+/*min()*/
+select min(amount) as minimum
+from transactions;
+
+/*avg()*/
+select avg(amount) as average
+from transactions;
+
+/*sum()*/
+select sum(amount) as sum
+from transactions;
+
+/*Concatenate first_name and last_name*/
+select concat(first_name, " ", last_name) as full_name 
+from employees;
+
+----------------------------------------
+#18 and, or, not
+
+/*Setup example*/
+alter table employees
+add column job varchar(25) after hourly_pay;
+select * from employees;
+
+update employees
+set job = "manger"
+where employee_id = 1;
+select * from employees;
+/*
+1: manager
+2: cashier
+3: cook
+4: cook 
+5: asst. manager
+6: janitor
+*/
+
+insert into employees
+values(6, "Sheldon", "Plankton", 10.00, "janitor", "2023-01-07");
+select * from employees;
+
+/*and operator*/
+select * from employees
+where hire_date<"2023-01-05" and job="cook";
+
+/*or operator*/
+select * from employees
+where job="cashier" or job="cook";
+
+/*not operator*/
+select * from employees
+where not job="manager" and not job="asst. manager";
+
+/*between operator*/
+select * from employees
+where hire_date between "2023-01-04" and "2023-01-07"
+//within a single column
+
+/*in operator*/
+select * from employees
+where job in("cook", "cashier", "janitor");
+
+----------------------------------------
+#19 wild cards
+
+/*Wild card example*/
+select * from employees
+where first_name like "s%";
+//where hire_date like "2023%";
+//where last_name like "%r";
+//where job like "_ook";
+//where hire_date like "____-__-02";
+//where job like "_a%";
+
+----------------------------------------
+#20 order by
+
+/*Order by example*/
+select * from employees
+order by last_name;
+//order by last_name desc;
+//order by hire_date;
+
+select * from transactions
+order by amount, customer_id;
+
+----------------------------------------
+#21 limit
+
+/*Limit example*/
+select * from customers
+order by last_name limit 1;
+//limit 10, 10;
+//offset 10
+//can be used for pagination
+
+----------------------------------------
+#22 unions
+
+Combines the results of two or more 
+select statements
+
+/*Union example*/
+select * from income
+union
+select * from expenses;
+
+select first_name, last_name from employees
+union
+//union all //include duplicates
+select first_name, last_name from customers;
+
+----------------------------------------
+#23 self joins
+
+/*self join example*/
+alter table customers
+add referral_id int;
+
+update customers
+set referral_id = 1
+where customer_id = 2;
+
+update customers
+set referral_id = 2
+where customer_id = 3;
+
+update customers
+set referral_id = 2
+where customer_id = 4;
+
+select a.customer_id, 
+       a.first_name, a.last_name,
+       concat(b.first_name, " ", b.last_name) as "referred_by"
+from customers as a 
+inner join customers as b
+on a.referral_id = b.customer_id;
+//original: a; copy: b
+
+/*Left join*/
+select a.customer_id, 
+       a.first_name, a.last_name,
+       concat(b.first_name, " ", b.last_name) as "referred_by"
+from customers as a 
+left join customers as b
+on a.referral_id = b.customer_id;
+//join all the customers on the left
+
+/*Another example*/
+alter table employees
+add superviser_id int;
+
+update employees
+set superviser_id = 5
+where employee_id = 2;
+
+update employees
+set superviser_id = 5
+where employee_id = 3;
+
+update employees
+set superviser_id = 5
+where employee_id = 6;
+
+update employees
+set superviser_id = 1
+where employee_id = 5;
+
+update employees
+set superviser_id = 5
+where employee_id = 4;
+
+
+select a.first_name, a.last_name,
+       concat(b.first_name, " ", b.last_name) as "reports to"
+from employees as a
+inner join employees as b 
+//left join employees as b 
+on a.superviser_id = b.employee_id; 
+
+----------------------------------------
+#24 views
+
+/*View example*/
+create view employee_attendance as 
+select first_name, last_name 
+from employees;
+
+select * from employee_attendance
+order by last_name;
+
+/*Drop a view*/
+drop view employee_attendance;
+
+/*Another example*/
+alter table customers
+add column email varchar(50);
+
+update customers
+set email = case 
+    when customer_id = 1 then "FFish@gmail.com"
+    when customer_id = 2 then "LLobster@gmail.com"
+    when customer_id = 3 then "BBass@gmail.com"
+    when customer_id = 4 then "PPuff@gmail.com"
+end 
+where customer_id in (1,2,3,4);
+
+select * from customers;
+
+create view customer_email as 
+select email from customers;
+select * from customer_email;
+//when update to the real table
+//the changes will reflect to the view
+
+insert into customers
+values (5, "Pearl", "Krabs", null, "PKrabs@gmail.com");
+select * from customers;
+
+select * from customer_email;
+
+----------------------------------------
+#25 indexes
+
+index(BTree data structure)
+indexes are used to find values within 
+a specific column more quickly
+
+/*Index example*/
+show indexes from customers;
+
+create index last_name_idx
+on customers(last_name);
+show indexes from customers;
+
+select * from customers
+where last_name = "Puff";
+
+/*Multi column index*/
+create index last_name_first_name_idx
+on customers(last_name, first_name);
+show indexes from customers;
+
+/*Drop an index*/
+alter table customers
+drop index last_name_idx;
+show indexes from customers;
+
+select * from customers
+where last_name = "Puff" and first_name = "Poppy";
+
+----------------------------------------
+#26 subqueries
+
+/*Subquery example*/
+select first_name, last_name, hourly_pay, 
+       (select avg(hourly_pay) from employees) as avg_pay
+from employees;
+
+/*Another example*/
+select first_name, last_name, hourly_pay
+from employees
+where hourly_pay > (select avg(hourly_pay) from employees);
+
+/*Another example*/
+select * from transactions;
+
+select first_name, last_name
+from customers
+where customer_id in 
+(select distinct customer_id
+from transactions
+where customer_id is not null);
+
+----------------------------------------
+#27 group by
+
+aggregate all rows by a specific column
+ofter used with aggregate functions
+ex. sum(), max(), min(), avg(), count()
+
+/*Group by example*/
+create table transactions(
+	transaction_id int, 
+    amount decimal(5, 2), 
+    customer_id int, 
+    order_date varchar(50)
+);
+insert into transactions
+values (1000, 4.99, 3, "2023-01-01"),
+	   (1001, 2.89, 2, "2023-01-01"),
+       (1002, 3.38, 3, "2023-01-02"),
+       (1003, 4.99, 1, "2023-01-02"),
+       (1004, 1.00, null, "2023-01-03"),
+       (1005, 2.49, 4, "2023-01-03"),
+	   (1006, 5.48, null, "2023-01-03");
+select * from transactions;
+
+select sum(amount), order_date
+from transactions
+group by order_date;
+
+select max(amount), order_date
+from transactions
+group by order_date;
+
+select min(amount), order_date
+from transactions
+group by order_date;
+
+select avg(amount), order_date
+from transactions
+group by order_date;
+
+select count(amount), order_date
+from transactions
+group by order_date;
+
+select sum(amount), customer_id
+from transactions
+group by customer_id;
+
+select sum(amount), customer_id
+from transactions
+group by customer_id;
+where count(amount) > 1;
+//not working
+
+select count(amount), customer_id
+from transactions
+group by customer_id
+having count(amount) > 1 and customer_id is not null;
+
+----------------------------------------
+#28 rollup
+
+rollup, extension of the group by clause
+produces another row and shows the 
+grand total (super-aggregate value)
+
+/*Rollup example*/
+select sum(amount), order_date
+from transactions
+group by order_date with rollup;
+
+select count(transaction_id), order_date
+from transactions
+group by order_date with rollup;
+
+select count(transaction_id) as "# of orders", customer_id
+from transactions
+group by customer_id with rollup;
+
+select sum(hourly_pay) as "hourly pay", employee_id
+from employees
+group by employee_id with rollup;
+
+----------------------------------------
+#29 on delete
+
+on delete set null = delete foreign key, replace fk with null
+on delete cascade = delete foreign key, delete row
+
+/*On delete example*/
+delete from customers
+where customer_id = 4;
+select * from customers;
+//cannot delete or update bc of foreign key
+
+set foreign_key_checks = 0;
+delete from customers
+where customer_id = 4;
+select * from customers;
+
+set foreign_key_checks = 1;
+
+select * from transactions;
+
+insert into customers
+values(4, "Poppy", "Puff", 2, "PPuff@gmail.com");
+select * from customers;
+
+/*On delete set null*/
+create table transactions(
+    transaction_id int primary key,
+    amount decimal(5, 2), 
+    customer_id int,
+    order_date date,
+    foreign key(customer_id) references customers(customer_id)
+    on delete set null
+);  
+
+alter table transactions 
+drop foreign key fk_customer_id; 
+
+alter table transactions
+add constraint fk_customer_id
+foreign key(customer_id) references customers(customer_id)
+on delete set null;
+
+delete from customers
+where customer_id = 4;
+select * from transactions;
+
+/*On delete set cascade*/
+insert into customers
+values(4, "Poppy", "puff", 2, "PPuff@gmail.com");
+select * from customers;
+
+alter table transactions
+drop foreign key fk_customer_id;
+
+alter table transactions
+add constraint fk_transactions_id
+foreign key(customer_id) references customers(customer_id)
+on delete cascade;
+
+update transactions
+set customer_id = 4
+where transaction_id = 1005;
+select * from transactions;
+
+delete from customers
+where customer_id = 4;
+select * from transactions;
+
+----------------------------------------
+#30 stored precedures
+
+is preprared SQL code that you can save
+great if there's a query that you write often
+
+/*Store precedure example*/
+select distinct first_name, last_name
+from transactions
+inner join customers
+on transactions.customer_id = customers.customer_id;
+
+delimiter $$
+create procedure get_customers()
+begin
+    select * from customers;
+end $$
+delimiter ;
+
+call get_customers();
+
+/*Drop procedure*/
+drop procedure get_customers;
+
+/*Another example*/
+delimiter $$
+create procedure find_customer(in id int)
+begin
+    select * from customers
+    where customer_id = id;
+end $$
+delimiter ;
+
+call find_customer(1);
+
+drop procedure find_customer;
+
+/*Another example*/
+delimiter $$
+create procedure find_customer(in f_name varchar(50), in l_name varchar(50))
+begin
+    select * from customers
+    where first_name = f_name and
+          last_name  = l_name;
+end $$
+delimiter ;
+
+call find_customer("Larry", "Lobster");
+
+----------------------------------------
+#31 triggers
+
+/*Trigger example*/
+alter table employees
+add column salary decimal(10, 2) after hourly_pay;
+select * from employees;
+
+update employees
+set salary = hourly_pay*40*52;
+select * from employees;
+
+create trigger before_hourly_pay_update
+before update on employees
+for each row
+set new.salary = (new.hourly_pay*40*52);
+
+show triggers;
+
+update employees
+set hourly_pay = 50
+where employee_id = 1;
+select * from employees;
+
+update employees
+set hourly_pay = hourly_pay+1;
+select * from employees;
+
+/*Another example*/
+delete from employees
+where employee_id = 6;
+select * from employees;
+
+create trigger before_hourly_pay_insert
+before insert on employees
+for each row
+set new.salary = (new.hourly_pay*40*52);
+
+insert into employees
+values(6, "Shaldon", "Plankton", 10, null, "janitor", "2023-01-07", 5);
+select * from employees;
+
+/*Another example*/
+create table expenses(
+    expense_id int primary key,
+    expense_name varchar(50), 
+    expense_total decimal(10, 2)
+);
+
+insert into expenses
+values (1, "salaries", 0),
+       (2, "supplies", 0),
+       (3, "taxes", 0);
+
+update expenses
+set expense_total = 
+(select sum(salary) from employees)
+where expense_name = "salaries";
+select * from expenses;
+
+create trigger after_salary_delete
+after delete on employees
+for each row
+update expenses
+set expense_total = expense_total-old.salary
+where expense_name = "salaries";
+
+delete from employees
+where employee_id = 6;
+select * from expenses;
+
+create trigger after_salary_insert
+after insert on employees
+for each row
+update expenses
+set expense_total = expense_total+new.salary
+where expense_name = "salaries";
+
+insert into employees
+values(6, "Sheldon", "Plankton", 10, null, "janitor", "2023-01-07", 5);
+select * from expenses;
+
+/*Another example*/
+create trigger after_salary_update
+after update on employees
+for each row
+update expenses
+set expense_total = expense_total+(new.salary-old.salary)
+where expense_name = "salaries"; 
+
+update employees
+set hourly_pay = 100
+where employee_id = 1;
+select * from expenses;
