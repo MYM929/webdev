@@ -523,3 +523,15 @@ where hire_date between "2023-01-04" and "2023-01-07"
 /*in operator*/
 select * from employees
 where job in("cook", "cashier", "janitor");
+
+----------------------------------------
+#19 wild cards
+
+/*Wild card example*/
+select * from employees
+where first_name like "s%";
+//where hire_date like "2023%";
+//where last_name like "%r";
+//where job like "_ook";
+//where hire_date like "____-__-02";
+//where job like "_a%";
