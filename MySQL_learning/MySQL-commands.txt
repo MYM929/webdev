@@ -179,7 +179,7 @@ drop table test;
 
 ensure all the values in a column is different
 
-/*unique keyword practice*/
+/*unique constraint practice*/
 create table products (
     product_id int,
     product_name varchar(25) unique,
@@ -203,7 +203,7 @@ select * from products;
 ----------------------------------------
 #10 not null
 
-/*not null keyword practice*/
+/*not null constraint practice*/
 create table products (
     product_id int,
     product_name varchar(25) unique,
@@ -220,3 +220,29 @@ values (104, "cookie", null);
 
 select * from products;
 
+----------------------------------------
+#11 check
+
+limit what values can be placed into a column
+
+/*check constraint practice*/
+create table employees (
+	employee_id int,
+    first_name varchar(50),
+    last_name varchar(50),
+    hourly_pay decimal(5, 2),
+    hire_date date,
+    constraint chk_hourly_pay check (hourly_pay >= 10.00)
+);
+OR
+alter table employees
+add constraint chk_hourly_pay check(hourly_pay >= 10.00);
+select * from employees;
+
+insert into employees
+values (6, "Sheldon", "Plankton", 5.00, "2023-01-07");
+//error
+
+/*delete a check*/
+alter table employees
+drop check chk_hourly_pay;
