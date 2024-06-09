@@ -346,6 +346,56 @@ insert into transactions(amount)
 values (4.99);
 select * from transactions;
 
+----------------------------------------
+#15 foreign keys
 
+/*foreign keys attribute practice*/
+create table customers(
+    customer_id int primary key auto_increment,
+    first_name varchar(50),
+    last_name varchar(50)
+);
+select * from customers;
 
+insert into customers(first_name, last_name)
+values ("Fred", "Fish"),
+       ("Larry", "Lobster"),
+       ("Bubble", "Bass");
+select * from customers;
 
+drop table transactions;
+
+create table transactions(
+    transaction_id int primary key auto_increment,
+    amount decimal(5, 2), 
+    customer_id int,
+    foreign key(customer_id) references customers(customer_id)
+);   
+select * from transactions;
+
+/*Drop a foreign key*/
+alter table transactions
+drop foreign key transactions_ibfk_1;
+//SCHEMAS -> transactions -> foreign keys
+
+/*Give foreign key a name*/
+alter table transactions
+add constraint fk_customer_id
+foreign key(customer_id) references customers(customer_id);
+
+/*Continue the practice*/
+delete from transactions;
+select * from transactions;
+
+alter table transactions
+auto_increment = 1000;
+insert into transactions(amount, customer_id)
+values (4.99, 3),
+       (2.89, 2),
+       (3.38, 3),
+       (4.99, 1);
+select * from transactions;
+
+delete from customers
+where customer_id = 3;
+//can not delete bc a foreign key exists
