@@ -641,3 +641,44 @@ from employees as a
 inner join employees as b 
 //left join employees as b 
 on a.superviser_id = b.employee_id; 
+
+----------------------------------------
+#24 views
+
+/*View example*/
+create view employee_attendance as 
+select first_name, last_name 
+from employees;
+
+select * from employee_attendance
+order by last_name;
+
+/*Drop a view*/
+drop view employee_attendance;
+
+/*Another example*/
+alter table customers
+add column email varchar(50);
+
+update customers
+set email = case 
+    when customer_id = 1 then "FFish@gmail.com"
+    when customer_id = 2 then "LLobster@gmail.com"
+    when customer_id = 3 then "BBass@gmail.com"
+    when customer_id = 4 then "PPuff@gmail.com"
+end 
+where customer_id in (1,2,3,4);
+
+select * from customers;
+
+create view customer_email as 
+select email from customers;
+select * from customer_email;
+//when update to the real table
+//the changes will reflect to the view
+
+insert into customers
+values (5, "Pearl", "Krabs", null, "PKrabs@gmail.com");
+select * from customers;
+
+select * from customer_email;
