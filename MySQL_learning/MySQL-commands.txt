@@ -478,4 +478,48 @@ from transactions;
 select concat(first_name, " ", last_name) as full_name 
 from employees;
 
+----------------------------------------
+#18 and, or, not
 
+/*Setup example*/
+alter table employees
+add column job varchar(25) after hourly_pay;
+select * from employees;
+
+update employees
+set job = "manger"
+where employee_id = 1;
+select * from employees;
+/*
+1: manager
+2: cashier
+3: cook
+4: cook 
+5: asst. manager
+6: janitor
+*/
+
+insert into employees
+values(6, "Sheldon", "Plankton", 10.00, "janitor", "2023-01-07");
+select * from employees;
+
+/*and operator*/
+select * from employees
+where hire_date<"2023-01-05" and job="cook";
+
+/*or operator*/
+select * from employees
+where job="cashier" or job="cook";
+
+/*not operator*/
+select * from employees
+where not job="manager" and not job="asst. manager";
+
+/*between operator*/
+select * from employees
+where hire_date between "2023-01-04" and "2023-01-07"
+//within a single column
+
+/*in operator*/
+select * from employees
+where job in("cook", "cashier", "janitor");
