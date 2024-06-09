@@ -736,4 +736,61 @@ where customer_id in
 from transactions
 where customer_id is not null);
 
+----------------------------------------
+#27 group by
 
+aggregate all rows by a specific column
+ofter used with aggregate functions
+ex. sum(), max(), min(), avg(), count()
+
+/*Group by example*/
+create table transactions(
+	transaction_id int, 
+    amount decimal(5, 2), 
+    customer_id int, 
+    order_date varchar(50)
+);
+insert into transactions
+values (1000, 4.99, 3, "2023-01-01"),
+	   (1001, 2.89, 2, "2023-01-01"),
+       (1002, 3.38, 3, "2023-01-02"),
+       (1003, 4.99, 1, "2023-01-02"),
+       (1004, 1.00, null, "2023-01-03"),
+       (1005, 2.49, 4, "2023-01-03"),
+	   (1006, 5.48, null, "2023-01-03");
+select * from transactions;
+
+select sum(amount), order_date
+from transactions
+group by order_date;
+
+select max(amount), order_date
+from transactions
+group by order_date;
+
+select min(amount), order_date
+from transactions
+group by order_date;
+
+select avg(amount), order_date
+from transactions
+group by order_date;
+
+select count(amount), order_date
+from transactions
+group by order_date;
+
+select sum(amount), customer_id
+from transactions
+group by customer_id;
+
+select sum(amount), customer_id
+from transactions
+group by customer_id;
+where count(amount) > 1;
+//not working
+
+select count(amount), customer_id
+from transactions
+group by customer_id
+having count(amount) > 1 and customer_id is not null;
