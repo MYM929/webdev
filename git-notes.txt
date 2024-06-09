@@ -54,6 +54,11 @@ git cherry-pick <commit>
 --merge any conflicts
 git commit -m ""
 
+---------------------------------------------------------------------
+/*Create a empty branch with no initial files*/
+git checkout --orphan new-branch
+git rm -rf .
+git commit --allow-empty -m "Initial commit on an empty branch"
 
 
 
