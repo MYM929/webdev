@@ -682,3 +682,34 @@ values (5, "Pearl", "Krabs", null, "PKrabs@gmail.com");
 select * from customers;
 
 select * from customer_email;
+
+----------------------------------------
+#25 indexes
+
+index(BTree data structure)
+indexes are used to find values within 
+a specific column more quickly
+
+/*Index example*/
+show indexes from customers;
+
+create index last_name_idx
+on customers(last_name);
+show indexes from customers;
+
+select * from customers
+where last_name = "Puff";
+
+/*Multi column index*/
+create index last_name_first_name_idx
+on customers(last_name, first_name);
+show indexes from customers;
+
+/*Drop an index*/
+alter table customers
+drop index last_name_idx;
+show indexes from customers;
+
+select * from customers
+where last_name = "Puff" and first_name = "Poppy";
+
