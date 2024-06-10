@@ -1,18 +1,15 @@
 <?php
-$name = "Bro Code";
-$age = 21;
-$quantity = 3;
-$price = 4.99;
-$online1 = true;
-$online2 = false;
+$x = 10;
+$y = 2;
+$z = null;
+$counter = 0;
 
-$total = null;
-$total = $quantity * $price;
+// $z = $x + $y;
+// $z = $x ** $y; //10^2
 
-echo "Hello {$name}<br>";
-echo "Your are {$age} years old<br>";
-echo "Your pizza is \${$price}<br>";
-echo "Online status: {$online1}<br>";
-echo "Online status: {$online2}<br>";
+$counter++;
 
-echo "Your total is: \${$total}";
+// echo $z;
+// echo $counter;
+
+echo $total = 1 + 2 - 3 * 4 / 5 ** 6;
