@@ -1,20 +1,18 @@
 <?php
-echo "Hello World 1 <br>";
-echo "Hello World 2";
-?>
+$name = "Bro Code";
+$age = 21;
+$quantity = 3;
+$price = 4.99;
+$online1 = true;
+$online2 = false;
 
-<!DOCTYPE html>
-<html lang="en">
+$total = null;
+$total = $quantity * $price;
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+echo "Hello {$name}<br>";
+echo "Your are {$age} years old<br>";
+echo "Your pizza is \${$price}<br>";
+echo "Online status: {$online1}<br>";
+echo "Online status: {$online2}<br>";
 
-<body>
-    <br>
-    <button>order a pizza</button>
-</body>
-
-</html>
+echo "Your total is: \${$total}";
