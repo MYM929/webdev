@@ -8,14 +8,12 @@ const Test = () => {
     visible: (i)=>({
         opacity: 1, 
         x:100, 
-        transition:{delay: 1*0.3},
+        transition:{delay: i*0.3},
       }),
       hidden: {opacity: 0},
     }
     
-  const items = [
-    "item1", "item2", "item3", "item4" 
-  ]
+  const items = ["item1", "item2", "item3", "item4"];
 
   return (
     <div className="course">
