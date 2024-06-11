@@ -1,17 +1,14 @@
 <?php
-    $hours = 50;
-    $rate = 15;
-    $weekly_pay = null;
+    $child = false;
+    $senior = false;
+    $ticket = null;
 
-    if( $hours<=0 ){
-        $weekly_pay = 0;
-    }
-    elseif( $hours<=40 ){
-        $weekly_pay = $hours*$rate;
+    if($child || $senior){
+        $ticket = 10;
     }
     else{
-        $weekly_pay = ($rate*40)+($hours-40)*($rate*1.5);
+        $ticket = 15;
     }
 
-    echo "You made \${$weekly_pay} this week";
+    echo "The ticket price is \${$ticket}";
 ?>
