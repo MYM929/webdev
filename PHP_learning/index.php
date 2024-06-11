@@ -9,55 +9,46 @@
 
 <body>
     <form action="index.php" method="post">
-        <label>quantity</label><br>
-        <input type="text" name="quantity">
+        <label>radius:</label>
+        <input type="text" name="radius">
+        <input type="submit" value="calculate">
+    </form><br>
+    <!-- <form action="index.php" method="post">
+        <label>x:</label>
+        <input type="text" name="x">
+        <label>y:</label>
+        <input type="text" name="y">
+        <label>z:</label>
+        <input type="text" name="z">
         <input type="submit" value="total">
-    </form>
+    </form> -->
 </body>
 
 </html>
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <form action="index.php" method="post">
-         <form action="index.php" method="get"> 
-        <label>username:</label><br>
-        <input type="text" name="username"><br>
-        <label>password:</label><br>
-        <input type="password" name="password"><br>
-        <input type="submit" value="log in">
-    </form>
-</body>
-
-</html> -->
-
-
 <?php
-$item = "pizza";
-$price = 5.99;
-$quantity = $_POST["quantity"];
-$total = null;
-$total = $quantity * $price;
+$radius = $_POST["radius"];
+$c = null;
+$area = null;
 
-echo "You have ordered {$quantity} x {$item}/s <br>";
-echo "Your total is: \${$total}";
-/*
-echo "{$_POST["username"]} <br>";
-echo "{$_POST["password"]} <br>";
+$c = 2 * pi() * $radius;
+$c = round($c, 2);
+$area = pi() * pow($radius, 2);
+$area = round($area, 2);
 
-// echo "{$_GET["username"]} <br>";
-// echo "{$_GET["password"]} <br>";
+echo "Circumfence = {$c}cm <br>";
+echo "Area = {$area}cm^2 <br>";
 
-// echo $_GET["username"] . "<br>";
-// echo $_GET["password"] . "<br>";
 
-*/
+
+// $x = $_POST["x"];
+// $y = $_POST["y"];
+// $z = $_POST["z"];
+// $total = null;
+
+// // $total = abs($x);
+// // round(), floor(), ceil(), pow($x, $y), sqrt(), 
+// // max(), min(), pi(), rand(1, 6),  
+
+// echo $total;
 ?>
