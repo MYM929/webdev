@@ -1,14 +1,13 @@
 <?php
-    $child = false;
-    $senior = false;
-    $ticket = null;
+    $date = date("l"); //give the date of the week
+    // echo "{$date}";
 
-    if($child || $senior){
-        $ticket = 10;
+    switch($date){
+        case "Monday":
+            echo "Monday"; break;
+        case "Tuesday":
+            echo "Tuesday"; break;
+        default:
+          echo "{$date} is not a day";
     }
-    else{
-        $ticket = 15;
-    }
-
-    echo "The ticket price is \${$ticket}";
 ?>
