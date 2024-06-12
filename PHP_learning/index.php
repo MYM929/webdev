@@ -7,32 +7,32 @@
 </head>
 <body>
     <form action="index.php" method="post">
-        <label>username: </label>
-        <input type="text" name="username"><br>
-        <label>password: </label>
-        <input type="password" name="password"><br>
-        <input type="submit" name="login" value="Log in"><br>
+        <input type="radio"  name="credit_card" value="Visa">Visa<br>
+        <input type="radio"  name="credit_card" value="Mastercard">Mastercard<br>
+        <input type="radio"  name="credit_card" value="American Express">American Express<br>
+        <input type="submit" name="confirm"     value="confirm">
     </form>
 </body>
 </html>
 
 <?php
-    if(isset($_POST["login"])){
-        $username = $_POST["username"];
-        $password = $_POST["password"];
-        
-        if(empty($username)){
-            echo "Username is missing";
+    if(isset($_POST["confirm"])){
+        $credit_card = null;
+
+        if(isset($_POST["credit_card"])){
+            $credit_card = $_POST["credit_card"];
+            echo $credit_card;
         }
-        elseif(empty($password)){
-            echo "Password is missing";
-        }
-        else{
-            echo "Hello {$username}";
+
+        switch($credit_card){
+            case "Visa":
+                echo "You selected Visa"; break;
+            case "Mastercard":
+                echo "You selected Mastercard"; break;
+            case "American Express":
+                echo "You selected American Express"; break;
+            default:
+                echo "Please make a selection";
         }
     }
-
-    // foreach($_POST as $key => $value){
-    //     echo "{$key} = {$value} <br>";
-    // }
 ?>
