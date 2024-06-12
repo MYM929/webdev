@@ -7,32 +7,21 @@
 </head>
 <body>
     <form action="index.php" method="post">
-        <input type="radio"  name="credit_card" value="Visa">Visa<br>
-        <input type="radio"  name="credit_card" value="Mastercard">Mastercard<br>
-        <input type="radio"  name="credit_card" value="American Express">American Express<br>
-        <input type="submit" name="confirm"     value="confirm">
+        <input type="checkbox"  name="foods[]" value="Pizza">Pizza<br>
+        <input type="checkbox"  name="foods[]" value="Hamburger">Hamburger<br>
+        <input type="checkbox"  name="foods[]" value="Hotdog">Hotdog<br>
+        <input type="checkbox"  name="foods[]" value="Taco">Taco<br>
+        <input type="submit"    name="submit">
     </form>
 </body>
 </html>
 
 <?php
-    if(isset($_POST["confirm"])){
-        $credit_card = null;
+    if(isset($_POST["submit"])){
+        $foods = $_POST["foods"];
 
-        if(isset($_POST["credit_card"])){
-            $credit_card = $_POST["credit_card"];
-            echo $credit_card;
-        }
-
-        switch($credit_card){
-            case "Visa":
-                echo "You selected Visa"; break;
-            case "Mastercard":
-                echo "You selected Mastercard"; break;
-            case "American Express":
-                echo "You selected American Express"; break;
-            default:
-                echo "Please make a selection";
+        foreach($foods as $food){
+            echo $food . "<br>";
         }
     }
 ?>
