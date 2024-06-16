@@ -21,7 +21,8 @@
 ?>
 
 <!--
- XAMPP -> start Apache and MySQL server
- MySQL -> admin -> databases -> create/drop database
- phpMyadmin -> User accounts -> params we needed
+add columns to the businessdb
+id, user, password, reg_date
+insert one row to the businessdb
+NULL, "Spongebob", "pineapple1", 'date'
  -->
