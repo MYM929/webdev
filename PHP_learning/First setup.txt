@@ -1,0 +1,22 @@
+Create a new folder called "website" at location "C:\xampp\htdocs"
+Create a new file call "index.php" inside the website folder
+
+VS code warning:
+index.php -> warning -> Open settings -> php.validate.executablePath
+-> "php.validate.executablePath" = "C:/xampp/php/php.exe"
+
+VS code extensions:
+PHP Intelephense
+Live Server
+PHP Server
+
+type localhost at chrome to access the xampp dashboard
+type localhost/website to access the index.php
+//php code will execute on server and return the result to this website
+
+Chrome extension:
+"live server"
+turn on live reload
+Actual server address: http://localhost/website/
+Live server address: vs code -> press go live button at buttom right
+-> http://127.0.0.1:5501/
