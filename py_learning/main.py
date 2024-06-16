@@ -1,16 +1,19 @@
-import math
+website = "http://google.com"
 
-pi = 3.14
-x = 1
-y = 2
-z = 3 
+slice = slice(7, -4)
 
-# print(round(pi))
-# print(math.ceil(pi))
-# print(math.floor(pi))
-# print(abs(pi))
-# print(pow(pi, 2))
-# print(math.sqrt(pi))
-print(max(x,y,z))
-print(min(x,y,z))
+print(website[slice])
 
+
+
+# name = "Bro Code"
+
+# first_name = name[:3]
+# last_name = name[4:]
+# ran_name = name[::2]
+# reversed_name = name[::-1]
+
+# print(first_name)
+# print(last_name)
+# print(ran_name)
+# print(reversed_name)
