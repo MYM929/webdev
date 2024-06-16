@@ -10,7 +10,7 @@
     <title>Document</title>
 </head>
 <body>
-    This is the Home page<br>
+    This is the About page<br>
     Stuff about your home page can go here<br>
 </body>
 </html>
