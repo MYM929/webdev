@@ -1,12 +1,11 @@
-name = "Bro"
+x = 1
+y = 2.0
+z = "3"
 
-# print(len(name))
-# print(name.find("B"))
-# print(name.capitalize())
-# print(name.upper())
-# print(name.lower)
-# print(name.isdight())
-# print(name.isalpha())
-# print(name.count("o"))
-# print(name.replace("o", "a"))
-# print(name*3)
+x = float(x)
+y = str(y)
+z = int(z)
+
+print(x)
+print(y)
+print(z*3)
