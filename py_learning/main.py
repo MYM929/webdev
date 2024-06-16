@@ -1,10 +1,6 @@
-age = int(input("How old are you?: "))
+temp = int(input("What is the temp>: "))
 
-if age>=18:
-    print("You are an adult!")
-elif age==100:
-    print("You are a century old")
-elif age<0:
-    print("You haven't been born yet")
-else:
-    print("You are a child")
+if not(temp>=0 and temp<= 30):
+    print("The temp is good today")
+elif not(temp<0 or temp>30):
+    print("The temp is bad today")
