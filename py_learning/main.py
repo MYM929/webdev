@@ -1,25 +1,15 @@
-human = True
-print(human)
-print(type(human))
+a = b = c = d = 30
+
+print(a)
+print(b)
+print(c)
+print(d)
 
 
 
-# height = 250.5
-# print(height)
-# print(type(height))
 
+# name, age, attractive = "Bro", 21, True
 
-# age = 21
-# age += 1
+# print(name)
 # print(age)
-# print(type(age))
-# print("Your age is: " + str(age))
-
-
-# first_name = "Bro"
-# last_name = "Code"
-# full_name = first_name + " " + last_name
-
-# print("Hello " + name)
-# print(type(name))
-# print(full_name)
+# print(attractive)
