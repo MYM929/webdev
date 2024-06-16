@@ -1,15 +1,12 @@
-a = b = c = d = 30
+name = "Bro"
 
-print(a)
-print(b)
-print(c)
-print(d)
-
-
-
-
-# name, age, attractive = "Bro", 21, True
-
-# print(name)
-# print(age)
-# print(attractive)
+# print(len(name))
+# print(name.find("B"))
+# print(name.capitalize())
+# print(name.upper())
+# print(name.lower)
+# print(name.isdight())
+# print(name.isalpha())
+# print(name.count("o"))
+# print(name.replace("o", "a"))
+# print(name*3)
