@@ -1,6 +1,14 @@
-temp = int(input("What is the temp>: "))
+name = None
 
-if not(temp>=0 and temp<= 30):
-    print("The temp is good today")
-elif not(temp<0 or temp>30):
-    print("The temp is bad today")
+while not name:
+    name = input("Enter your name: ")
+
+print("Hello " + name)
+
+
+# name = ""
+
+# while len(name)==0:
+#     name = input("Enter your name: ")
+
+# print("Hello " + name)
