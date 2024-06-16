@@ -1,32 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="index.php" method="post">
+        username:<br>
+        <input type="text" name="username"><br>
+        <input type="submit" name="login" value="login"><br>
+        age:<br>
+        <input type="text" name="age"><br>
+        <input type="submit" name="login" value="login"><br>
+        email:<br>
+        <input type="text" name="email"><br>
+        <input type="submit" name="login" value="login"><br>
+    </form>
+</body>
+</html>
+
 <?php
-    $username = "Bro the code";
-    $username1 = array("Bro", "the", "code");
-    $phone = "123-456-7890";
+    if(isset($_POST["login"])){
+        // $age = filter_input(INPUT_POST, "age",
+        //                     FILTER_VALIDATE_INT);
+        $email = filter_input(INPUT_POST, "email",
+                              FILTER_VALIDATE_EMAIL);
 
-    // $username = strtolower($username);
-    // $username = strtoupper($username);
-    // $username = trim($username);
-    // $username = str_pad($username, 10, "0");
-    // $phone = str_replace("-", "", $phone);
-    // $username = strrev($username);
-    // $username = str_shuffle($username);
-    // $equals = strcmp($username, "Bro code");
-    // $count = strlen($username);
-    // $index = strpos($username, " ");
-    // $firstname = substr($username, 0, 3);
-    // $lastname = substr($username, 4);
-    // $fullname = explode(" ", $username);
-    $username1 = implode(" ", $username1);
+        // if(empty($age)){
+        //     echo "The number wasn't valid";
+        // }
+        // else{
+        //     echo "You are $age years old";
+        // }
 
-    echo $username . "<br>";
-    echo $phone . "<br>";
-    // echo $equals;
-    // echo $count;
-    // echo $index;
-    // echo $firstname;
-    // echo $lastname;
-    // foreach($fullname as $name){
-    //     echo $name . "<br>";
-    // }
-    echo $username1;
+        if(empty($email)){
+           echo "The email wasn't valid";
+        }
+        else{
+           echo "Your email is: {$email}";
+        }
+
+
+
+
+
+        // $username = filter_input(INPUT_POST, "username", 
+        //                          FILTER_SANITIZE_SPECIAL_CHARS);
+        // $age = filter_input(INPUT_POST, "age",
+        //                     FILTER_SANITIZE_NUMBER_INT);
+        // $email = filter_input(INPUT_POST, "email",
+        //                       FILTER_SANITIZE_EMAIL);
+        // // $username = $_POST["username"];
+        // echo "Hello {$username} <br>";
+        // echo "You are {$age} years old <br>";
+        // echo "Your email is: {$email} <br>";
+    }
 ?>
+
+<!-- <script> alert("You have a virus!"); </script> -->
