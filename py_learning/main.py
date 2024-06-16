@@ -1,14 +1,19 @@
-name = None
+import time
 
-while not name:
-    name = input("Enter your name: ")
+for seconds in range(10, 0, -1):
+    print(seconds)
+    time.sleep(1)
+print("Happy New Year!")
 
-print("Hello " + name)
 
+# for i in "Bro Code":
+#     print(iter)
 
-# name = ""
+# for i in range(50,100+1,2):
+#     print(i)
 
-# while len(name)==0:
-#     name = input("Enter your name: ")
+# for i in range(50,100+1):
+#     print(i)
 
-# print("Hello " + name)
+# for i in range(10):
+#     print(i)
