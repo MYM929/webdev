@@ -71,6 +71,10 @@ git add <file-with-conflict>
 git commit
 git push origin main
 
+---------------------------------------------------------------------
+/*Merge a orphan branch*/
+git merge PHP-branch --allow-unrelated-histories
+
 
 
 
