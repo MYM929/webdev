@@ -1,13 +1,8 @@
-name = "bro Code!"
+def hello(first_name, last_name, age):
+    print("hello " + first_name + " " + last_name)
+    print("You are " + str(age) + " years old")
+    print("have a nice day")
 
-first_name = name[:3].upper()
-last_name = name[4:].lower()
-last_char = name[-1]
+my_name = "Bro"
 
-# if(name[0].islower()):
-#     name = name.capitalize()
-
-print(name)
-print(first_name)
-print(last_name)
-print(last_char)
+hello(my_name, "Code", 21)
