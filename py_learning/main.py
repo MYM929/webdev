@@ -1,18 +1,13 @@
-capitals = {'USA':'Washington DC',
-            'India':'New Dehli',
-            'China':'Beijing',
-            'Russia':'Moscow'}
+name = "bro Code!"
 
-# print(capitals['Russia'])
-# print(capitals.get('Germany'))
-# print(capitals.keys())
-# print(capitals.values())
-# print(capitals.items())
+first_name = name[:3].upper()
+last_name = name[4:].lower()
+last_char = name[-1]
 
-# capitals.update({'Germany':'Berlin'})
-# capitals.update({'USA':'Las Vegas'})
-# capitals.pop('China')
-# capitals.clear()
+# if(name[0].islower()):
+#     name = name.capitalize()
 
-for key,value in capitals.items():
-    print(key, value)
+print(name)
+print(first_name)
+print(last_name)
+print(last_char)
