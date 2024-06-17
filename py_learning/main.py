@@ -1,4 +1,4 @@
-def multiply(num1, num2):
-    return num1*num2
+def hello(first, middle, last):
+    print("Hello " + first + " " + middle + " " + last)
 
-print(multiply(6,8))
+hello(last="Code", middle="Dude", first="Bro")
