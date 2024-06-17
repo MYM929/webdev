@@ -1,3 +1,8 @@
-num = round(abs(float(input("Enter a whole pos num: "))))
+name = "Bro"
 
-print(num)
+def display_name():
+    # name = "Code"
+    print(name)
+
+display_name()
+print(name)
