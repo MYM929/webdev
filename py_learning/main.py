@@ -1,4 +1,3 @@
-def hello(first, middle, last):
-    print("Hello " + first + " " + middle + " " + last)
+num = round(abs(float(input("Enter a whole pos num: "))))
 
-hello(last="Code", middle="Dude", first="Bro")
+print(num)
