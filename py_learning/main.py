@@ -1,13 +1,18 @@
-utensils = {"fork", "spoon", "knife"}
-dishes = {"bowl", "plate", "cup", "knife"}
+capitals = {'USA':'Washington DC',
+            'India':'New Dehli',
+            'China':'Beijing',
+            'Russia':'Moscow'}
 
-# utensils.add("napkin")
-# utensils.remove("fork")
-# utensils.clear()
-# utensils.update(dishes)
-# dinner_table = utensils.union(dishes)
-# print(utensils.difference(dishes))
-print(utensils.intersection(dishes))
+# print(capitals['Russia'])
+# print(capitals.get('Germany'))
+# print(capitals.keys())
+# print(capitals.values())
+# print(capitals.items())
 
-# for x in utensils:
-#     print(x)
+# capitals.update({'Germany':'Berlin'})
+# capitals.update({'USA':'Las Vegas'})
+# capitals.pop('China')
+# capitals.clear()
+
+for key,value in capitals.items():
+    print(key, value)
