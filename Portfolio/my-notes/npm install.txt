@@ -1,0 +1,5 @@
+npm install
+npm i scss@1.68.0
+npm i framer-motion@10.16.4
+
+ES7+ React/Redux/React-Native snippets
