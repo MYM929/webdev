@@ -1,7 +1,7 @@
-try:
-    with open('text.txt') as file:
-        print(file.read())
-except FileNotFoundError:
-    print("That file was not found")
+text = "ddddddddddddddddddd\neeeeeeeeeeeeeeeeeee"
 
-print(file.closed)
+# with open('text.txt', 'w') as file:
+#     file.write(text)
+
+with open('text.txt', 'a') as file:
+    file.write(text)
