@@ -1,7 +1,5 @@
-text = "ddddddddddddddddddd\neeeeeeeeeeeeeeeeeee"
+import shutil
 
-# with open('text.txt', 'w') as file:
-#     file.write(text)
-
-with open('text.txt', 'a') as file:
-    file.write(text)
+shutil.copyfile('text.txt', 'copy.txt')
+# shutil.copy('text.txt', 'copy.txt')
+# shutil.copy2('text.txt', 'copy.txt')
