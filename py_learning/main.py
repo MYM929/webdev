@@ -1,15 +1,18 @@
-import random
+try:
+    numerator = int(input("Enter a number to divide: "))
+    denominator = int(input("Enter a nunber to divide by: "))
+    result = numerator / denominator
+except ZeroDivisionError as e:
+    print(e)
+    print("You can't divide by zero")
+except ValueError as e:
+    print(e)
+    print("Enter only number pls")
+except Exception as e:
+    print(e)
+    print("something went wrong")
+else:
+    print(result)
+finally:
+    print("This will always execute")
 
-x = random.randint(1,6)
-y = random.random()
-
-myList = ['rock', 'paper', 'scissors']
-z = random.choice(myList)
-
-cards = [1,2,3,4,5,6,7,8,9,"J","Q","K","A"]
-random.shuffle(cards)
-
-print(x)
-print(y)
-print(z)
-print(cards)
