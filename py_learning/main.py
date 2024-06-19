@@ -1,15 +1,17 @@
 import os
+import shutil
 
-source = 'text.txt'
-dest = 'C:\\Users\\mym\\Desktop\\move.txt'
+path = "test.txt"
 
 try:
-    if os.path.exists(dest):
-        print("There is already a file there")
-    else:
-        os.replace(source, dest)
-        print(source + " was moved")
+    os.remove(path) # delete file
+    # os.rmdir(path) # delete dir
+    # shutil.rmtree(path) # delete dir and file in it
 except FileNotFoundError:
-    print(source + " was not found")
-
-# can also move a dir
+    print("That file was not found")
+except PermissionError:
+    print("You do not have permission to delete that")
+except OSError:
+    print("You can not delete that using that function")
+else:
+    print(path + " was deleted")
