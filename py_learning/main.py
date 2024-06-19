@@ -1,17 +1,11 @@
-import os
-import shutil
+# import messages as msg
+from messages import hello,bye
+# from messages import *
 
-path = "test.txt"
+# msg.hello()
+# msg.bye()
 
-try:
-    os.remove(path) # delete file
-    # os.rmdir(path) # delete dir
-    # shutil.rmtree(path) # delete dir and file in it
-except FileNotFoundError:
-    print("That file was not found")
-except PermissionError:
-    print("You do not have permission to delete that")
-except OSError:
-    print("You can not delete that using that function")
-else:
-    print(path + " was deleted")
+hello()
+bye()
+
+help("modules")
