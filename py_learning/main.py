@@ -1,18 +1,13 @@
-try:
-    numerator = int(input("Enter a number to divide: "))
-    denominator = int(input("Enter a nunber to divide by: "))
-    result = numerator / denominator
-except ZeroDivisionError as e:
-    print(e)
-    print("You can't divide by zero")
-except ValueError as e:
-    print(e)
-    print("Enter only number pls")
-except Exception as e:
-    print(e)
-    print("something went wrong")
+import os
+
+path = "C:\\Users\\mym\\Desktop\\Mavs final\\New Text Document.txt"
+
+if os.path.exists(path):
+    print("That location exists!")
+    if os.path.isfile(path):
+        print("That is a file")
+    if os.path.isdir(path):
+        print("That is a dir")
 else:
-    print(result)
-finally:
-    print("This will always execute")
+    print("That location doesn't exist!")
 
