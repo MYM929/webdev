@@ -1,37 +1,71 @@
-import random
+def new_game():
+    guesses = []
+    correct_guesses = 0
+    question_num = 1
 
-while True:
-    choices = ["rock","paper","scissors"]
+    for key in questions:
+        print("--------------------------")
+        print(key)
+        for i in options[question_num-1]:
+            print(i)
+        question_num += 1
+        guess = input("Enter (A, B, C, or D): ").upper()
+        guesses.append(guess)
 
-    computer = random.choice(choices)
-    player = None
+        correct_guesses += check_answer(questions.get(key), guess)
 
-    while player not in choices:
-        player = input("rock, paper, or scissors?: ").lower()
+    display_score(correct_guesses, guesses)
 
-    print("Computer: ", computer)
-    print("Player: ", player)
 
-    if player == computer:
-        print("Tie")
-    elif player == "rock":
-        if computer == "paper":
-            print("You lose")
-        if computer == "scissors":
-            print("You win")
-    elif player == "scissors":
-        if computer == "rock":
-            print("You lose")
-        if computer == "paper":
-            print("You win")
-    elif player == "paper":
-        if computer == "scissors":
-            print("You lose")
-        if computer == "rock":
-            print("You win")
+def check_answer(answer, guess):
+    if answer == guess:
+        print("CORRECT!")
+        return 1
+    else:
+        print("WRONG")
+        return 0
     
-    play_again = input("Play again? (yes/no)").lower()
-    if play_again != "yes":
-        break #leave the loop
+def display_score(correct_guesses, guesses):
+    print("------------------------")
+    print("RESULTS")
+    print("------------------------")
+    
+    print("Answers: ", end="")
+    for i in questions:
+        print(questions.get(i), end=" ")
+    print()
 
-print("Bye")
+    print("Guesses: ", end="")
+    for i in guesses:
+        print(i, end=" ")
+    print()
+
+    score = int((correct_guesses/len(questions))*100)
+    print("Your score is: " + str(score) + "%")
+
+def play_again():
+    response = input("Do you want to play again? (yes or no):").upper()
+    if response == "YES":
+        return True
+    else:
+        return False
+
+questions = {
+    "Who created Python?: ": "A",
+    "What year was Python create?: ": "B",
+    "Python is tributed to which comedy group?: ": "C",
+    "Is the Earth round?: ": "A"
+}
+
+options = [
+    ["A. aaa", "B. bbb", "C. ccc", "D. ddd"],
+    ["A. aaa", "B. bbb", "C. ccc", "D. ddd"],
+    ["A. aaa", "B. bbb", "C. ccc", "D. ddd"],
+    ["A. aaa", "B. bbb", "C. ccc", "D. ddd"]
+]
+
+new_game()
+
+while play_again():
+    new_game()
+print("BYE")
