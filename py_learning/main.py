@@ -1,14 +1,26 @@
-from car import Car
+class Animal:
+    alive = True
 
-car1 = Car("aaa","bbb",2021,"ccc")
-car2 = Car("ddd","eee",2022,"fff")
+    def eat(self):
+        print("This animal is eating")
+    def sleep(self):
+        print("This animal is sleeping")
 
-print(car1.make)
-car1.drive()
-car1.stop()
+class Rabbit(Animal):
+    def run(self):
+        print("This rabbit is running")
+class Fish(Animal):
+    def swim(self):
+        print("This fish is swimming")
+class Hawk(Animal):
+    def fly(self):
+        print("This hawk is flying")
 
-Car.wheels = 1
-car1.wheels = 2
-print(car1.wheels)
-print(car2.wheels)
-print(Car.wheels)
+rabbit = Rabbit()
+fish = Fish()
+hawk = Hawk()
+
+print(rabbit.alive)
+fish.eat()
+hawk.sleep()
+rabbit.run()
