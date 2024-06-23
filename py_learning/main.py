@@ -1,23 +1,10 @@
-class Prey:
-    def flee(self):
-        print("This animal flees")
+class Animal:
+    def eat(self):
+        print("This animal is eating")
 
-class Predator:
-    def hunt(self):
-        print("This animal is hunting")
-
-class Rabbit(Prey):
-    pass
-
-class Hawk(Predator):
-    pass
-
-class Fish(Prey, Predator):
-    pass
+class Rabbit(Animal):
+    def eat(self):
+        print("This rabbit is eating")
 
 rabbit = Rabbit()
-hawk = Hawk()
-fish = Fish()
-
-fish.flee()
-fish.hunt()
+rabbit.eat()
