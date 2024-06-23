@@ -1,23 +1,23 @@
+class Car:
+    color = None
 
-from abc import ABC, abstractmethod
+class Motorcycle:
+    color = None
 
-class Vehicle(ABC):
-    @abstractmethod
-    def go(self):
-        pass
+def change_color(car, color):
+    car.color = color
 
-class Car(Vehicle):
-    def go(self):
-        print("You drive the car")
-    
-class Motorcycle(Vehicle):
-    def go(self):
-        print("You ride the motorcycle")
+car1 = Car()
+car2 = Car()
+car3 = Car()
+bike1 = Motorcycle()
 
-# vehicle = Vehicle()
-car = Car()
-motorcycle = Motorcycle()
+change_color(car1, "red")
+change_color(car2, "white")
+change_color(car3, "blue")
+change_color(bike1, "black")
 
-# vehicle.go() #can not instantiate class
-car.go()
-motorcycle.go()
+print(car1.color)
+print(car2.color)
+print(car3.color)
+print(bike1.color)
