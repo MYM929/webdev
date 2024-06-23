@@ -1,23 +1,23 @@
-class Rectangle:
-    def __init__(self, length, width):
-        self.length = length
-        self.width = width
 
-class Square(Rectangle):
-    def __init__(self, length, width):
-        super().__init__(length, width)
-    def area(self):
-        return self.length*self.width
+from abc import ABC, abstractmethod
 
-class Cube(Rectangle):
-    def __init__(self, length, width, height):
-        super().__init__(length, width)
-        self.height = height
-    def volume(self):
-        return self.length*self.width*self.height
+class Vehicle(ABC):
+    @abstractmethod
+    def go(self):
+        pass
 
-square = Square(3,3)
-cube = Cube(3,3,3)
+class Car(Vehicle):
+    def go(self):
+        print("You drive the car")
+    
+class Motorcycle(Vehicle):
+    def go(self):
+        print("You ride the motorcycle")
 
-print(square.area())
-print(cube.volume())
+# vehicle = Vehicle()
+car = Car()
+motorcycle = Motorcycle()
+
+# vehicle.go() #can not instantiate class
+car.go()
+motorcycle.go()
