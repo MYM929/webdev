@@ -1,15 +1,23 @@
-class Organism:
-    alive = True
+class Prey:
+    def flee(self):
+        print("This animal flees")
 
-class Animal(Organism):
-    def eat(self):
-        print("This animal is eating")
+class Predator:
+    def hunt(self):
+        print("This animal is hunting")
 
-class Dog(Animal):
-    def bark(self):
-        print("This dog is barking")
+class Rabbit(Prey):
+    pass
 
-dog = Dog()
-print(dog.alive)
-dog.eat()
-dog.bark()
+class Hawk(Predator):
+    pass
+
+class Fish(Prey, Predator):
+    pass
+
+rabbit = Rabbit()
+hawk = Hawk()
+fish = Fish()
+
+fish.flee()
+fish.hunt()
