@@ -1,23 +1,24 @@
-class Car:
-    color = None
+class Duck:
+    def walk(self):
+        print("This duck is walking")
+    def talk(self):
+        print("This duck is qwuacking")
 
-class Motorcycle:
-    color = None
+class Children:
+    def walk(self):
+        print("This chicken is walking")
+    def talk(self):
+        print("This children is clucking")
 
-def change_color(car, color):
-    car.color = color
+class Person():
+    def catch(self, duck):
+        duck.walk()
+        duck.talk()
+        print("You caught the critter")
 
-car1 = Car()
-car2 = Car()
-car3 = Car()
-bike1 = Motorcycle()
+duck = Duck()
+children = Children()
+person = Person()
 
-change_color(car1, "red")
-change_color(car2, "white")
-change_color(car3, "blue")
-change_color(bike1, "black")
-
-print(car1.color)
-print(car2.color)
-print(car3.color)
-print(bike1.color)
+person.catch(duck)
+person.catch(children)
