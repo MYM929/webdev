@@ -1,16 +1,13 @@
-foods = list()
-while food := input("What food do you like?: ") != "quit":
-    foods.appends(food)
-
-# foods = list()
-# while True:
-#     food = input("What food do you like?: ")
-#     if food == "quit":
-#         break
-#     foods.append(food)
+say = print
+say("aaa")
 
 
-# print(happy := True)
+# def hello():
+#     print("HELLO")
 
-# happy = True
-# print(happy)
+# hello()
+# print(hello)
+
+# hi = hello
+# print(hi)
+# hi()
