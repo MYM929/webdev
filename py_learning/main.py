@@ -1,13 +1,18 @@
-say = print
-say("aaa")
+def divisor(x):
+    def dividend(y):
+        return y/x
+    return dividend
+
+divide = divisor(2)
+print(divide(10))
 
 
-# def hello():
-#     print("HELLO")
+# def loud(text):
+#     return text.upper()
+# def quiet(text):
+#     return text.lower()
+# def hello(func):
+#     text = func("Hello")
+#     print(text)
 
-# hello()
-# print(hello)
-
-# hi = hello
-# print(hi)
-# hi()
+# hello(loud)
