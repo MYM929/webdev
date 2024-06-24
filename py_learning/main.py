@@ -1,18 +1,15 @@
-def divisor(x):
-    def dividend(y):
-        return y/x
-    return dividend
+double = lambda x: x*2
+multiply = lambda x, y: x*y
+fullName = lambda firstName, lastName: firstName + " " + lastName
+ageCheck = lambda age: True if age>=18 else False
 
-divide = divisor(2)
-print(divide(10))
+print(double(5))
+print(multiply(5,6))
+print(fullName("Bro", "Code"))
+print(ageCheck(12))
 
 
-# def loud(text):
-#     return text.upper()
-# def quiet(text):
-#     return text.lower()
-# def hello(func):
-#     text = func("Hello")
-#     print(text)
+# def double(x):
+#     return x*2
 
-# hello(loud)
+# print(double(5))
