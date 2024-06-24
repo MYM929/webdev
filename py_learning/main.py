@@ -1,47 +1,13 @@
-students = (
-    ("Squidward", "F", 60),
-    ("Sandy", "A", 33),
-    ("Patrick", "D", 36),
-    ("Spongebob", "B", 20),
-    ("Mr.Krabs", "C", 78)
-)
+store = [
+    ("shirt", 20.00),
+    ("pants", 25.00),
+    ("jacket", 50.00),
+    {"socks", 10.00}
+]
 
-grade = lambda grades:grades[1]
-sorted_students = sorted(students, key=grade)
+to_euros = lambda data: (data[0], data[1]*0.82)
 
-for i in sorted_students:
-    print(i)
+store_euros = list(map(to_euros, store))
 
-# students = [
-#     ("Squidward", "F", 60),
-#     ("Sandy", "A", 33),
-#     ("Patrick", "D", 36),
-#     ("Spongebob", "B", 20),
-#     ("Mr.Krabs", "C", 78)
-# ]
-
-# # students.sort()
-# grade = lambda grades:grades[1]
-# students.sort(key=grade, reverse=True)
-
-# for i in students:
-#     print(i)
-
-# students = (
-#     "Squidward","Sandy","Patrick","Spongebob","Mr.Krabs"
-# )
-
-# sorted_students = sorted(students, reverse=True)
-
-# for i in sorted_students:
-#     print(i)
-
-# students = [
-#     "Squidward","Sandy","Patrick","Spongebob","Mr.Krabs"
-# ]
-
-# # students.sort()
-# # students.sort(reverse=True)
-
-# for i in students:
+# for i in store_euros:
 #     print(i)
