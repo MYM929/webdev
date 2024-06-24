@@ -11,3 +11,4 @@ store_euros = list(map(to_euros, store))
 
 # for i in store_euros:
 #     print(i)
+
