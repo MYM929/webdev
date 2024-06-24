@@ -1,15 +1,47 @@
-double = lambda x: x*2
-multiply = lambda x, y: x*y
-fullName = lambda firstName, lastName: firstName + " " + lastName
-ageCheck = lambda age: True if age>=18 else False
+students = (
+    ("Squidward", "F", 60),
+    ("Sandy", "A", 33),
+    ("Patrick", "D", 36),
+    ("Spongebob", "B", 20),
+    ("Mr.Krabs", "C", 78)
+)
 
-print(double(5))
-print(multiply(5,6))
-print(fullName("Bro", "Code"))
-print(ageCheck(12))
+grade = lambda grades:grades[1]
+sorted_students = sorted(students, key=grade)
 
+for i in sorted_students:
+    print(i)
 
-# def double(x):
-#     return x*2
+# students = [
+#     ("Squidward", "F", 60),
+#     ("Sandy", "A", 33),
+#     ("Patrick", "D", 36),
+#     ("Spongebob", "B", 20),
+#     ("Mr.Krabs", "C", 78)
+# ]
 
-# print(double(5))
+# # students.sort()
+# grade = lambda grades:grades[1]
+# students.sort(key=grade, reverse=True)
+
+# for i in students:
+#     print(i)
+
+# students = (
+#     "Squidward","Sandy","Patrick","Spongebob","Mr.Krabs"
+# )
+
+# sorted_students = sorted(students, reverse=True)
+
+# for i in sorted_students:
+#     print(i)
+
+# students = [
+#     "Squidward","Sandy","Patrick","Spongebob","Mr.Krabs"
+# ]
+
+# # students.sort()
+# # students.sort(reverse=True)
+
+# for i in students:
+#     print(i)
