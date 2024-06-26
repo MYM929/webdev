@@ -1,0 +1,2 @@
+npm create vite@latest . -> React -> JS
+npm i
