@@ -1,0 +1,9 @@
+npm create vite@latest . -> React -> JS
+npm i
+
+search tailwind css with vite
+
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+https://tailwindcss.com/docs/guides/vite
