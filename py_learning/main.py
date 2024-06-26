@@ -1,19 +1,15 @@
-store = [
-    ("shirt", 20.00),
-    ("pants", 25.00),
-    ("jacket", 50.00),
-    ("socks", 10.00)
+friends = [
+    ("aaa", 19),
+    ("bbb", 18),
+    ("ccc", 17),
+    ("ddd", 16),
+    ("eee", 21),
+    ("fff", 20)
 ]
 
-to_euros = lambda data: (data[0], data[1]*0.82)
-to_dollars = lambda data: (data[0], data[1]/0.82)
+age = lambda data: data[1]>=18
 
-store_euros = list(map(to_euros, store))
-store_dollars = list(map(to_dollars, store))
+drinking_buddies = list(filter(age, friends))
 
-for i in store_euros:
+for i in drinking_buddies:
     print(i)
-
-for i in store_dollars:
-    print(i)
-
