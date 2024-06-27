@@ -9,3 +9,5 @@ npx tailwindcss init -p
 https://tailwindcss.com/docs/guides/vite
 
 npm install react-router-dom
+
+replace the tailwind.config.js file with his code
