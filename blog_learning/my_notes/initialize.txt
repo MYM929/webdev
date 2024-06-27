@@ -11,3 +11,6 @@ https://tailwindcss.com/docs/guides/vite
 npm install react-router-dom
 
 replace the tailwind.config.js file with his code
+
+react-icons:
+npm install react-icons --save
