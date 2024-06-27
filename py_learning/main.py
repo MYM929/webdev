@@ -1,15 +1,11 @@
-friends = [
-    ("aaa", 19),
-    ("bbb", 18),
-    ("ccc", 17),
-    ("ddd", 16),
-    ("eee", 21),
-    ("fff", 20)
-]
+import functools
 
-age = lambda data: data[1]>=18
+factorial = [5,4,3,2,1]
+result = functools.reduce(lambda x,y:x*y, factorial)
+print(result)
 
-drinking_buddies = list(filter(age, friends))
 
-for i in drinking_buddies:
-    print(i)
+# letters = ["H","E","L","L","O"]
+# word = functools.reduce(lambda x,y,:x+y , letters)
+# print(word)
+
