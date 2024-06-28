@@ -1,41 +1,19 @@
-def check_temp(value):
-    if value>=70: return "Hot"
-    elif 40<=value<=69: return "Warm"
-    else: return "Cold"
+usernames = [
+    "Dude", "Bro", "Mister"
+]
+passwords = (
+    "p@ssword", "abc123", "Guest"
+)
+login_date = [
+    "1/1/2021", "1/2/2021", "1/3/2021"
+]
 
-cities_in_F = {
-    'New York':32, 'Boston':75, 'Los Angeles':100, 'Chicago':50
-}
-desc_cities = {
-    key: check_temp(value)
-    for (key,value) in cities_in_F.items()
-}
-print(desc_cities)
+users = zip(usernames, passwords, login_date)
+# users = list(zip(usernames, passwords))
+print(type(users))
 
-# cities_in_F = {
-#     'New York':32, 'Boston':75, 'Los Angeles':100, 'Chicago':50
-# }
-# desc_cities = {
-#     key: ("Warm" if value>=40 else "Cold")
-#     for (key,value) in cities_in_F.items()
-# }
-# print(desc_cities)
+for i in users:
+    print(i)
 
-
-# weather = {
-#     'New York':"snowing", 'Boston':"sunny", 
-#     'Los Angeles':"sunny", 'Chicago':"cloudy"
-# }
-# sunny_weather = {
-#     key: value for (key,value) in weather.items() 
-#     if value=="sunny"
-# }
-# print(sunny_weather)
-
-# cities_in_F = {
-#     'New York':32, 'Boston':75, 'Los Angeles':100, 'Chicago':50
-# }
-# cities_in_C = {
-#     key: round((value-32)*(5/9)) for (key,value) in cities_in_F.items()
-# }
-# print(cities_in_C)
+# for key,value in users.items():
+#     print(key + " : " + value)
