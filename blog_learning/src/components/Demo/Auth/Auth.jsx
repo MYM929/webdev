@@ -4,21 +4,36 @@ import { LiaTimesSolid } from "react-icons/lia";
 import { FcGoogle } from "react-icons/fc";
 import { MdFacebook } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
+import SignIn from './SignIn';
+import SignUp from './SignUp';
 
 const Auth = () => {
   const [createUser, setCreateUser] = useState(false);
+  const [signReq, setSignReq] = useState(""); 
+  const [modal, setModal] = useState(true);
+
+  const hidden = modal ? "visible opacity-100": "invisible opacity-0";
 
 
   return (
-    <Modal>
-      <section className="z-50 fixed top-0 bottom-0 left-0 md:left-[10rem]
-                          overflow-auto right-0 md:right-[10rem] bg-white
-                          shadows transition-all duration-500">
-        <button className="absolute top-8 right-8 text-2xl hover:opacity-50">
+    <Modal modal={modal} setModal={setModal} hidden={hidden}>
+      <section className={`z-50 fixed top-0 bottom-0 left-0 md:left-[10rem]
+                           overflow-auto right-0 md:right-[10rem] bg-white
+                           shadows transition-all duration-500
+                           ${hidden}
+                           transition-all duration-500`}>
+        <button
+          onClick={() => setModal(false)}
+          className="absolute top-8 right-8 text-2xl hover:opacity-50">
           <LiaTimesSolid/>
         </button>
         <div className="flex flex-col justify-center items-center gap-[3rem]">
-          <>
+
+
+
+
+          {signReq === "" ? (
+            <>
             <h2 className="text-2xl pt-[5rem]">
               {createUser ? "Join Medium" : "Welcome Back"}
             </h2>
@@ -32,6 +47,7 @@ const Auth = () => {
                 text={`${createUser ? "Sign Up" : "Sign In"} With Facebook`}
               />
               <Button 
+                click={() => setSignReq(createUser ? "sign-up": "sign-in")}
                 icon={<AiOutlineMail className="text-xl"/>} 
                 text={`${createUser ? "Sign Up" : "Sign In"} With Email`}
               />
@@ -45,6 +61,15 @@ const Auth = () => {
               </button>
             </p>
           </>
+          ) : signReq === "sign-in" ? (
+            <SignIn setSignReq={setSignReq}/>
+          ) : signReq === "sign-up" ? (
+            <SignUp setSignReq={setSignReq}/>
+          ) : null}
+  
+
+
+
           <p className="md:w-[30rem] mx-auto text-center text-sm mb-[3rem]">
             Click “Sign In” to agree to Medium's Terms of Service and
             acknowledge that Medium's Privacy Policy applies to you.
@@ -59,7 +84,9 @@ export default Auth
 
 const Button = ({icon, text, click}) => {
   return (
-    <button className="flex items-center gap-10 sm:w-[20rem] border border-black
+    <button 
+      onClick={click}
+      className="flex items-center gap-10 sm:w-[20rem] border border-black
                        px-3 py-2 rounded-full">
       {icon} {text}
     </button>
