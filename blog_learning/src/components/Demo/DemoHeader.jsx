@@ -4,7 +4,9 @@ import { nav } from "../../data";
 import Auth from "./Auth/Auth";
 
 const DemoHeader = () => {
-  const [isActive, setIsActive] = useState(false)
+  const [isActive, setIsActive] = useState(false);
+  const [modal, setModal] = useState(false);
+
   useEffect(() => {
     const scrollMe = () => {
       window.scrollY > 50 ? setIsActive(true) : setIsActive(false)
@@ -31,14 +33,18 @@ const DemoHeader = () => {
             ))}
           </div>
           <div className="relative">
-            <button className="hidden text-sm sm:flex items-center gap-5">
+            <button
+              onClick={() => setModal(true)} 
+              className="hidden text-sm sm:flex items-center gap-5">
               Sign In
             </button>
-            <Auth/>
+            <Auth modal={modal} setModal={setModal}/>
           </div>
           <div>
-            <button className={`text-white rounded-full px-3 p-2 text-sm font-medium
-                                ${isActive ? "bg-green-700": "bg-black"}`}>
+            <button 
+                onClick={() => setModal(true)}
+                className={`text-white rounded-full px-3 p-2 text-sm font-medium
+                            ${isActive ? "bg-green-700": "bg-black"}`}>
                 Get Started
             </button>
           </div>
