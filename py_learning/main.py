@@ -1,19 +1,15 @@
-usernames = [
-    "Dude", "Bro", "Mister"
-]
-passwords = (
-    "p@ssword", "abc123", "Guest"
-)
-login_date = [
-    "1/1/2021", "1/2/2021", "1/3/2021"
-]
+# import module
 
-users = zip(usernames, passwords, login_date)
-# users = list(zip(usernames, passwords))
-print(type(users))
+# print(__name__)
+# print(module.__name__)
 
-for i in users:
-    print(i)
+# if __name__ == '__main__':
+#     print("Running this modile directly")
+# else:
+#     print("Running other modile indirectly")
 
-# for key,value in users.items():
-#     print(key + " : " + value)
+def hello():
+    print("Hello")
+
+if __name__ == '__main__':
+    hello()
