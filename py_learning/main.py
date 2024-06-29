@@ -1,14 +1,19 @@
-store = [
-    ("shirt", 20.00),
-    ("pants", 25.00),
-    ("jacket", 50.00),
-    {"socks", 10.00}
+usernames = [
+    "Dude", "Bro", "Mister"
+]
+passwords = (
+    "p@ssword", "abc123", "Guest"
+)
+login_date = [
+    "1/1/2021", "1/2/2021", "1/3/2021"
 ]
 
-to_euros = lambda data: (data[0], data[1]*0.82)
+users = zip(usernames, passwords, login_date)
+# users = list(zip(usernames, passwords))
+print(type(users))
 
-store_euros = list(map(to_euros, store))
+for i in users:
+    print(i)
 
-# for i in store_euros:
-#     print(i)
-
+# for key,value in users.items():
+#     print(key + " : " + value)
