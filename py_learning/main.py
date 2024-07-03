@@ -1,20 +1,38 @@
+import threading
 import time
-time_tuple = (2020, 4, 20, 4, 20, 0, 0, 0, 0)
-time_str = time.asctime(time_tuple)
-# time_str = time.mktime(time_tuple)
-print(time_str)
 
-# time_str = "20 April, 2020"
-# time_obj = time.strptime(time_str, "%d %B, %Y")
-# print(time_obj)
+def eat_breakfast():
+    time.sleep(3)
+    print("You eat breakfast")
 
-# # print(time.ctime(10000000))
-# # print(time.time())
-# # print(time.ctime(time.time()))
-# time_obj = time.localtime()
-# time_obj1 = time.gmtime()
+def drink_coffee():
+    time.sleep(4)
+    print("You drink coffee")
 
-# # print(time_obj)
+def study():
+    time.sleep(5)
+    print("You study")
 
-# local_time = time.strftime("%B %d %Y %H:%M:%S", time_obj)
-# print(local_time)
+thread1 = threading.Thread(target=eat_breakfast, args=())
+thread2 = threading.Thread(target=drink_coffee, args=())
+thread3 = threading.Thread(target=study, args=())
+
+thread1.start()
+thread2.start()
+thread3.start()
+
+thread1.join()
+thread2.join()
+thread3.join()
+
+# eat_breakfast()
+# drink_coffee()
+# study()
+
+
+
+
+
+print(threading.active_count())
+print(threading.enumerate())
+print(time.perf_counter())
