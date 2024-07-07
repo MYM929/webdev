@@ -4,7 +4,9 @@ import { nav } from "../../data";
 import Auth from "./Auth/Auth";
 
 const DemoHeader = () => {
+  // control color change when window.scrollY > 50
   const [isActive, setIsActive] = useState(false);
+  // control the modal on and off
   const [modal, setModal] = useState(false);
 
   useEffect(() => {

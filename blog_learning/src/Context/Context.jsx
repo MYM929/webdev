@@ -5,11 +5,14 @@ import Loading from "../components/Loading/Loading";
 
 const BlogContext = createContext();
 
-
+// manage Firebase authentication state changes
 const Context = ({children}) => {
+  // Holds the current authenticated user object 
+  // or null if no user is logged in
   const [currentUser, setCurrentUser] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  // use to subscribe to the Firebase authentication state changes
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if(user){ setCurrentUser(user); }
@@ -17,6 +20,7 @@ const Context = ({children}) => {
       setLoading(false);
     })
 
+    // ensures the listener is properly removed
     return () => unsubscribe();
   }, [currentUser])
 

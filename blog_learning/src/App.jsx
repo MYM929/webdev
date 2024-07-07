@@ -8,6 +8,7 @@ import { Blog } from "./Context/Context.jsx";
 function App() {
   const {currentUser} = Blog();
 
+  // manage display home or demo page
   return (
     <>
     {currentUser ? <HomeHeader/> : <DemoHeader/>}
@@ -15,10 +16,8 @@ function App() {
          {currentUser && <Route path="/" element={<Home/>}/>}
          {!currentUser && <Route path="/demo" element={<Demo/>}/>} 
          <Route
-          path = "*"
-          element={
-            <Navigate to={!currentUser ? "/demo" : "/"}/>
-          }
+            path = "*"
+            element={< Navigate to={currentUser ? "/" : "/demo"}/> }
          />
       </Routes>
     </>

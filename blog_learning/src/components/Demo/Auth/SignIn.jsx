@@ -20,6 +20,7 @@ const SignIn = ({setSignReq}) => {
             </button>
         </form>
         <button
+            // Go back to the default modal page
             onClick={() => setSignReq("")}
             className="mt-5 text-sm text-green-600
                        hover:text-green-700
