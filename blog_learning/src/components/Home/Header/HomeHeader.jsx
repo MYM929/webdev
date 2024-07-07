@@ -6,8 +6,26 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Search from "./Search";
+import Modal from "../../../utils/Modal";
+import UserModal from "./UserModal";
 
 const HomeHeader = () => {
+
+  const [modal, setModal] = useState(false);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <header className="border-b border-grey-200">
       <div className="size h-[60px] flex items-center justify-between">
@@ -33,6 +51,11 @@ const HomeHeader = () => {
             <span className="text-grey-500 cursor-pointer">
               <MdKeyboardArrowDown/> {/* Drop down icon */}
             </span>
+            <Modal modal={modal} setModal={setModal}>
+              <div>
+                <UserModal/>
+              </div>
+            </Modal>
           </div>
         </div>
       </div>
