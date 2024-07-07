@@ -45,6 +45,7 @@ const HomeHeader = () => {
           </span> 
           <div className="flex items-center relative">
             <img 
+              onClick={() => setModal(true)}
               className="w-[2.3rem] hr-[2.3rem] object-cover rounded-full cursor-pointer" 
               src="/profile.jpg" alt="profile-img" 
             />  {/* Profile image */}
@@ -52,8 +53,10 @@ const HomeHeader = () => {
               <MdKeyboardArrowDown/> {/* Drop down icon */}
             </span>
             <Modal modal={modal} setModal={setModal}>
-              <div>
-                <UserModal/>
+              <div
+                className={`${modal ? "visible opacity-100%" : "invisible opacity-0"}
+                            transition-all duration-100`}>
+                <UserModal setModal={setModal}/>
               </div>
             </Modal>
           </div>

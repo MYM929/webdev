@@ -50,15 +50,15 @@ const Auth = ({modal, setModal}) => {
   };
   
   // ultimate control of modal visibility
-  const hidden = modal ? "visible opacity-100": "invisible opacity-0";
+  // const hidden = modal ? "visible opacity-100": "invisible opacity-0";
 
   {/* UI for inner modal page */}
   return (
-    <Modal modal={modal} setModal={setModal} hidden={hidden}>
+    <Modal modal={modal} setModal={setModal}>
       <section className={`z-50 fixed top-0 bottom-0 left-0 md:left-[10rem]
                            overflow-auto right-0 md:right-[10rem] bg-white
                            shadows transition-all duration-500
-                           ${hidden}
+                           ${modal ? "visible opacity-100": "invisible opacity-0"}
                            transition-all duration-500`}>
         <button
           onClick={() => setModal(false)}
