@@ -10,6 +10,7 @@ const Context = ({children}) => {
   // Holds the current authenticated user object 
   // or null if no user is logged in
   const [currentUser, setCurrentUser] = useState(false);
+  // need a little time to fetch auth data from backend
   const [loading, setLoading] = useState(true);
 
   // use to subscribe to the Firebase authentication state changes
