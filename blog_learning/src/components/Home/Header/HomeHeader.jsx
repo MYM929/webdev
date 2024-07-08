@@ -12,6 +12,8 @@ import UserModal from "./UserModal";
 const HomeHeader = () => {
 
   const [modal, setModal] = useState(false);
+  const [searchModal, setSearchModal] = useState(false);
+
 
 
 
@@ -33,9 +35,14 @@ const HomeHeader = () => {
           <Link to={"/"}>
             <span className="text-5xl"><BsMedium/></span> {/* Medium icon */}
           </Link>
-          <Search/>
+          <Search searchModal={searchModal} setSearchModal={setSearchModal}/> {/* Search modal */}
         </div>
         <div className="flex items-center gap-3 sm:gap-7">
+          <span 
+            onClick={() => setSearchModal(true)}
+            className="flex sm:hidden text-3xl text-gray-300 cursor-pointer">
+            <CiSearch/> {/* Small device search Icon */}
+          </span>
           <Link to={"/write"} className="hidden md:flex items-center gap-1 text-grey-500">
             <span className="text-3xl"><LiaEditSolid/></span>  {/* write icon */}
             <span className="text-sm mt-2">Write</span>
