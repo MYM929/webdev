@@ -1,32 +1,28 @@
-import threading
+from multiprocessing import Process, cpu_count
 import time
 
-def timer():
-    print()
-    print()
+def counter(num):
     count = 0
-    while True:
-        time.sleep(1)
+    while count < num:
         count += 1
-        print("Logged in for: ", count, " seconds")
 
-x = threading.Thread(target=timer, daemon=True)
-# x.setDaemon(True)
-x.start()
-# x.isDaemon()
+def main():
+    print(cpu_count())
 
-answer = input("Do you wish to exit?")
+    a = Process(target=counter, args=(250000000,))
+    b = Process(target=counter, args=(250000000,))
+    c = Process(target=counter, args=(250000000,))
+    d = Process(target=counter, args=(250000000,))
+    a.start()
+    b.start()
+    c.start()
+    d.start()
+    a.join() # main() needs to wait for a to finish
+    b.join() 
+    c.join() 
+    d.join() 
 
-# def timer():
-#     print()
-#     print()
-#     count = 0
-#     while True:
-#         time.sleep(1)
-#         count += 1
-#         print("Logged in for: ", count, " seconds")
+    print("finished in: ", time.perf_counter(), "seconds")
 
-# x = threading.Thread(target=timer)
-# x.start()
-
-# answer = input("Do you wish to exit?")
+if __name__ == '__main__':
+    main()
