@@ -1,28 +1,14 @@
-from multiprocessing import Process, cpu_count
-import time
+from tkinter import *
 
-def counter(num):
-    count = 0
-    while count < num:
-        count += 1
+window = Tk()
 
-def main():
-    print(cpu_count())
+window.geometry("420x420")
+window.title("Bro Code")
 
-    a = Process(target=counter, args=(250000000,))
-    b = Process(target=counter, args=(250000000,))
-    c = Process(target=counter, args=(250000000,))
-    d = Process(target=counter, args=(250000000,))
-    a.start()
-    b.start()
-    c.start()
-    d.start()
-    a.join() # main() needs to wait for a to finish
-    b.join() 
-    c.join() 
-    d.join() 
+# icon = PhotoImage(file='logo.png')
+# window.iconphoto(True, icon)
 
-    print("finished in: ", time.perf_counter(), "seconds")
+# window.config(background="black")
+window.config(background="#5cfcff")
 
-if __name__ == '__main__':
-    main()
+window.mainloop()
