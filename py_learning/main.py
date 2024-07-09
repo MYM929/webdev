@@ -1,38 +1,32 @@
 import threading
 import time
 
-def eat_breakfast():
-    time.sleep(3)
-    print("You eat breakfast")
+def timer():
+    print()
+    print()
+    count = 0
+    while True:
+        time.sleep(1)
+        count += 1
+        print("Logged in for: ", count, " seconds")
 
-def drink_coffee():
-    time.sleep(4)
-    print("You drink coffee")
+x = threading.Thread(target=timer, daemon=True)
+# x.setDaemon(True)
+x.start()
+# x.isDaemon()
 
-def study():
-    time.sleep(5)
-    print("You study")
+answer = input("Do you wish to exit?")
 
-thread1 = threading.Thread(target=eat_breakfast, args=())
-thread2 = threading.Thread(target=drink_coffee, args=())
-thread3 = threading.Thread(target=study, args=())
+# def timer():
+#     print()
+#     print()
+#     count = 0
+#     while True:
+#         time.sleep(1)
+#         count += 1
+#         print("Logged in for: ", count, " seconds")
 
-thread1.start()
-thread2.start()
-thread3.start()
+# x = threading.Thread(target=timer)
+# x.start()
 
-thread1.join()
-thread2.join()
-thread3.join()
-
-# eat_breakfast()
-# drink_coffee()
-# study()
-
-
-
-
-
-print(threading.active_count())
-print(threading.enumerate())
-print(time.perf_counter())
+# answer = input("Do you wish to exit?")
