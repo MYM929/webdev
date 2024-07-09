@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import ProfileHome from './Activities/ProfileHome';
 import ProfileLists from './Activities/ProfileLists';
 import ProfileAbout from './Activities/ProfileAbout';
+import Modal from '../../../utils/Modal';
 
 const Profile = () => {
 
@@ -13,6 +14,8 @@ const Profile = () => {
 
   //Holds the current activity modal
   const [currentActive, setCurrentActive] = useState(activities[0]);
+  //set the modal for small screen user details
+  const [modal, setModal] = useState(true);
 
 
 
@@ -27,8 +30,8 @@ const Profile = () => {
     <section className='size flex gap-[4rem] relative'>
 
 
-        {/* User activity */}
-        <div className='mt-[9rem] flex-[2]'> {/* user activity will take 2 space */}
+        {/* User activity */} {/* user activity will take 2 space */}
+        <div className='mt-[9rem] flex-[2]'> 
             <div className='flex items-end gap-4'>
                 <h2 className='text-3xl sm:text-5xl font-bold capitalize'>
                     Yongming Mai {/* Username */}
@@ -56,16 +59,24 @@ const Profile = () => {
         </div>
 
 
-        {/* user details */}
-        <div className='flex-[1] border-l border-gray-300 p-[2rem] z-10'> {/* user details will take 1 space */}
-           
-           
-           
-           
-           
-           
-            Profile details
-        </div>
+        {/* user details */} {/* user details will take 1 space */}
+        <Modal modal={modal} setModal={setModal}>
+            <div className={`flex-[1] border-l border-gray-300 p-[2rem] z-10
+                             fixed right-0 bottom-0 top-0 w-[18rem] bg-white md:sticky
+                             ${modal ? "translate-x-0" : "translate-x-[100%] md:translate-x-0"}
+                             transition-all duration-500`}> 
+            
+            
+            
+            
+            
+            
+                Profile details
+            </div>
+        </Modal>
+
+
+
     </section>
   )
 }
