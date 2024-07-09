@@ -2,13 +2,25 @@ from tkinter import *
 
 window = Tk()
 
-window.geometry("420x420")
-window.title("Bro Code")
+# photo = PhotoImage(file='...........')
 
-# icon = PhotoImage(file='logo.png')
-# window.iconphoto(True, icon)
+label = Label(
+    window, 
+    text="Hello World", 
+    font=('Arial', 40, 'bold'),
+    fg='green',
+    bg='black',
+    relief=RAISED,
+    # relief=SUNKEN,
+    bd=10,
+    padx=20,
+    pady=20,
+    # image=photo,
+    # compound='bottom'
+)
+label.pack()
+# label.place(x=0, y=0)
 
-# window.config(background="black")
-window.config(background="#5cfcff")
+
 
 window.mainloop()
