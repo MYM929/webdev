@@ -1,28 +1,31 @@
-
 from tkinter import *
 
 window = Tk()
 
-# photo = PhotoImage(file='...')
+##########################################################
+def submit():
+    username = entry.get()
+    print(username)
+    entry.config(state=DISABLED)
 
-count = 0
+def delete():
+    entry.delete(0, END)
 
-def click():
-    global count
-    count += 1
-    print(count)
+def backspace():
+    entry.delete(len(entry.get())-1, END)
 
-button = Button(window, text="click me", command=click, 
-                font=("Comic Sans", 30), fg="#00FF00", bg="black",
-                activeforeground="#00FF00", activebackground="black",
-                state=ACTIVE)
+entry = Entry(window, font=("Arial", 50), fg="#00FF00", bg="black",
+              show="*")
+entry.insert(0, 'sssssss')
 
-# state=DISABLED
-# image=photo
-# compound='bottom'
+submit_button = Button(window, text="submit", command=submit)
+delete_button = Button(window, text="delete", command=delete)
+backspace_button = Button(window, text="backspace", command=backspace)
 
-
-
-
-button.pack()
+##########################################################
+entry.pack(side=LEFT)
+submit_button.pack(side=RIGHT)
+delete_button.pack(side=RIGHT)
+backspace_button.pack(side=RIGHT)
 window.mainloop()
+
