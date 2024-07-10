@@ -6,6 +6,7 @@ import Modal from '../../../utils/Modal';
 import { LiaTimesSolid } from "react-icons/lia";
 import { discoverActions } from '../../../data';
 import { IoSettingsSharp } from "react-icons/io5";
+import EditProfile from './EditProfile';
 
 const Profile = () => {
 
@@ -19,6 +20,8 @@ const Profile = () => {
   const [currentActive, setCurrentActive] = useState(activities[0]);
   //set the modal for small screen user details
   const [modal, setModal] = useState(false);
+  //set the modal for edit profile
+  const [editModal, setEditModal] = useState(false);
 
 
 
@@ -110,7 +113,9 @@ const Profile = () => {
                     <p className='text-gray-500 first-letter:uppercase text-sm'>
                         I am a content creator in Youtube channel. {/* Bio description */}
                     </p>
-                    <button className='text-green-700 pt-6 text-sm w-fit'>
+                    <button
+                        onClick={() => setEditModal(true)} 
+                        className='text-green-700 pt-6 text-sm w-fit'>
                         Edit Profile {/* Edit Profile button */}
                     </button>
                     <div className='flex-[1] flex items-center flex-wrap gap-3 pt-8'>
@@ -125,8 +130,8 @@ const Profile = () => {
         </Modal>
 
 
-
-
+        {/* Edit Profile display */}
+        {editModal && <EditProfile editModal={editModal} setEditModal={setEditModal}/>}
 
 
 
