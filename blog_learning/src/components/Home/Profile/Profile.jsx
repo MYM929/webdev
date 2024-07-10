@@ -5,6 +5,7 @@ import ProfileAbout from './Activities/ProfileAbout';
 import Modal from '../../../utils/Modal';
 import { LiaTimesSolid } from "react-icons/lia";
 import { discoverActions } from '../../../data';
+import { IoSettingsSharp } from "react-icons/io5";
 
 const Profile = () => {
 
@@ -17,7 +18,7 @@ const Profile = () => {
   //Holds the current activity modal
   const [currentActive, setCurrentActive] = useState(activities[0]);
   //set the modal for small screen user details
-  const [modal, setModal] = useState(true);
+  const [modal, setModal] = useState(false);
 
 
 
@@ -30,6 +31,10 @@ const Profile = () => {
 
   return (
     <section className='size flex gap-[4rem] relative'>
+
+
+
+
 
 
         {/* User activity */} {/* user activity will take 2 space */}
@@ -59,6 +64,26 @@ const Profile = () => {
             </div>
             <currentActive.comp/>
         </div>
+
+
+        
+
+
+
+        {/* button to open the side bar */}
+        <button 
+            onClick={() => setModal(true)}
+            className='fixed top-[8rem] right-0 w-[2rem] h-[2rem] bg-black text-white
+                       grid place-items-center md:hidden'>
+            <IoSettingsSharp/>
+        </button>
+
+
+
+
+
+
+
 
 
         {/* user details */} {/* user details will take 1 space */}
@@ -98,6 +123,10 @@ const Profile = () => {
                 </div>
             </div>
         </Modal>
+
+
+
+
 
 
 
