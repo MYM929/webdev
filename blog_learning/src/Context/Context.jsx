@@ -1,7 +1,8 @@
 import { onAuthStateChanged } from 'firebase/auth';
 import React, { useState, createContext, useContext, useEffect } from 'react';
-import { auth } from '../firebase/firebase';
+import { auth, db } from '../firebase/firebase';
 import Loading from "../components/Loading/Loading";
+import { collection, onSnapshot, query } from 'firebase/firestore';
 
 const BlogContext = createContext();
 
@@ -12,6 +13,13 @@ const Context = ({children}) => {
   const [currentUser, setCurrentUser] = useState(false);
   // need a little time to fetch auth data from backend
   const [loading, setLoading] = useState(true);
+  //stores all the user objects in an array
+  const [allUsers, setAllUsers] = useState([]);
+
+
+
+
+
 
   // use to subscribe to the Firebase authentication state changes
   useEffect(() => {
@@ -25,9 +33,39 @@ const Context = ({children}) => {
     return () => unsubscribe();
   }, [currentUser])
 
+
+
+  /*
+    getUsers() - fetch data from the Firestore database
+    onSnapshot() - a real-time listener for the query of the collection
+    snapshot.docs - an array of document snapshots
+    setAllUsers() - hook - updates the allUsers variable
+  */
+    useEffect(() => {
+      const getUsers = () => {
+        const postRef = query(collection(db, "users"));
+        onSnapshot(postRef, (snapshot) => {
+          setAllUsers(
+            snapshot.docs.map((doc) => ({
+              ...doc.data(),
+              id: doc.id,
+            }))
+          );
+        });
+      };
+      getUsers();
+    }, []);
+
+  // console.log(allUsers);
+
+
+
+
+
+
   return (
     <BlogContext.Provider
-        value={{currentUser, setCurrentUser}}>
+        value={{currentUser, setCurrentUser, allUsers}}>
         {loading ? <Loading/> : children}
     </BlogContext.Provider>
   )
