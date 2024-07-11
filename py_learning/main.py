@@ -3,29 +3,41 @@ from tkinter import *
 window = Tk()
 
 #######################################
+food = [
+    "pizza", "hamburger", "hotdog"
+]
+
 x = IntVar()
 
-# py_photo = PhotoImage(file="...")
+# pizzaImage = PhotoImage(file="...")
+# hamburgerImage = PhotoImage(file="...")
+# hotdogImage = PhotoImage(file="...")
 
-def display():
-    if(x.get()==1):
-        print("Agree")
-    else:
-        print("Not Agree")
+# foodImages = [
+#     pizzaImage, hamburgerImage, hotdogImage
+# ]
 
-#######################################
-check_button = Checkbutton(window, text="I agree to you", 
-                           variable=x, onvalue=1, offvalue=0,
-                           command=display,
-                           font=("Arial", 20),
-                           fg="#00FF00", bg="black",
-                           activeforeground="#00FF00", activebackground="black",
-                           padx=25, pady=10)
-
-# image=py_photo
-# compound='left'
+def order():
+    if(x.get()==0):
+        print("Pizza")
+    elif(x.get()==1):
+        print("hamburger")
+    elif(x.get()==2):
+        print("hotdog")
 
 
 #######################################
-check_button.pack()
+for index in range(len(food)):
+    radio_button = Radiobutton(window, text=food[index],
+                               variable=x, value=index,
+                               padx=25,
+                               font=("Impact", 50),
+                               indicatoron=0, width=375,
+                               command=order)
+    radio_button.pack(anchor=W)
+
+# image=foodImages[index]
+# compound="left"
+
+#######################################
 window.mainloop()
