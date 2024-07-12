@@ -3,41 +3,31 @@ from tkinter import *
 window = Tk()
 
 #######################################
-food = [
-    "pizza", "hamburger", "hotdog"
-]
-
-x = IntVar()
-
-# pizzaImage = PhotoImage(file="...")
-# hamburgerImage = PhotoImage(file="...")
-# hotdogImage = PhotoImage(file="...")
-
-# foodImages = [
-#     pizzaImage, hamburgerImage, hotdogImage
-# ]
-
-def order():
-    if(x.get()==0):
-        print("Pizza")
-    elif(x.get()==1):
-        print("hamburger")
-    elif(x.get()==2):
-        print("hotdog")
+def submit():
+    print(str(scale.get()))
 
 
 #######################################
-for index in range(len(food)):
-    radio_button = Radiobutton(window, text=food[index],
-                               variable=x, value=index,
-                               padx=25,
-                               font=("Impact", 50),
-                               indicatoron=0, width=375,
-                               command=order)
-    radio_button.pack(anchor=W)
+# hotImage = PhotoImage(file="...")
+# hotLabel = Label(image=hotImage)
+# coldImage = PhotoImage(file="...")
+# coldLabel = Label(image=coldImage)
 
-# image=foodImages[index]
-# compound="left"
-
+scale = Scale(window, from_=0, to=100,
+              length=600,
+              orient=VERTICAL,
+              font=('Consolas', 20),
+              tickinterval=10,
+              showvalue=0,
+              troughcolor="#69EAFF",
+              fg="#FF1C00", bg="black")
+scale.set( 
+    (scale['from']-scale['to'])/2 + scale['to']
+)
+button = Button(window, text="submit", command=submit)
 #######################################
+# hotLabel.pack()
+scale.pack()
+button.pack()
+# coldLabel.pack()
 window.mainloop()
