@@ -143,7 +143,11 @@ const Profile = () => {
 
 
         {/* Edit Profile display */}
-        {editModal && <EditProfile editModal={editModal} setEditModal={setEditModal}/>}
+        {editModal && 
+            <EditProfile editModal={editModal} 
+            setEditModal={setEditModal}
+            getUserData={getUserData}/>
+        }
 
 
 

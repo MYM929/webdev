@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Modal from '../../../utils/Modal'
 import { LiaTimesSolid, LiaUniversalAccessSolid } from "react-icons/lia";
 
-const EditProfile = ({editModal, setEditModal}) => {
+const EditProfile = ({editModal, setEditModal, getUserData}) => {
 
     // use to access the choose file button
     const imgRef = useRef(null);
@@ -22,6 +22,12 @@ const EditProfile = ({editModal, setEditModal}) => {
         userImg: "",
         bio: "",
     });
+
+    // if there is data inside the db, display the profile data
+    useEffect(() => {
+        if(getUserData) {setForm(getUserData)}
+        else            {setForm({username: "", bio: "", userImg: ""})}
+    }, [getUserData])
 
     // display error when editProfile is not complete
     const saveForm = async () => {
