@@ -13,6 +13,8 @@ const Context = ({children}) => {
   const [currentUser, setCurrentUser] = useState(false);
   // need a little time to fetch auth data from backend
   const [loading, setLoading] = useState(true);
+  // need a little time to fetch user data from backend
+  const [userLoading, setUserLoading] = useState(true);
   //stores all the user objects in an array
   const [allUsers, setAllUsers] = useState([]);
 
@@ -51,6 +53,7 @@ const Context = ({children}) => {
               id: doc.id,
             }))
           );
+          setUserLoading(false);
         });
       };
       getUsers();
@@ -65,7 +68,7 @@ const Context = ({children}) => {
 
   return (
     <BlogContext.Provider
-        value={{currentUser, setCurrentUser, allUsers}}>
+        value={{currentUser, setCurrentUser, allUsers, userLoading}}>
         {loading ? <Loading/> : children}
     </BlogContext.Provider>
   )

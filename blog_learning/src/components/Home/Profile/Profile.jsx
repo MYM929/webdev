@@ -7,6 +7,8 @@ import { LiaTimesSolid } from "react-icons/lia";
 import { discoverActions } from '../../../data';
 import { IoSettingsSharp } from "react-icons/io5";
 import EditProfile from './EditProfile';
+import { Blog } from "../../../Context/Context";
+import { useParams } from "react-router-dom";
 
 const Profile = () => {
 
@@ -22,6 +24,16 @@ const Profile = () => {
   const [modal, setModal] = useState(false);
   //set the modal for edit profile
   const [editModal, setEditModal] = useState(false);
+
+
+  //get all the user objects
+  const { allUsers } = Blog();
+  //destructured the userId from URL Parameters
+  const { userId } = useParams();
+  const getUserData = allUsers.find(
+    (user) => user.id === userId
+  );
+  //console.log(getUserData);
 
 
 
@@ -44,7 +56,7 @@ const Profile = () => {
         <div className='mt-[9rem] flex-[2]'> 
             <div className='flex items-end gap-4'>
                 <h2 className='text-3xl sm:text-5xl font-bold capitalize'>
-                    Yongming Mai {/* Username */}
+                    {getUserData?.username} {/* Username */}
                 </h2>
                 <p className='text-gray-500 text-xs sm:text-sm'>
                     Followers(2) {/* Followers */}
