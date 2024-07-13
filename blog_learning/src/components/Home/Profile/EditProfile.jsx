@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react'
-import Modal from '../../../utils/Modal'
-import { LiaTimesSolid, LiaUniversalAccessSolid } from "react-icons/lia";
+import React, { useEffect, useRef, useState } from 'react';
+import Modal from '../../../utils/Modal';
+import { LiaTimesSolid } from "react-icons/lia";
+import { toast } from "react-toastify";
 
 const EditProfile = ({editModal, setEditModal, getUserData}) => {
 
@@ -31,7 +32,11 @@ const EditProfile = ({editModal, setEditModal, getUserData}) => {
 
     // display error when editProfile is not complete
     const saveForm = async () => {
-        console.log(form)
+        if(form["username"]==="" || form["bio"]===""){
+            toast.error("All inputs are required!");
+            return;
+        }
+        // console.log(form)
     }
 
 
