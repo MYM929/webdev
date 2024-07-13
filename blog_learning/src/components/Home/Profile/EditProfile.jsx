@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import Modal from '../../../utils/Modal'
-import { LiaTimesSolid } from "react-icons/lia";
+import { LiaTimesSolid, LiaUniversalAccessSolid } from "react-icons/lia";
 
 const EditProfile = ({editModal, setEditModal}) => {
 
@@ -15,6 +15,18 @@ const EditProfile = ({editModal, setEditModal}) => {
 
     // css for the bottom two buttons
     const btn = "border border-green-600 py-2 px-5 rounded-full text-green-600";
+
+    // stores the edit content object
+    const [form, setForm] = useState({
+        username: "",
+        userImg: "",
+        bio: "",
+    });
+
+    // display error when editProfile is not complete
+    const saveForm = async () => {
+        console.log(form)
+    }
 
 
 
@@ -61,7 +73,10 @@ const EditProfile = ({editModal, setEditModal}) => {
                              alt="profile-img" 
                         /> {/* Profile picture */}
                         <input 
-                            onChange={(e) => setImgUrl(URL.createObjectURL(e.target.files[0]))}
+                            onChange={(e) => {
+                                setImgUrl(URL.createObjectURL(e.target.files[0]));
+                                setForm({ ...form, userImg: e.target.files[0] }); // update the form with image
+                            }}
                             accept='image/jpg, image/png, image/jpeg'
                             ref={imgRef} type="file" hidden
                         /> {/* choose file button */}
@@ -91,18 +106,30 @@ const EditProfile = ({editModal, setEditModal}) => {
             <section className='pt-[1rem] text-sm'>
                 {/* Name input */}
                 <label className='pb-3 block'>Name*</label>
-                <input className='p-1 border-b border-black w-full outline-none' 
-                       type="text" placeholder='username...'
-                       maxLength={50}/>
+                <input
+                    onChange={(e) => setForm(
+                        { ...form, username: e.target.value } // update the form with username
+                    )}
+                    value={form.username}
+                    type="text" placeholder="username..."
+                    className="p-1 border-b border-black w-full outline-none"
+                    maxLength={50}
+                />
                 <p className='text-sm text-gray-600 pt-2'>
                     Appears on your Profile page, as your byline, and in your responses.10/50
                 </p>
                 {/* Bio input */}
                 <section className='pt-[1rem] text-sm'>
                     <label className='pb-3 block'>Bio*</label>
-                    <input className='p-1 border-b border-black w-full outline-none' 
-                        type="text" placeholder='bio...'
-                        maxLength={160}/>
+                    <input
+                        onChange={(e) => setForm(
+                            { ...form, bio: e.target.value } // update the form with bio
+                        )}
+                        value={form.bio}
+                        type="text" placeholder="bio..."
+                        className="p-1 border-b border-black w-full outline-none"
+                        maxLength={160}
+                    />
                     <p className='text-sm text-gray-600 pt-2'>
                     Appears on your Profile and next to your stories.42/160
                     </p>
@@ -116,7 +143,9 @@ const EditProfile = ({editModal, setEditModal}) => {
                 <button className={btn}>
                     Cancel
                 </button> {/* Cancel button */}
-                <button className={`${btn} bg-green-800 text-white`}>
+                <button 
+                    onClick={saveForm}
+                    className={`${btn} bg-green-800 text-white`}>
                     Save
                 </button> {/* Save button */}
             </div>
