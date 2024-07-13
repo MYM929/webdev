@@ -77,7 +77,7 @@ const Profile = () => {
                     </div>
                 ))}
             </div>
-            <currentActive.comp/>
+            <currentActive.comp getUserData={getUserData} setEditModal={setEditModal}/>
         </div>
 
 
