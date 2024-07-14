@@ -15,11 +15,17 @@ const HomeHeader = () => {
 
   const [modal, setModal] = useState(false);
   const [searchModal, setSearchModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const { allUsers, userLoading, currentUser } = Blog();
+  const { allUsers, userLoading, currentUser, setPublish } = Blog();
   const getUserData = allUsers.find(
     (user) => user.id === currentUser?.uid
   );
+
+  const { pathname } = useLocation();
+  const editPath = pathname.split("/")[1];
+  const postId   = pathname.split("/")[2];
+  // console.log(pathname);
 
 
 
@@ -51,10 +57,42 @@ const HomeHeader = () => {
             className="flex sm:hidden text-3xl text-gray-300 cursor-pointer">
             <CiSearch/> {/* Small device search Icon */}
           </span>
-          <Link to={"/write"} className="hidden md:flex items-center gap-1 text-grey-500">
-            <span className="text-3xl"><LiaEditSolid/></span>  {/* write icon */}
-            <span className="text-sm mt-2">Write</span>
-          </Link>
+
+          {/* write to publish button */}
+          {pathname === "/write" 
+            ?
+            (
+              <button 
+                onClick={() => setPublish(true)}
+                className="btn !bg-green-700 !py-1 !text-white !rounded-full">
+                Publish
+              </button>
+            )
+            : editPath === "editPost"
+            ?
+            (
+              <button
+                onClick={handleEdit}
+                className={`btn !bg-green-700 !py-1 !text-write !rounded-full
+                            ${loading ? "opacity-40" : ""}`}>
+                {loading ? "updating..." : "Save and Update"}
+              </button>
+            )
+            :
+            (
+              <Link to={"/write"} className="hidden md:flex items-center gap-1 text-grey-500">
+              <span className="text-3xl"><LiaEditSolid/></span>  {/* write icon */}
+              <span className="text-sm mt-2">Write</span>
+             </Link>
+            )
+          }
+
+
+
+
+
+
+
           <span className="text-3xl text-grey-500 cursor-pointer">
             <IoMdNotificationsOutline/> {/* Notification icon */}
           </span> 

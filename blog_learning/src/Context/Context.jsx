@@ -15,8 +15,10 @@ const Context = ({children}) => {
   const [loading, setLoading] = useState(true);
   // need a little time to fetch user data from backend
   const [userLoading, setUserLoading] = useState(true);
-  //stores all the user objects in an array
+  // stores all the user objects in an array
   const [allUsers, setAllUsers] = useState([]);
+  // display preview page or no
+  const [publish, setPublish] = useState(false);
 
 
 
@@ -68,7 +70,10 @@ const Context = ({children}) => {
 
   return (
     <BlogContext.Provider
-        value={{currentUser, setCurrentUser, allUsers, userLoading}}>
+        value={{
+          currentUser, setCurrentUser, 
+          allUsers, userLoading, 
+          publish, setPublish,}}>
         {loading ? <Loading/> : children}
     </BlogContext.Provider>
   )

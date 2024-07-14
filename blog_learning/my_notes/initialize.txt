@@ -18,3 +18,5 @@ npm install react-icons --save
 
 
 npm i react-toastify
+npm i react-quill
+npm i react-tagsinput

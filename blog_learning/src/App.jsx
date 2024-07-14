@@ -6,6 +6,7 @@ import DemoHeader from "./components/Demo/DemoHeader.jsx";
 import { Blog } from "./Context/Context.jsx";
 import { ToastContainer } from 'react-toastify';
 import Profile from "./components/Home/Profile/Profile.jsx";
+import Write from "./components/Home/Write/Write.jsx";
 
 function App() {
   const {currentUser} = Blog();
@@ -20,6 +21,7 @@ function App() {
         {currentUser && <Route path="/" element={<Home/>}/>}
         {!currentUser && <Route path="/demo" element={<Demo/>}/>} 
         <Route path="/profile/:userId" element={<Profile/>}/>
+        <Route path="/write" element={<Write/>}></Route>
         <Route path = "*" element={< Navigate to={currentUser ? "/" : "/demo"}/> }/>
       </Routes>
     </>
