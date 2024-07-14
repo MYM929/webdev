@@ -2,11 +2,17 @@ import React, { useEffect, useRef, useState } from 'react';
 import Modal from '../../../utils/Modal';
 import { LiaTimesSolid } from "react-icons/lia";
 import { toast } from "react-toastify";
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { db, storage } from "../../../firebase/firebase";
+import { doc, updateDoc } from "firebase/firestore";
 
 const EditProfile = ({editModal, setEditModal, getUserData}) => {
 
     // use to access the choose file button
     const imgRef = useRef(null);
+    //loading modal
+    const [loading, setLoading] = useState(false);
+
     const openFile = () => {
         imgRef.current.click();
     }
@@ -32,11 +38,38 @@ const EditProfile = ({editModal, setEditModal, getUserData}) => {
 
     // display error when editProfile is not complete
     const saveForm = async () => {
+        // all fields are required
         if(form["username"]==="" || form["bio"]===""){
             toast.error("All inputs are required!");
             return;
         }
+        setLoading(true);
         // console.log(form)
+
+        // upload an image file to Firebase Storage 
+        const storageRef = ref(storage, `image/${form.userImg.name}`);
+        await uploadBytes(storageRef, form?.userImg);
+        // get the download URL for the uploaded image
+        const imageUrl = await getDownloadURL(storageRef);
+
+        try{
+            const docRef = doc(db, "users", getUserData?.userId);
+
+            await updateDoc(docRef, {
+                bio: form.bio,
+                username: form.username,
+                userImg: imgUrl ? imageUrl : form.userImg,
+                userId: getUserData?.userId,
+            });
+
+            setLoading(false);
+            setEditModal(false);
+
+            toast.success("Profile has been updated");
+        }
+        catch (error){
+            toast.error(error.message);
+        }
     }
 
 
@@ -80,7 +113,9 @@ const EditProfile = ({editModal, setEditModal, getUserData}) => {
                 <div className='flex gap-[2rem]'>
                     <div className='w-[5rem]'>
                         <img className='min-h-[5rem] min-w-[5rem] object-cover border border-gray-400 rounded-full' 
-                             src={imgUrl ? imgUrl : "/profile.jpg" }
+                             src={imgUrl 
+                                  ? imgUrl 
+                                  : form.userImg ? form.userImg : "/profile.jpg" }
                              alt="profile-img" 
                         /> {/* Profile picture */}
                         <input 
@@ -127,7 +162,7 @@ const EditProfile = ({editModal, setEditModal, getUserData}) => {
                     maxLength={50}
                 />
                 <p className='text-sm text-gray-600 pt-2'>
-                    Appears on your Profile page, as your byline, and in your responses.10/50
+                    Appears on your Profile page, as your byline, and in your responses.{form.username.length}/50
                 </p>
                 {/* Bio input */}
                 <section className='pt-[1rem] text-sm'>
@@ -142,7 +177,7 @@ const EditProfile = ({editModal, setEditModal, getUserData}) => {
                         maxLength={160}
                     />
                     <p className='text-sm text-gray-600 pt-2'>
-                    Appears on your Profile and next to your stories.42/160
+                    Appears on your Profile and next to your stories.{form.bio.length}/160
                     </p>
                 </section>
             </section>
@@ -151,7 +186,9 @@ const EditProfile = ({editModal, setEditModal, getUserData}) => {
 
             {/* Footer: Bottom two buttons */}
             <div className='flex items-center justify-end gap-4 pt-[2rem]'>
-                <button className={btn}>
+                <button 
+                    onClick={() => setEditModal(false)}
+                    className={btn}>
                     Cancel
                 </button> {/* Cancel button */}
                 <button 

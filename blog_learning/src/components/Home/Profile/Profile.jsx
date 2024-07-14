@@ -117,7 +117,8 @@ const Profile = () => {
                 <div className='sticky top-7 flex flex-col justify-between'>
                     <img               // Profile image
                         className='w-[3.5rem] h-[3.5rem] object-cover rounded-full'
-                        src="/profile.jpg" alt="profile-img" 
+                        src={getUserData?.userImg || "/profile.jpg" }
+                        alt="profile-img" 
                     />
                     <h2 className='py-2 font-bold capitalize'>
                         Yongming Mai {/* Username */}
