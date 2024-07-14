@@ -1,7 +1,13 @@
+import { addDoc, collection } from 'firebase/firestore';
 import React, { useEffect, useRef, useState } from 'react'
 import { LiaTimesSolid } from "react-icons/lia";
 import ReactQuill from "react-quill";
 import TagsInput from "react-tagsinput";
+import { toast } from "react-toastify";
+import { db, storage } from '../../../firebase/firebase';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { Blog } from '../../../Context/Context';
+import { useNavigate } from 'react-router-dom';
 
 const Preview = ({ setPublish, title, description }) => {
 
@@ -34,6 +40,61 @@ const Preview = ({ setPublish, title, description }) => {
       setDesc("");
     }
   }, [title, description])
+
+  //import blog(), navigate and loading
+  const { currentUser } = Blog();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+  // publish now button
+  const handleSubmit = async () => {
+    setLoading(true);
+    try {
+      // input validation
+      if(preview.title==="" || desc==="" || tags.length===0){
+        toast.error("All fields are required!");
+        return;
+      }
+      if(preview.title.length<15){
+        toast.error("Title must be at least 15 letters");
+        return;
+      }
+
+
+      // backend to publish
+      const collections = collection(db, "posts");
+      // upload the image to Firebase storage
+      let url;
+      if(imageUrl){
+        const storageRef = ref(storage, `image/${preview.photo.name}`);
+        await uploadBytes(storageRef, preview?.photo);
+        url = await getDownloadURL(storageRef);
+      }
+
+
+
+      // update the collection to Firebase
+      await addDoc(collections, {
+        userId: currentUser?.uid,
+        title: preview.title,
+        desc,
+        tags,
+        postImg: url || "",
+        created: Date.now(),
+        pageViews: 0,
+      });
+      toast.success("Post has been added");
+      navigate("/"); // direct to the home page
+      setPublish(false);
+      setPreview({title: "", photo: ""});
+    } 
+    catch (error) {
+      toast.error(error.message);
+    }
+    finally{
+      setLoading(false);
+    }
+  }
   
 
 
@@ -122,8 +183,9 @@ const Preview = ({ setPublish, title, description }) => {
             </p>
             <TagsInput value={tags} onChange={setTags}/> {/* Tags Input */}
             <button // Publish Now button
+              onClick={handleSubmit}
               className='btn !bg-green-800 !w-fit !text-white !rounded-full'>
-              Publish Now
+              {loading ? "Submitting" : "Publish Now"}
             </button>
           </div>  
         </div>
