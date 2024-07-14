@@ -5,6 +5,8 @@ import { Blog } from "../../../Context/Context";
 
 const Write = () => {
 
+  // define for title editor
+  const [title, setTitle] = useState('');
   // define for ReactQuill text editor
   const [description, setDescription] = useState('');
   // display preview page or no
@@ -22,6 +24,7 @@ const Write = () => {
   return (
     <section className="w-[90%] md:w-[80%] lg:w-[60%] mx-auto py-[3rem]">
         <input // title editor
+            value={title} onChange={(e) => setTitle(e.target.value)}
             type="text" placeholder='Title' 
             className='text-4xl outline-none w-full'
         />
@@ -33,7 +36,10 @@ const Write = () => {
         />
         <div className={`${publish ? "visible opacity-100" : "invisible opacity-0"}
                          transition-all duration-200`}> {/* decide to open preview or not */}
-            <Preview setPublish={setPublish}/>
+            <Preview 
+              setPublish={setPublish}
+              title={title} description={description}
+            />
         </div>
     </section>
   )

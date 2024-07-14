@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { LiaTimesSolid } from "react-icons/lia";
 import ReactQuill from "react-quill";
 import TagsInput from "react-tagsinput";
 
-const Preview = ({ setPublish }) => {
+const Preview = ({ setPublish, title, description }) => {
 
   //choose image
   const imageRef = useRef(null);
@@ -12,9 +12,29 @@ const Preview = ({ setPublish }) => {
   }
   const [imageUrl, setImageUrl] = useState("");
 
-
   // react-tagsinput
   const [tags, setTags] = useState([]);
+
+  // preview object contains title and photo
+  const [preview, setPreview] = useState({
+    title: "",
+    photo: "",
+  });
+  // description input
+  const [desc, setDesc] = useState("");
+
+  // receive the title and description from Write.jsx
+  useEffect(() => {
+    if(title || description){
+      setPreview({...preview, title: title});
+      setDesc(description);
+    }
+    else{
+      setPreview("");
+      setDesc("");
+    }
+  }, [title, description])
+  
 
 
 
@@ -60,19 +80,27 @@ const Preview = ({ setPublish }) => {
               {!imageUrl && "Add Image"}
             </div>
             <input // choose file input
-              onChange={(e) => setImageUrl(URL.createObjectURL(e.target.files[0]))} 
+              onChange={(e) => {
+                setImageUrl(URL.createObjectURL(e.target.files[0]));
+                setPreview({...preview, photo: e.target.files[0]});
+              }}
               ref={imageRef} type="file" hidden 
             /> 
             <input // title input
               type="text" placeholder="Title"
               className="outline-none w-full border-b border-gray-300 py-2"
+              value={preview.title} 
+              onChange={(e) => setPreview({
+                ...preview, title: e.target.value
+              })}
             />
             <ReactQuill // tell your story input
               theme="bubble"
+              value={desc} onChange={setDesc}
               placeholder="Tell Your Story..."
               className="py-3 border-b border-gray-300"
             />
-            <p className='text-gray-500 pt-4 text-sm'>
+            <p className='text-gray-500 pt-4 text-sm'> {/* some text */}
               <span className='font-bold'>Note: </span>
               Changes here will affect
               how your story appears in public places like Medium's homepage and
