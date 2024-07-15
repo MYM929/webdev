@@ -5,3 +5,17 @@ export const secretEmail = (email) => {
     // console.log(splitEmail);
     // console.log(email);
 }
+
+export const readTime = (desc) => {
+    // reading speed
+    const avgReading = 225;
+
+    // create a div and set its content to desc
+    const div = document.createElement("div");
+    div.innerHTML = desc.__html;
+
+    // extract text content from the div
+    const textContent = div.textContent || div.innerHTML;
+    const words = textContent.trim().split(/\s+/);
+    return Math.ceil(words.length / avgReading);
+}

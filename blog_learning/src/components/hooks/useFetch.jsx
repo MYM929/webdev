@@ -1,6 +1,6 @@
 import { collection, doc, onSnapshot, query } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
-import { db } from '../../../firebase/firebase'
+import { db } from '../../firebase/firebase'
 
 const useFetch = (collectionName) => {
 
@@ -10,7 +10,7 @@ const useFetch = (collectionName) => {
 
   // Defines the getUsers function to fetch data from Firestore
   useEffect(() => {
-    const getUsers = () => { 
+    const getUsers = async () => { 
         const postRef = query(collection(db, collectionName));
         onSnapshot(postRef, (snapshot) => {
             setData(
@@ -34,10 +34,8 @@ const useFetch = (collectionName) => {
 
 
 
-
-
   return (
-    data, loading
+    { data, loading }
   )
 
 

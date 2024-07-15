@@ -1,39 +1,25 @@
 import React from 'react'
+import useFetch from '../../hooks/useFetch'
+import Loading from '../../Loading/Loading';
+import PostsCard from './PostsCard';
 
 const Posts = () => {
+
+  const { data, loading } = useFetch("posts");
+  // console.log(data);
+
+
+
+
+
   return (
-    <div>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-      <h1>Post</h1>
-    </div>
+   <section className='flex flex-col gap-[2.5rem]'>
+      {
+        loading
+        ? <Loading/>
+        : data.map((post, i) => <PostsCard post={post} key={i}/>)
+      }
+    </section>
   )
 }
 
