@@ -3,10 +3,14 @@ import useFetch from '../../hooks/useFetch';
 import { readTime } from '../../../utils/helper';
 import moment, { months } from "moment/moment";
 import SavedPost from './Actions/SavedPost';
+import { Blog } from '../../../Context/Context';
+import Loading from '../../Loading/Loading';
+import Actions from './Actions/Actions';
 
 const PostsCard = ({post}) => {
 
   const { title, desc, created, postImg, id:postId, userId} = post;
+  const { currentUser } = Blog();
   // get the data from the "users" collection
   const { data, loading } = useFetch("users");
   // get the user data that matches the id from both "users" and "posts"
@@ -15,8 +19,9 @@ const PostsCard = ({post}) => {
   );
 
   return (
-    <>
+    <section>
         <div className='flex flex-col sm:flex-row gap-4 cursor-pointer'>
+           {loading && <Loading/>} 
             <div className='flex-[2.5]'>
                 <p className='pb-2 font-semibold capitalize'>
                     {getUserData?.username} {/* PostCard username */}
@@ -43,9 +48,10 @@ const PostsCard = ({post}) => {
             </p>
             <div className='flex items-center gap-3'>
                 <SavedPost post={post} getUserData={getUserData}/> {/* PostCard save post icon*/}
+                {currentUser?.uid===userId && <Actions post={post}/>} {/* PostCard actions icon*/}
             </div>
         </div>
-    </>
+    </section>
     
   )
 }
