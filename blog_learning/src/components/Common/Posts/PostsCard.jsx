@@ -42,7 +42,7 @@ const PostsCard = ({post}) => {
                 {moment(created).format("MMM DD")} {/* PostCard created date */}
             </p>
             <div className='flex items-center gap-3'>
-                <SavedPost post={post}/> {/* PostCard save post icon*/}
+                <SavedPost post={post} getUserData={getUserData}/> {/* PostCard save post icon*/}
             </div>
         </div>
     </>
