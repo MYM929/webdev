@@ -1,53 +1,53 @@
 from tkinter import *
+from tkinter import messagebox
 
 window = Tk()
 
 #######################################
-def submit():
-    food = []
+def click():
+    # messagebox.showinfo(title="This is an info message box",
+    #                     message="You are a person")
+    # while(True):
+    #     messagebox.showwarning(title="WARNING!", 
+    #                            message="You have a virus")
+    # messagebox.showerror(title="ERROR", 
+    #                      message="Something went wrong")
+    # if messagebox.askokcancel(title="ask ok cancel",
+    #                           message="Do you want to do the thing?"):
+    #     print("You did a thing")
+    # else:
+    #     print("You cancel a thing")
+    # if messagebox.askretrycancel(title="ask ok cancel",
+    #                              message="Do you want to retry the thing?"):
+    #     print("You retry a thing")
+    # else:
+    #     print("You cancel a thing")
+    # if messagebox.askyesno(title="ask yes or no",
+    #                        message="Do you like cake?"):
+    #     print("I like cake")
+    # else:
+    #     print("why not")
+    # answer = messagebox.askquestion(title="ask question",
+    #                                 message="do you like pie?")
+    # if(answer=="yes"):
+    #     print("like")
+    # else:
+    #     print("not like")
+    answer = messagebox.askyesnocancel(title="", message="Do you like to code?", icon=Warning)
+    if(answer == True):
+        print("like")
+    elif(answer == False):
+        print("do not")
+    else:
+        print("hello")    
 
-    for index in listbox.curselection():
-        food.insert(index, listbox.get(index))
-    print("You have ordered: ")
-    # print(listbox.get(listbox.curselection()))
-    for index in food:
-        print(index)
 
-def add():
-    listbox.insert(listbox.size(), entryBox.get())
-    listbox.config(height=listbox.size())
 
-def delete():
-    for index in reversed(listbox.curselection()):
-        listbox.delete(index)
-    # listbox.delete(listbox.curselection())
-    listbox.config(height=listbox.size())
+#######################################
+button = Button(window, command=click, text="click me")
+
 
 
 #######################################
-listbox = Listbox(window, 
-                  bg="#f7ffde",
-                  font=("Constantia", 35),
-                  width=12,
-                  selectmode=MULTIPLE)
-entryBox = Entry(window)
-submitButton = Button(window, text="submit", command=submit)
-addButton = Button(window, text="add", command=add)
-deleteButton = Button(window, text="delete", command=delete)
-
-
-listbox.insert(1, "pizza")
-listbox.insert(2, "pasta")
-listbox.insert(3, "garlic bread")
-listbox.insert(4, "soup")
-listbox.insert(5, "salad")
-
-listbox.config(height=listbox.size())
-
-#######################################
-listbox.pack()
-entryBox.pack()
-submitButton.pack()
-addButton.pack()
-deleteButton.pack()
+button.pack()
 window.mainloop()
