@@ -1,23 +1,22 @@
 from tkinter import *
-from tkinter import colorchooser
 
 window = Tk()
 
 #######################################
-def click():
-    # color = colorchooser.askcolor()
-    # # print(color)
-    # colorHex = color[1]
-    # # print(colorHex)
-    # window.config(bg=colorHex)
-
-    window.config(bg=colorchooser.askcolor()[1])
-
+def submit():
+    input = text.get("1.0", END)
+    print(input)
 
 #######################################
-window.geometry("420x420")
-button = Button(text='click me', command=click)
+text = Text(window, 
+            bg="light yellow",
+            font=("Ink Free", 25),
+            height=8, width=20,
+            padx=20, pady=20,
+            fg="purple")
+button = Button(window, text="submit", command=submit)
 
 #######################################
+text.pack()
 button.pack()
 window.mainloop()
