@@ -6,6 +6,7 @@ import SavedPost from './Actions/SavedPost';
 import { Blog } from '../../../Context/Context';
 import Loading from '../../Loading/Loading';
 import Actions from './Actions/Actions';
+import { useNavigate } from "react-router-dom";
 
 const PostsCard = ({post}) => {
 
@@ -18,9 +19,13 @@ const PostsCard = ({post}) => {
     (user) => user?.id === userId
   );
 
+  const navigate = useNavigate();
+
   return (
     <section>
-        <div className='flex flex-col sm:flex-row gap-4 cursor-pointer'>
+        <div
+           onClick={() => navigate(`/post/${postId}`)}
+           className='flex flex-col sm:flex-row gap-4 cursor-pointer'>
            {loading && <Loading/>} 
             <div className='flex-[2.5]'>
                 <p className='pb-2 font-semibold capitalize'>
