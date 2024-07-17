@@ -5,8 +5,11 @@ import { BiSpreadsheet } from "react-icons/bi";
 import { HiOutlineChartBar } from "react-icons/hi";
 import { LiaEditSolid } from "react-icons/lia";
 import { Blog } from "../../../Context/Context";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { secretEmail } from '../../../utils/helper';
+import { signOut } from "firebase/auth";
+import { auth } from '../../../firebase/firebase';
+import { toast } from "react-toastify";
 
 const UserModal = ({ setModal }) => {
 
@@ -19,6 +22,20 @@ const UserModal = ({ setModal }) => {
     {title: "Stories", icon: <BiSpreadsheet/>        , path: `/stories`                    }, // Stories icon
     {title: "Stats"  , icon: <HiOutlineChartBar/>    , path: `/stats`                      }, // Stats   icon
   ];
+
+  const navigate = useNavigate(null);
+
+  // function to handle sign out
+  const logout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/demo");
+      toast.success("User has been logged out");
+    } 
+    catch (error) {
+      toast.error(error.message);
+    }
+  }
 
 
 
@@ -53,7 +70,9 @@ const UserModal = ({ setModal }) => {
             </Link>
           ))}
         </div>
-        <button className='flex flex-col pt-5 cursor-pointer hover:text-black/70'>
+        <button 
+          onClick={logout}
+          className='flex flex-col pt-5 cursor-pointer hover:text-black/70'>
           Sign Out {/* SignOut button */}
           <span className='text-sm'>{secretEmail(currentUser.email)}</span>
         </button>

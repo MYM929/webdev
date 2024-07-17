@@ -14,7 +14,7 @@ const SavedPost = ({post}) => {
 
   // fetch subcollection data from Firebase
   const { data, loading } = useSingleFetch(
-      "users", currentUser?.uid, "savePost"
+      "users", post?.uid, "savePost"
   );
   // console.log(data);
 
