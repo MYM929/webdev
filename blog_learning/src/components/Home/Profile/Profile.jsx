@@ -28,7 +28,7 @@ const Profile = () => {
 
 
   //get all the user objects
-  const { allUsers } = Blog();
+  const { allUsers, currentUser } = Blog();
   //destructured the userId from URL Parameters
   const { userId } = useParams();
   const getUserData = allUsers.find(
@@ -131,11 +131,17 @@ const Profile = () => {
                     <p className='text-gray-500 first-letter:uppercase text-sm'>
                         I am a content creator in Youtube channel. {/* Bio description */}
                     </p>
-                    <button
-                        onClick={() => setEditModal(true)} 
-                        className='text-green-700 pt-6 text-sm w-fit'>
-                        Edit Profile {/* Edit Profile button */}
-                    </button>
+                    {
+                        currentUser?.uid === getUserData?.userId &&
+                        (
+                            <button
+                                onClick={() => setEditModal(true)} 
+                                className='text-green-700 pt-6 text-sm w-fit'>
+                                Edit Profile {/* Edit Profile button */}
+                            </button>
+                        )
+                    }
+
                     <div className='flex-[1] flex items-center flex-wrap gap-3 pt-8'>
                         {discoverActions.map((item) => (
                             <button key={item} className='text-xs text-black1'>
