@@ -63,6 +63,19 @@ const Follow = () => {
           )
         })
       }
+
+      {
+        data?.length > 5 && 
+        (
+          <button
+            onClick={() => {
+              setCount((prev) => users.length < data?.length && prev+3)
+            }}
+            className='mb-3 text-green-900 text-sm hover:underline'>
+            Load for more users {/* Load for more users green button */}
+          </button>
+        )
+      }
     </>
   )
 }
