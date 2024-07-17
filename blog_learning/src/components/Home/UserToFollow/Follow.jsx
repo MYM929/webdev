@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import useFetch from '../../hooks/useFetch'
 import { Blog } from '../../../Context/Context';
 import FollowBtn from './FollowBtn';
+import { useNavigate } from 'react-router-dom';
 
 const Follow = () => {
 
@@ -14,6 +15,8 @@ const Follow = () => {
     (user) => user.userId!==currentUser?.uid
   );
   // console.log(users);
+
+  const navigate = useNavigate();
 
 
 
@@ -41,7 +44,9 @@ const Follow = () => {
 
           return (
             <div key={i} className='flex items-start gap-2 my-4'>
-              <div className='flex-1 flex items-center gap-2 cursor-pointer'>
+              <div 
+                onClick={() => navigate("/profile" + "/" + userId)}
+                className='flex-1 flex items-center gap-2 cursor-pointer'>
                 <img // Follow round image
                   className='w-[3rem] h-[3rem] object-cover gap-2 cursor-pointer rounded-full' 
                   src={userImg} alt="userImg" 
@@ -53,7 +58,7 @@ const Follow = () => {
                   </span> 
                 </div>
               </div>
-              <FollowBtn/> {/* Follow button */}
+              <FollowBtn userId={userId}/> {/* Follow button */}
             </div>
           )
         })

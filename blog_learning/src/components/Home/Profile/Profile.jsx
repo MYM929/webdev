@@ -9,6 +9,7 @@ import { IoSettingsSharp } from "react-icons/io5";
 import EditProfile from './EditProfile';
 import { Blog } from "../../../Context/Context";
 import { useParams } from "react-router-dom";
+import useSingleFetch from '../../hooks/useSingleFetch';
 
 const Profile = () => {
 
@@ -36,6 +37,10 @@ const Profile = () => {
   //console.log(getUserData);
 
 
+  //get the follower data
+  const { data:follows   } = useSingleFetch("users", userId, "follows");
+  const { data:followers } = useSingleFetch("users", userId, "followers");
+
 
 
 
@@ -59,10 +64,10 @@ const Profile = () => {
                     {getUserData?.username} {/* Username */}
                 </h2>
                 <p className='text-gray-500 text-xs sm:text-sm'>
-                    Followers(2) {/* Followers */}
+                    Followers({followers.length}) {/* Followers */}
                 </p>
                 <p className='text-gray-500 text-xs sm:text-sm'>
-                    Following(2) {/* Followings */}
+                    Following({follows.length}) {/* Followings */}
                 </p>
             </div>
             <div className='flex items-center gap-5 mt-[1rem] border-b border-gray-300 mb-[3rem]'>

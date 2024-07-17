@@ -24,8 +24,7 @@ const ProfileHome = ({getUserData}) => {
       {
         userPost.length===0 && 
         <p className='text-gray-500'>
-          <span className='capitalize'>{getUserData?.username}</span>
-           has no post
+          <span className='capitalize'>{getUserData?.username}</span> has no post
         </p>
       }
 
