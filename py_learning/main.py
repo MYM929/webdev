@@ -1,22 +1,22 @@
 from tkinter import *
+from tkinter import filedialog
 
 window = Tk()
 
 #######################################
-def submit():
-    input = text.get("1.0", END)
-    print(input)
+def openFile():
+    filePath = filedialog.askopenfilename(initialdir="C:\\Users\\", 
+                                          title="Open File",
+                                          filetypes=(("text files", "*.txt"), 
+                                                     ("all files", "*.*")))
+    # print(filePath)
+    file = open(filePath, "r")
+    print(file.read())
+    file.close()
 
 #######################################
-text = Text(window, 
-            bg="light yellow",
-            font=("Ink Free", 25),
-            height=8, width=20,
-            padx=20, pady=20,
-            fg="purple")
-button = Button(window, text="submit", command=submit)
+button = Button(window, text="Open", command=openFile)
 
 #######################################
-text.pack()
 button.pack()
 window.mainloop()
