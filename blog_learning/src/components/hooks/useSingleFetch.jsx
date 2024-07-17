@@ -10,6 +10,7 @@ const useSingleFetch = (collectionName, id, subCollection) => {
   // Defines the getSingleData function to fetch subcolletion data from Firestore
   useEffect(() => {
     const getSingleData = async () => { 
+      if(id){
         const postRef = query(collection(db, collectionName, id, subCollection));
         onSnapshot(postRef, (snapshot) => {
             setData(
@@ -20,6 +21,7 @@ const useSingleFetch = (collectionName, id, subCollection) => {
             )
             setLoading(false);
         })
+      }
     }
     getSingleData();
   }, [db, id])
