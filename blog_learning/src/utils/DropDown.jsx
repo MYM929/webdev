@@ -7,13 +7,13 @@ const DropDown = ({children, size, showDrop, setShowDrop}) => {
   useEffect(() => {
     const clickOutSide = (e) => {
         // if the user does not click the dropdown
-        if(!dropRef.current.contains(e.target)){ 
+        if(showDrop && dropRef.current && !dropRef.current.contains(e.target)){ 
             setShowDrop(false);
         }
     }
     window.addEventListener("mousedown", clickOutSide);
     return () => window.removeEventListener("mousedown", clickOutSide);
-  }, [])
+  }, [dropRef, showDrop])
   
 
 

@@ -62,7 +62,7 @@ const SavedPost = ({post}) => {
   return (
     <>
         <button onClick={handleSave} className='hover:opacity-60'> {/* Download/Save icon */}
-            <CiSaveDown2 className={`text-2xl pointer-events-none 
+            <CiSaveDown2 className={`text-2xl mb-1 pointer-events-none 
                                     ${isSaved ? "text-yellow-600" : ""}`}/>
         </button>
     </>
