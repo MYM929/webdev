@@ -1,21 +1,23 @@
 from tkinter import *
-from tkinter import ttk
+
 
 window = Tk()
 
 #######################################
 
 #######################################
-notebook = ttk.Notebook(window)
+# firstNameLabel = Label(window, text="First name: ").pack()
+# firstNameEntry = Entry(window).pack()
 
-tab1 = Frame(notebook)
-tab2 = Frame(notebook)
+titleLabel = Label(window, text="Enter your info", font=("Arial", 25)).grid(row=0, column=0, columnspan=2)
 
-notebook.add(tab1, text="Tab 1")
-notebook.add(tab2, text="Tab 2")
+firstNameLabel = Label(window, text="First name: ", width=20, bg="red").grid(row=1, column=0)
+firstNameEntry = Entry(window).grid(row=1, column=1)
+lastNameLabel = Label(window, text="last name: ", bg="green").grid(row=2, column=0)
+lastNameEntry = Entry(window).grid(row=2, column=1)
+emailLabel = Label(window, text="Email: ", width=30, bg="blue").grid(row=3, column=0)
+emailEntry = Entry(window).grid(row=3, column=1)
 
-Label(tab1, text="this is tab 1", width=50, height=25).pack()
-Label(tab2, text="this is tab 2", width=50, height=25).pack()
+submitButton = Button(window, text="Submit").grid(row=4, column=0, columnspan=2)
 #######################################
-notebook.pack(expand=True, fill="both")
 window.mainloop()
