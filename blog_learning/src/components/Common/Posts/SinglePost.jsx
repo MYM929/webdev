@@ -131,7 +131,7 @@ const SinglePost = () => {
 
 
                     {post && <Recommended post={post}/>} {/* Recommended Post */}
-                    <Comments/>
+                    <Comments postId={postId}/> {/* Comments modal */}
 
                 </>
             )
