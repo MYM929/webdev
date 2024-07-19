@@ -14,6 +14,7 @@ import SharePost from './Actions/SharePost';
 import Actions from './Actions/Actions';
 import Comment from './Actions/Comment';
 import Recommended from './Recommended';
+import Comments from '../Comments/Comments';
 
 const SinglePost = () => {
 
@@ -130,6 +131,7 @@ const SinglePost = () => {
 
 
                     {post && <Recommended post={post}/>} {/* Recommended Post */}
+                    <Comments/>
 
                 </>
             )
