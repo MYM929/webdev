@@ -5,6 +5,9 @@ import { Blog } from '../../../Context/Context';
 import { toast } from 'react-toastify';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../../firebase/firebase';
+import useSingleFetch from '../../hooks/useSingleFetch';
+import Loading from '../../Loading/Loading';
+import Comment from './Comment';
 
 const Comments = ({postId}) => {
 
@@ -14,6 +17,9 @@ const Comments = ({postId}) => {
     (user) => user.id===currentUser.uid
   )
   const [comment, setComment] = useState("");
+  const [commentData, setCommentData] = useState([]);
+  const {data, loading} = useSingleFetch("posts", postId, "comments");
+  console.log(data);
 
   const writeComment = async () => {
     try {
@@ -103,6 +109,24 @@ const Comments = ({postId}) => {
                             </button>
                         </div>
                     </div>
+                )
+            }
+
+
+            {/* Display comment history */}
+            {
+                data && data?.length===0 
+                ? <p>This post has no comments</p>
+                :
+                (
+                    <div className='border-t py-4 mt-8 flex flex-col gap-8'>
+                        {
+                            data && data.map((item, i) => (
+                                loading ? <Loading/> : <Comment item={item} postId={postId} key={i}/>
+                            ))
+                        }
+                    </div>
+            
                 )
             }
             
