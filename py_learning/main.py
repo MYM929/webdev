@@ -1,23 +1,36 @@
 from tkinter import *
-
+from tkinter.ttk import *
+import time
 
 window = Tk()
 
 #######################################
+percent = StringVar()
+text = StringVar()
 
+
+def start():
+    GB = 100
+    download = 0
+    speed = 1
+    while(download<GB):
+        time.sleep(0.5)
+        bar['value']+=(speed/GB)*100
+        download+=speed
+        percent.set(str(int((download/GB)*100))+"%")
+        text.set(str(download)+"/"+str(GB)+" GB completed")
+        window.update_idletasks()
 #######################################
-# firstNameLabel = Label(window, text="First name: ").pack()
-# firstNameEntry = Entry(window).pack()
 
-titleLabel = Label(window, text="Enter your info", font=("Arial", 25)).grid(row=0, column=0, columnspan=2)
+bar = Progressbar(window, orient=HORIZONTAL, length=300)
+bar.pack(pady=10)
 
-firstNameLabel = Label(window, text="First name: ", width=20, bg="red").grid(row=1, column=0)
-firstNameEntry = Entry(window).grid(row=1, column=1)
-lastNameLabel = Label(window, text="last name: ", bg="green").grid(row=2, column=0)
-lastNameEntry = Entry(window).grid(row=2, column=1)
-emailLabel = Label(window, text="Email: ", width=30, bg="blue").grid(row=3, column=0)
-emailEntry = Entry(window).grid(row=3, column=1)
+percentLabel = Label(window, textvariable=percent).pack()
 
-submitButton = Button(window, text="Submit").grid(row=4, column=0, columnspan=2)
+taskLabel = Label(window, textvariable=text).pack()
+
+
+button = Button(window, text="download", command=start).pack()
 #######################################
+
 window.mainloop()
