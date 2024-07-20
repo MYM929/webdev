@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Modal from '../../../utils/Modal'
 import { LiaTimesSolid } from "react-icons/lia";
 import { Blog } from '../../../Context/Context';
@@ -11,15 +11,14 @@ import Comment from './Comment';
 
 const Comments = ({postId}) => {
 
-  const [showModal, setShowModal] = useState(true);
-  const { currentUser, allUsers } = Blog();
+  
+  const { currentUser, allUsers, showComment, setShowComment, setCommentLength } = Blog();
   const getUserData = allUsers.find(
     (user) => user.id===currentUser.uid
   )
   const [comment, setComment] = useState("");
-  const [commentData, setCommentData] = useState([]);
   const {data, loading} = useSingleFetch("posts", postId, "comments");
-  console.log(data);
+  // console.log(data);
 
   const writeComment = async () => {
     try {
@@ -43,6 +42,13 @@ const Comments = ({postId}) => {
     }
   }
 
+  // Update comment length useEffect
+  useEffect(() => {
+    if(data){
+        setCommentLength(data.length);
+    }
+  }, [data])
+
 
 
 
@@ -56,20 +62,20 @@ const Comments = ({postId}) => {
 
 
   return (
-    <Modal modal={showModal} setModal={setShowModal}>
+    <Modal modal={showComment} setModal={setShowComment}>
         <section 
             className={`fixed top-0 right-0 bottom-0 z-50 bg-white w-[22rem] shadows p-5
                         overflow-y-auto transition-all duration-500
-                        ${showModal ? "translate-x-0" : "translate-x-[23rem]"}`}>
+                        ${showComment ? "translate-x-0" : "translate-x-[23rem]"}`}>
             
 
 
 
             {/* Header */}
             <div className='flex items-center justify-between'>
-                <h3 className='text-xl font-bold'>Responses(1)</h3> {/* Some text */}
+                <h3 className='text-xl font-bold'>Responses({data.length})</h3> {/* Some text */}
                 <button 
-                    onClick={() => setShowModal(false)}
+                    onClick={() => setShowComment(false)}
                     className='text-xl'>
                     <LiaTimesSolid/> {/* Close icon */}
                 </button>

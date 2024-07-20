@@ -19,6 +19,10 @@ const Context = ({children}) => {
   const [allUsers, setAllUsers] = useState([]);
   // display preview page or no
   const [publish, setPublish] = useState(false);
+  // Comment modal
+  const [showComment, setShowComment] = useState(false);
+  // Comment length
+  const [commentLength, setCommentLength] = useState(0);
 
 
 
@@ -73,7 +77,9 @@ const Context = ({children}) => {
         value={{
           currentUser, setCurrentUser, 
           allUsers, userLoading, 
-          publish, setPublish,}}>
+          publish, setPublish,
+          showComment, setShowComment,
+          commentLength, setCommentLength}}>
         {loading ? <Loading/> : children}
     </BlogContext.Provider>
   )
