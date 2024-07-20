@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import DropDown from '../../../../utils/DropDown'
 import { CiShare1 } from "react-icons/ci";
+import { FaXTwitter } from "react-icons/fa6";
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -45,10 +46,16 @@ const SharePost = () => {
         <CiShare1 className='text-2xl'/> {/* SharePost button */}
       </button> 
       <DropDown showDrop={showDrop} setShowDrop={setShowDrop} size='w-[12rem]'>
-        <Button click={copyLink} title="Copy Link"         icon={<BiLink/>}/> {/* Copy Link icon */}
-        <Button click="" title="Share On Twitter"  icon={<BiLogoFacebookCircle/>}/> {/* Twitter icon */}
-        <Button click="" title="Share On Facebook" icon={<BiLogoTwitter/>}/> {/* Facebook icon */}
-        <Button click="" title="Share On Linkedin" icon={<BiLogoLinkedinSquare/>}/> {/* Linkedin icon */}
+        <Button click={copyLink} title="Copy Link" icon={<BiLink/>}/> {/* Copy Link icon */}
+        <TwitterShareButton url={path}> {/* X icon */}
+          <Button title="Share On X" icon={<FaXTwitter/>}/> 
+        </TwitterShareButton>
+        <FacebookShareButton url={path}> {/* Facebook icon */}
+          <Button title="Share On Facebook" icon={<BiLogoFacebookCircle/>}/> 
+        </FacebookShareButton>
+        <LinkedinShareButton url={path}> {/* Linkedin icon */}
+          <Button title="Share On Linkedin" icon={<BiLogoLinkedinSquare/>}/> 
+        </LinkedinShareButton>
       </DropDown>
     </div>
   )
