@@ -12,12 +12,24 @@ import {
   BiLogoTwitter,
   BiLogoLinkedinSquare,
 } from "react-icons/bi";
+import { toast } from "react-toastify";
 
 const SharePost = () => {
 
   const [showDrop, setShowDrop] = useState(false);
 
-
+  const path = window.location.href; // url of the search bar
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(path);
+      toast.success("Link has been copied");
+      setShowDrop(false);
+    } 
+    catch (error) {
+      toast.error(error.message)
+      setShowDrop(false);
+    }
+  }
 
 
 
@@ -33,7 +45,7 @@ const SharePost = () => {
         <CiShare1 className='text-2xl'/> {/* SharePost button */}
       </button> 
       <DropDown showDrop={showDrop} setShowDrop={setShowDrop} size='w-[12rem]'>
-        <Button click="" title="Copy Link"         icon={<BiLink/>}/> {/* Copy Link icon */}
+        <Button click={copyLink} title="Copy Link"         icon={<BiLink/>}/> {/* Copy Link icon */}
         <Button click="" title="Share On Twitter"  icon={<BiLogoFacebookCircle/>}/> {/* Twitter icon */}
         <Button click="" title="Share On Facebook" icon={<BiLogoTwitter/>}/> {/* Facebook icon */}
         <Button click="" title="Share On Linkedin" icon={<BiLogoLinkedinSquare/>}/> {/* Linkedin icon */}
