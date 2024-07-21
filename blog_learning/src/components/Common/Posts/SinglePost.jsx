@@ -1,5 +1,5 @@
-import { doc, getDoc } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react'
+import { doc, getDoc, increment, updateDoc } from 'firebase/firestore';
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from "react-router-dom";
 import { db } from '../../../firebase/firebase';
 import { toast } from "react-toastify";
@@ -56,6 +56,27 @@ const SinglePost = () => {
     fetchPost();
   }, [postId, post?.userId])
   // console.log(post);
+
+  // Increment page views
+  const isInitialRender = useRef(true);
+  useEffect(() => {
+    if(isInitialRender?.current){
+        const incrementPageView = async () => {
+            try {
+                const ref = doc(db, "posts", postId);
+                await updateDoc(ref, {
+                    pageViews: increment(1)
+                }, {merge: true})
+            } 
+            catch (error) {
+                toast.error(error.message);
+            }
+        }
+        incrementPageView();
+    }
+    isInitialRender.current = false;
+  }, [])
+  
 
 
 

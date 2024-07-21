@@ -1,8 +1,11 @@
 import React from 'react'
 import Loading from '../../../Loading/Loading';
 import PostsCard from '../../../Common/Posts/PostsCard';
+import { Blog } from "../../../../Context/Context";
 
 const ProfileHome = ({getUserData}) => {
+
+  const { postData, postLoading } = Blog();
 
   const userPost = postData && postData?.filter(
     (post) => post?.userId===getUserData?.userId

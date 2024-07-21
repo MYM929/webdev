@@ -31,6 +31,9 @@ const Context = ({children}) => {
 
   const { data: postData, loading: postLoading } = useFetch("posts");
 
+  // control the auth modal on and off
+  const [authModal, setAuthModal] = useState(false);
+
 
 
 
@@ -90,7 +93,8 @@ const Context = ({children}) => {
           updateData, setUpdateData,
           title, setTitle,
           description, setDescription,
-          postData, postLoading
+          postData, postLoading,
+          authModal, setAuthModal
         }}>
         {loading ? <Loading/> : children}
     </BlogContext.Provider>

@@ -10,7 +10,7 @@ const SavedPost = ({post}) => {
 
   // stores isSaved state
   const [isSaved, setIsSaved] = useState(false);
-  const { currentUser } = Blog();
+  const { currentUser, setAuthModal } = Blog();
 
   // fetch subcollection data from Firebase
   const { data, loading } = useSingleFetch(
@@ -20,7 +20,7 @@ const SavedPost = ({post}) => {
 
   // find if the user have saved this post or not
   useEffect(() => {
-    setIsSaved(data && data.find((item) => item.id===post.id));
+    setIsSaved(data && data.find((item) => item.id===currentUser?.uid));
   }, [data, post?.id])
   
 
@@ -41,9 +41,12 @@ const SavedPost = ({post}) => {
                 toast.success("Post has been saved");
             }
         }   
+        else{
+          setAuthModal(true);
+        }
     } 
     catch (error) {
-        
+        toast.error(error.message);
     }
   }
 

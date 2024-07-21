@@ -14,7 +14,7 @@ const Comments = ({postId}) => {
   
   const { currentUser, allUsers, showComment, setShowComment, setCommentLength } = Blog();
   const getUserData = allUsers.find(
-    (user) => user.id===currentUser.uid
+    (user) => user.id===currentUser?.uid
   )
   const [comment, setComment] = useState("");
   const {data, loading} = useSingleFetch("posts", postId, "comments");

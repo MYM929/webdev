@@ -9,7 +9,7 @@ import { formatNum } from '../../../../utils/helper';
 
 const Like = ({postId}) => {
 
-  const { currentUser } = Blog();
+  const { currentUser, setAuthModal } = Blog();
   const [isLiked, setIsLiked] = useState(false);
   const { data } = useSingleFetch("posts", postId, "likes");
 
@@ -29,9 +29,11 @@ const Like = ({postId}) => {
         else{
           await setDoc(likeRef, {
             userId: currentUser?.uid,
-
           })
         }
+      }
+      else{
+        setAuthModal(true);
       }
     } 
     catch (error) {

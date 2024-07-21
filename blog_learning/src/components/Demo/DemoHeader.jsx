@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { nav } from "../../data";
 import Auth from "./Auth/Auth";
+import { Blog } from "../../Context/Context";
 
 const DemoHeader = () => {
   // control color change when window.scrollY > 50
   const [isActive, setIsActive] = useState(false);
-  // control the modal on and off
-  const [modal, setModal] = useState(false);
+  const {authModal, setAuthModal } = Blog();
+
 
   useEffect(() => {
     const scrollMe = () => {
@@ -36,15 +37,15 @@ const DemoHeader = () => {
           </div>
           <div className="relative">
             <button
-              onClick={() => setModal(true)} 
+              onClick={() => setAuthModal(true)} 
               className="hidden text-sm sm:flex items-center gap-5">
               Sign In
             </button>
-            <Auth modal={modal} setModal={setModal}/>
+            <Auth modal={authModal} setModal={setAuthModal}/>
           </div>
           <div>
             <button 
-                onClick={() => setModal(true)}
+                onClick={() => setAuthModal(true)}
                 className={`text-white rounded-full px-3 p-2 text-sm font-medium
                             ${isActive ? "bg-green-700": "bg-black"}`}>
                 Get Started
