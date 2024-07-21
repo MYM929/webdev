@@ -23,6 +23,10 @@ const Context = ({children}) => {
   const [showComment, setShowComment] = useState(false);
   // Comment length
   const [commentLength, setCommentLength] = useState(0);
+  // Contains the edit post data
+  const [updateData, setUpdateData] = useState({});
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
 
 
@@ -79,7 +83,11 @@ const Context = ({children}) => {
           allUsers, userLoading, 
           publish, setPublish,
           showComment, setShowComment,
-          commentLength, setCommentLength}}>
+          commentLength, setCommentLength,
+          updateData, setUpdateData,
+          title, setTitle,
+          description, setDescription
+        }}>
         {loading ? <Loading/> : children}
     </BlogContext.Provider>
   )

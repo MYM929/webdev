@@ -10,14 +10,18 @@ import Modal from "../../../utils/Modal";
 import UserModal from "./UserModal";
 import { Blog } from "../../../Context/Context";
 import Loading from "../../Loading/Loading";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../../firebase/firebase";
+import { toast } from "react-toastify";
 
 const HomeHeader = () => {
 
   const [modal, setModal] = useState(false);
   const [searchModal, setSearchModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate(null);
 
-  const { allUsers, userLoading, currentUser, setPublish } = Blog();
+  const { allUsers, userLoading, currentUser, setPublish, title, description } = Blog();
   const getUserData = allUsers.find(
     (user) => user.id === currentUser?.uid
   );
@@ -27,7 +31,23 @@ const HomeHeader = () => {
   const postId   = pathname.split("/")[2];
   // console.log(pathname);
 
-
+  const handleEdit = async () => {
+    try {
+        setLoading(true);
+        const ref = doc(db, "posts", postId);
+        await updateDoc(ref, {
+          title, desc: description
+        })
+        navigate(`/post/${postId}`);
+        toast.success("Post has been updated");
+    } 
+    catch (error) {
+      
+    }
+    finally{
+      setLoading(false);
+    }
+  }
 
 
 
@@ -83,7 +103,7 @@ const HomeHeader = () => {
               <Link to={"/write"} className="hidden md:flex items-center gap-1 text-grey-500">
               <span className="text-3xl"><LiaEditSolid/></span>  {/* write icon */}
               <span className="text-sm mt-2">Write</span>
-             </Link>
+              </Link>
             )
           }
 

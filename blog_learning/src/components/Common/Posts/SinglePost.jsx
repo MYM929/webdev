@@ -11,12 +11,14 @@ import moment from "moment/moment";
 import Like from './Actions/Like';
 import SavedPost from './Actions/SavedPost';
 import SharePost from './Actions/SharePost';
-import Actions from './Actions/Actions';
+import Actions from "../Posts/Actions/Actions";
 import Comment from './Actions/Comment';
 import Recommended from './Recommended';
 import Comments from '../Comments/Comments';
 
 const SinglePost = () => {
+
+
 
   const {postId} = useParams();
   const [post, setPost] = useState([]);
@@ -113,7 +115,10 @@ const SinglePost = () => {
                             <div className='flex items-center pt-2 gap-5'>
                                 {post && <SavedPost post={post}/>} {/* SavePost button */}
                                 <SharePost/> {/* SharePost button */}
-                                {currentUser?.uid===post.userId && <Actions/>} {/* Actions button */}
+                                {
+                                    currentUser && currentUser?.uid===post?.userId && 
+                                    <Actions postId={postId} title={title} desc={desc}/> // Actions button 
+                                } 
                             </div>
                         </div>
 
