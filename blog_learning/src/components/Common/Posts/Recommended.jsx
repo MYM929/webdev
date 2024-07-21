@@ -76,11 +76,16 @@ const Post = ({post}) => {
 
     return (
         <div 
-        onClick={() => navigate(`/post/${postId}`)} 
+            onClick={() => navigate(`/post/${postId}`)} 
             className='w-full cursor-pointer'>
-            <img className='w-full h-[200px] object-cover' 
-                 src={postImg} alt="postImg" 
-            />
+            {
+                postImg && 
+                (
+                    <img className='w-full h-[200px] object-cover' 
+                         src={postImg} alt="postImg" 
+                    />
+                )
+            }
             <div className='flex items-center gap-1 py-3'>
                 <img className='w-[2rem] h-[2rem] object-cover rounded-full' 
                      src={userImg} alt="userImg" 

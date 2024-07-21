@@ -10,14 +10,11 @@ import { useNavigate } from "react-router-dom";
 
 const PostsCard = ({post}) => {
 
-  const { title, desc, created, postImg, id:postId, userId} = post;
+  const { title, desc, created, postImg, id:postId, userId, username} = post;
   const { currentUser } = Blog();
   // get the data from the "users" collection
   const { data, loading } = useFetch("users");
-  // get the user data that matches the id from both "users" and "posts"
-  const getUserData = data && data?.find(
-    (user) => user?.id === userId
-  );
+
 
   const navigate = useNavigate();
 
@@ -29,7 +26,7 @@ const PostsCard = ({post}) => {
            {loading && <Loading/>} 
             <div className='flex-[2.5]'>
                 <p className='pb-2 font-semibold capitalize'>
-                    {getUserData?.username} {/* PostCard username */}
+                    {username} {/* PostCard username */}
                 </p>
                 <h2 className='text-xl font-bold line-clamp-2 leading-6 capitalize'>
                     {title} {/* PostCard title */}
@@ -38,11 +35,17 @@ const PostsCard = ({post}) => {
                     dangerouslySetInnerHTML={{__html: desc}} // PostCard description
                 />
             </div>
+            {
+                postImg && 
+                (
+                    <div className='flex-[1]'>
+                        <img src={postImg} alt="postImg" // PostCard image
+                            className='w-[53rem] h-[8rem] object-cover'/> 
+                    </div>
+                )
+            }
 
-            <div className='flex-[1]'>
-                    <img src={postImg} alt="postImg" // PostCard image
-                        className='w-[53rem] h-[8rem] object-cover'/> 
-            </div>
+
         </div>
 
 
@@ -52,8 +55,11 @@ const PostsCard = ({post}) => {
                 {moment(created).format("MMM DD")} {/* PostCard created date */}
             </p>
             <div className='flex items-center gap-3'>
-                <SavedPost post={post} getUserData={getUserData}/> {/* PostCard save post icon*/}
-                {currentUser?.uid===userId && <Actions post={post}/>} {/* PostCard actions icon*/}
+                <SavedPost post={post}/> {/* PostCard save post icon*/}
+                {
+                    currentUser?.uid===userId && 
+                    <Actions postId={postId} title={title} desc={desc}/> // PostCard actions icon
+                } 
             </div>
         </div>
     </section>

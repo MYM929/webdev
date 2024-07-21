@@ -1,12 +1,10 @@
 import React from 'react'
-import useFetch from '../../../hooks/useFetch'
 import Loading from '../../../Loading/Loading';
 import PostsCard from '../../../Common/Posts/PostsCard';
 
 const ProfileHome = ({getUserData}) => {
 
-  const {data, loading} = useFetch("posts");
-  const userPost = data && data?.filter(
+  const userPost = postData && postData?.filter(
     (post) => post?.userId===getUserData?.userId
   );
   // console.log(userPost);
@@ -29,7 +27,7 @@ const ProfileHome = ({getUserData}) => {
       }
 
       {
-        loading 
+        postLoading 
         ? <Loading/>
         : (
           userPost.map((post, i) => <PostsCard post={post} key={i}/>)
