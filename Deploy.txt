@@ -1,0 +1,40 @@
+mkdir tutorial
+cd tutorial
+
+npm create vite@latest
+y
+react
+js
+
+npm install
+npm install --save-dev gh-pages
+
+package.json file
+// very top
+"homepage": "https://MYM929.github.io/tutorial/"
+"scripts":{
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+}
+
+vite.config.js file
+// above plugins
+// base: "/<repo name>>/",
+base: "/tutorial/",
+
+git init
+git add .
+git commit -m "commit 1"
+
+git branch -M main
+// git remote add origin https://github.com/<github username>/<repo name>.git
+git remote add origin https://github.com/MYM929/tutorial.git
+git push -u origin main
+
+npm run deploy
+
+
+
+
+
+
