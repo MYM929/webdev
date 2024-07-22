@@ -1,0 +1,24 @@
+npm create vite@latest . -> React -> JS
+npm i
+
+search tailwind css with vite
+
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+https://tailwindcss.com/docs/guides/vite
+
+npm install react-router-dom
+
+replace the tailwind.config.js file with his code
+
+react-icons:
+npm install react-icons --save
+
+
+
+npm i react-toastify
+npm i react-quill
+npm i react-tagsinput
+npm i moment
+npm i react-share
