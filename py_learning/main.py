@@ -1,26 +1,31 @@
 from tkinter import *
-import time
-from Ball import *
+from time import *
 
 window = Tk()
 
-WIDTH = 500
-HEIGHT = 500
+def update():
+    timeStr = strftime("%I:%M:%S %p")
+    timeLabel.config(text=timeStr)
+    dayStr = strftime("%A")
+    dayLabel.config(text=dayStr)
+    dateStr = strftime("%B %d, %Y")
+    dateLabel.config(text=dateStr)
 
-canvas = Canvas(window, width=WIDTH, height=HEIGHT)
-canvas.pack()
 
-volley_ball = Ball(canvas, 0, 0, 100, 1, 1, "white")
-tennis_ball = Ball(canvas, 0, 0, 50, 4, 3, "yellow")
-backet_ball = Ball(canvas, 0, 0, 125, 8, 7, "orange")
+    window.after(1000, update)
+ 
+timeLabel = Label(window, font=("Arial", 50), fg="#00FF00", bg="black")
+timeLabel.pack()
 
-while True:
-    volley_ball.move()
-    tennis_ball.move()
-    backet_ball.move()
-    window.update()
-    time.sleep(0.01)
+dayLabel = Label(window, font=("Ink Free", 25))
+dayLabel.pack()
+
+dateLabel = Label(window, font=("Ink Free", 30))
+dateLabel.pack()
+
+update()
+
+
 
 
 window.mainloop()
-
