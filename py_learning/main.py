@@ -1,31 +1,23 @@
-from tkinter import *
-from time import *
+import smtplib
 
-window = Tk()
+sender = "yongming.mai.929@gmail.com"
+receiver = "maiyongming929@gmail.com"
+password = "abc5258082"
+subject = "Py email test"
+body = "Hello World"
 
-def update():
-    timeStr = strftime("%I:%M:%S %p")
-    timeLabel.config(text=timeStr)
-    dayStr = strftime("%A")
-    dayLabel.config(text=dayStr)
-    dateStr = strftime("%B %d, %Y")
-    dateLabel.config(text=dateStr)
+#header
+message = f"""From: me {sender}
+To: you {receiver}
+Subject: {subject} \n
+{body}
+"""
 
+server = smtplib.SMTP("smtp.gmail.com", 587)
+server.starttls()
 
-    window.after(1000, update)
- 
-timeLabel = Label(window, font=("Arial", 50), fg="#00FF00", bg="black")
-timeLabel.pack()
+server.login(sender, password)
+print("Logged in...")
 
-dayLabel = Label(window, font=("Ink Free", 25))
-dayLabel.pack()
-
-dateLabel = Label(window, font=("Ink Free", 30))
-dateLabel.pack()
-
-update()
-
-
-
-
-window.mainloop()
+server.sendmail(sender, receiver, message)
+print("Email has been sent!")
